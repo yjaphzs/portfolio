@@ -1,0 +1,30 @@
+/**
+* Use variables from variables.scss
+*/
+@use "../../../assets/styles/_variables" as *;
+
+.footer {
+    max-width: 750px;
+    text-align: center;
+
+    padding: 2rem;
+
+    .footer-content {
+        p {
+            color: $light;
+            padding: 0;
+
+            a {
+                color: $light;
+                font-weight: 700;
+                text-decoration: none;
+
+                transition: color 0.3s ease;
+
+                &:hover {
+                    color: $white;
+                }
+            }
+        }
+    }
+}

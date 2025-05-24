@@ -1,4 +1,5 @@
 import React from "react";
+import "./TextLink.scss";
 
 interface Props {
     children?: React.ReactNode;
@@ -6,7 +7,7 @@ interface Props {
     href?: string;
 }
 
-function Link({ children, className, href }: Props) {
+function TextLink({ children, className, href }: Props) {
     return (
         <a className={`text-link ${className || ""}`} href={href ?? "#"}>
             {children}
@@ -14,4 +15,4 @@ function Link({ children, className, href }: Props) {
     );
 }
 
-export default Link;
+export default TextLink;

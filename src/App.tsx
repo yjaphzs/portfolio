@@ -3,12 +3,12 @@ import { useEffect } from "react";
 // Layout imports
 import Content from "./components/Content";
 import Header from "./components/Header";
-import Footer from "./components/Footer";
 import Division from "./components/Division";
 import Card from "./components/Card";
 
 // Section imports
-import Profile from "./components/About/Profile/Profile";
+import About from "./components/About/About";
+import Contact from "./components/Contact/Contact";
 
 // Tool imports
 import Cover from "./components/tools/Cover";
@@ -57,12 +57,15 @@ function App() {
                 {/* About Section */}
                 <Division id="about">
                     <Card color="black">
-                        <Profile />
+                        <About />
                     </Card>
                 </Division>
 
-                {/* Footer */}
-                <Footer />
+                <Division id="contact">
+                    <Card color="white">
+                        <Contact />
+                    </Card>
+                </Division>
             </Content>
 
             {/* Page Load/Resize Cover */}

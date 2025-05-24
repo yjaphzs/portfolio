@@ -1,4 +1,4 @@
-import React from "react";
+import "./Footer.scss";
 
 function Footer() {
     return (
@@ -26,11 +26,11 @@ function Footer() {
                     . Built with{" "}
                     <a
                         className="contact-btn"
-                        href="https://laravel.com/"
+                        href="https://react.dev/"
                         rel="noopener noreferrer"
                         target="_blank"
                     >
-                        Laravel
+                        React
                     </a>{" "}
                     and manually styled using{" "}
                     <a
