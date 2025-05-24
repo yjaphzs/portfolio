@@ -1,0 +1,559 @@
+/**
+* Use variables from variables.scss
+*/
+@use "./variables" as *;
+
+@media only screen and (min-width: $xs) {
+    .section{
+        max-width: 100% !important;
+    }
+}
+
+    // @media
+    // only screen and (-webkit-min-device-pixel-ratio: 2)      and (min-width: $xs),
+    // only screen and (   min--moz-device-pixel-ratio: 2)      and (min-width: $xs),
+    // only screen and (     -o-min-device-pixel-ratio: 2/1)    and (min-width: $xs),
+    // only screen and (        min-device-pixel-ratio: 2)      and (min-width: $xs),
+    // only screen and (                min-resolution: 192dpi) and (min-width: $xs),
+    // only screen and (                min-resolution: 2dppx)  and (min-width: $xs) { 
+    //     .section{
+    //         max-width: 200px !important;
+    //     }
+    // }
+
+@media only screen and (min-width: $sm) {
+    .section{
+        max-width: 100% !important;
+    }
+}
+
+// @media
+// only screen and (-webkit-min-device-pixel-ratio: 2)      and (min-width: $sm),
+// only screen and (   min--moz-device-pixel-ratio: 2)      and (min-width: $sm),
+// only screen and (     -o-min-device-pixel-ratio: 2/1)    and (min-width: $sm),
+// only screen and (        min-device-pixel-ratio: 2)      and (min-width: $sm),
+// only screen and (                min-resolution: 192dpi) and (min-width: $sm),
+// only screen and (                min-resolution: 2dppx)  and (min-width: $sm) { 
+//     .section{
+//         max-width: 400px !important;
+//     }
+// }
+
+@media only screen and (min-width: $md) {
+    #logo{
+        display: block;
+    }
+    
+    #navigation-bar{
+        display: block;
+    }
+
+    .section{
+        max-width: 600px !important;
+    }
+}
+
+// @media
+// only screen and (-webkit-min-device-pixel-ratio: 2)      and (min-width: $md),
+// only screen and (   min--moz-device-pixel-ratio: 2)      and (min-width: $md),
+// only screen and (     -o-min-device-pixel-ratio: 2/1)    and (min-width: $md),
+// only screen and (        min-device-pixel-ratio: 2)      and (min-width: $md),
+// only screen and (                min-resolution: 192dpi) and (min-width: $md),
+// only screen and (                min-resolution: 2dppx)  and (min-width: $md) { 
+//     .section{
+//         max-width: 600px !important;
+//     }
+// }
+
+@media only screen and (min-width: $lg) {
+    .section{
+        max-width: 800px !important;
+    }
+}
+
+// @media
+// only screen and (-webkit-min-device-pixel-ratio: 2)      and (min-width: $lg),
+// only screen and (   min--moz-device-pixel-ratio: 2)      and (min-width: $lg),
+// only screen and (     -o-min-device-pixel-ratio: 2/1)    and (min-width: $lg),
+// only screen and (        min-device-pixel-ratio: 2)      and (min-width: $lg),
+// only screen and (                min-resolution: 192dpi) and (min-width: $lg),
+// only screen and (                min-resolution: 2dppx)  and (min-width: $lg) { 
+//     .section{
+//         max-width: 800px !important;
+//     }
+
+// }
+
+@media only screen and (min-width: $xl) {
+    .section{
+        max-width: 1000px !important;
+    }
+
+    .introduction{
+        .section{
+            .wrapper{
+                .profile-info{
+                    .name{
+                        font-size: 7rem !important;
+                        line-height: 7rem !important;
+                    }
+                } 
+            }
+        }
+    }
+}
+
+// @media
+// only screen and (-webkit-min-device-pixel-ratio: 2)      and (min-width: $xl),
+// only screen and (   min--moz-device-pixel-ratio: 2)      and (min-width: $xl),
+// only screen and (     -o-min-device-pixel-ratio: 2/1)    and (min-width: $xl),
+// only screen and (        min-device-pixel-ratio: 2)      and (min-width: $xl),
+// only screen and (                min-resolution: 192dpi) and (min-width: $xl),
+// only screen and (                min-resolution: 2dppx)  and (min-width: $xl) { 
+//     .section{
+//         max-width: 1000px !important;
+//     }
+
+//     .introduction{
+//         .section{
+//             .wrapper{
+//                 .profile-info{
+//                     .name{
+//                         font-size: 7rem !important;
+//                         line-height: 7rem !important;
+//                     }
+
+//                     .hello{
+//                         font-size: 1.5rem;
+//                         line-height: 1.5rem;
+
+//                         &:after{
+//                             width: 368px !important;
+//                             height: 17px !important;
+//                         }
+//                     }
+
+//                     .occupation{
+//                         font-size: 2rem;
+//                         line-height: 1rem;
+
+//                         &:before{
+//                             width: 185px !important;
+//                             height: 22px !important;
+//                         }
+//                     }
+
+//                     .description{
+//                         font-size: 1rem !important;
+//                         line-height: 1.5rem !important;
+//                     }
+//                 } 
+//             }
+//         }
+//     }
+// }
+
+@media only screen and (min-width: $xxl) {
+    // .section{
+    //     max-width: 1200px !important;
+    // }
+}
+
+// @media
+// only screen and (-webkit-min-device-pixel-ratio: 2)      and (min-width: $xxl),
+// only screen and (   min--moz-device-pixel-ratio: 2)      and (min-width: $xxl),
+// only screen and (     -o-min-device-pixel-ratio: 2/1)    and (min-width: $xxl),
+// only screen and (        min-device-pixel-ratio: 2)      and (min-width: $xxl),
+// only screen and (                min-resolution: 192dpi) and (min-width: $xxl),
+// only screen and (                min-resolution: 2dppx)  and (min-width: $xxl) { 
+//     .section{
+//         max-width: 1200px !important;
+//     }
+// }
+
+@media only screen and (min-width: $xxxl) {
+    // .section{
+    //     max-width: 1400px !important;
+    // }
+}
+
+// @media
+// only screen and (-webkit-min-device-pixel-ratio: 2)      and (min-width: $xxxl),
+// only screen and (   min--moz-device-pixel-ratio: 2)      and (min-width: $xxxl),
+// only screen and (     -o-min-device-pixel-ratio: 2/1)    and (min-width: $xxxl),
+// only screen and (        min-device-pixel-ratio: 2)      and (min-width: $xxxl),
+// only screen and (                min-resolution: 192dpi) and (min-width: $xxxl),
+// only screen and (                min-resolution: 2dppx)  and (min-width: $xxxl) { 
+//     .section{
+//         max-width: 1400px !important;
+//     }
+// }
+
+@media only screen and (min-width: $max) {
+    // .section{
+    //     max-width: 1600px !important;
+    // }
+}
+
+// @media
+// only screen and (-webkit-min-device-pixel-ratio: 2)      and (min-width: $max),
+// only screen and (   min--moz-device-pixel-ratio: 2)      and (min-width: $max),
+// only screen and (     -o-min-device-pixel-ratio: 2/1)    and (min-width: $max),
+// only screen and (        min-device-pixel-ratio: 2)      and (min-width: $max),
+// only screen and (                min-resolution: 192dpi) and (min-width: $max),
+// only screen and (                min-resolution: 2dppx)  and (min-width: $max) { 
+//     .section{
+//         max-width: 1600px !important;
+//     }
+// }
+
+/**
+** For iPhone 14 Pro, iPhone 15 and iPhone 15 Pro:
+** 1179×2556 pixels at 460ppi
+**/
+@media only screen 
+    and (width: 393px) 
+    and (height: 852px) 
+    and (-webkit-device-pixel-ratio: 3) { }
+
+
+/**
+** For iPhone 14 Pro Max, iPhone 15 Plus and iPhone 15 Pro Max:
+** 1284×2778 pixels at 460ppi
+**/
+@media only screen 
+and (width: 430px) 
+and (height: 932px) 
+and (-webkit-device-pixel-ratio: 3) {
+    .wrapper{
+        padding: 1rem;
+    }
+    
+    #pointer-gradient{
+        position: absolute;
+        background: radial-gradient(600px at 50% 0, rgba(255, 179, 1, 0.10), transparent 80%);
+    }
+
+    #about{
+        .fullscreen{
+            &:nth-child(1){
+                .section{
+                    .wrapper{
+                        flex-direction: column;
+
+                        .profile-info{
+                            width: 100%;
+                            height: 40%;
+                            text-align: center;
+
+                            .name {
+                                font-size: 6rem;
+                                letter-spacing: 0.15rem;
+                                line-height: 5rem;
+                                
+                                .first-name{
+                                    color: $yellow;
+                                }
+                            }
+                        }
+
+                        .profile-image{
+                            width: 100%;
+                            height: 60%;
+                            
+                            .image-wrapper{
+                                height: 95%;
+
+                                .circles{
+                                    height: 75vmin;
+                                    width: 75vmin;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            &:nth-child(2){
+                .section{
+                    .wrapper{
+                        .about-info{
+                            .about-title{
+                                .me{
+                                    color: $yellow;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        } 
+    }
+
+    #portfolio{
+        .fullscreen{
+            &:nth-child(1){
+                .section{
+                    .wrapper{
+                        .experience-wrapper{
+                            .work-experiences-wrapper{
+                                .work-experience-list{
+                                    .work-experience{
+                                        &:nth-child(even){
+                                            text-align: left;
+                                            .details{
+                                                .details-list{
+                                                    .detail{
+                                                        padding-right: 0;
+                                                        padding-left: 30px;
+
+                                                        &:after{
+                                                            content: "▹";
+                                                            position: absolute;
+                                                            left: 0px;
+                                                            top: 0px;
+                                                            color: $yellow;
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    #contact{
+        .fullscreen{
+            .section{
+                .wrapper{
+                    .contact-wrapper{
+                        .contact-info{
+                            .contact-title{
+                                .connect{
+                                    color: $yellow;
+                                }
+                            }
+                        }
+                    }
+
+                    .footer{
+                        max-width: 100%;
+                        padding: 1rem 0;
+                        .footer-content{
+                            p{
+                                margin: 0;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+/**
+** For iPhone 12, iPhone 12 Pro, iPhone 13, iPhone 13 Pro, and iPhone 14:
+** 1170×2532 pixels at 460ppi
+**/
+@media only screen 
+    and (width: 390px) 
+    and (height: 844px) 
+    and (-webkit-device-pixel-ratio: 3) {
+        .wrapper{
+            padding: 1rem;
+        }
+
+        #about{
+            .fullscreen{
+                &:nth-child(1){
+                    .section{
+                        .wrapper{
+                            flex-direction: column;
+    
+                            .profile-info{
+                                width: 100%;
+                                height: 40%;
+                                text-align: center;
+                                padding: 1rem;
+    
+                                .name {
+                                    font-size: 6rem;
+                                    letter-spacing: 0.15rem;
+                                    line-height: 5rem;
+
+                                    .first-name{
+                                        color: $yellow;
+                                    }
+                                }
+
+                                .position-wrapper{
+                                    .position{
+                                        font-size: 1.2rem;
+                                        letter-spacing: 0.12rem;
+                                    }
+                                }
+
+                                .socials{
+                                    .socials-list{
+                                        margin: 0;
+                                    }
+                                }
+                            }
+    
+                            .profile-image{
+                                width: 100%;
+                                height: 60%;
+                                
+                                .image-wrapper{
+                                    height: 95%;
+    
+                                    .circles{
+                                        height: 75vmin;
+                                        width: 75vmin;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                &:nth-child(2){
+                    .section{
+                        .wrapper{
+                            .about-info{
+                                .about-title{
+                                    .me{
+                                        color: $yellow;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            } 
+        }
+
+        #portfolio{
+            .fullscreen{
+                &:nth-child(1){
+                    .section{
+                        .wrapper{
+                            .experience-wrapper{
+                                .work-experiences-wrapper{
+                                    .work-experience-list{
+                                        .work-experience{
+                                            &:nth-child(even){
+                                                text-align: left;
+                                                .details{
+                                                    .details-list{
+                                                        .detail{
+                                                            padding-right: 0;
+                                                            padding-left: 30px;
+    
+                                                            &:after{
+                                                                content: "▹";
+                                                                position: absolute;
+                                                                left: 0px;
+                                                                top: 0px;
+                                                                color: $yellow;
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    
+        #contact{
+            .fullscreen{
+                .section{
+                    .wrapper{
+                        .contact-wrapper{
+                            .contact-info{
+                                .contact-title{
+                                    .connect{
+                                        color: $yellow;
+                                    }
+                                }
+                            }
+                        }
+
+                        .footer{
+                            max-width: 100%;
+                            padding: 1rem 0;
+                            .footer-content{
+                                p{
+                                    font-size: 0.9rem;
+                                    margin: 0;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+/**
+** For iPhone 12 Pro Max, iPhone 13 Pro Max, and iPhone 14 Plus:
+** 1284×2778 pixels at 458ppi
+**/
+@media only screen 
+    and (width: 428px) 
+    and (height: 926px) 
+    and (-webkit-device-pixel-ratio: 3) { }
+
+/**
+** For iPhone X, iPhone Xs, iPhone 11 Pro, iPhone 12 Mini, and iPhone 13 Mini:
+** 1080×2340 pixels at 476ppi
+**/
+@media only screen 
+    and (width: 375px) 
+    and (height: 812px) 
+    and (-webkit-device-pixel-ratio: 3) { }
+
+/**
+** For iPhone XR, and iPhone 11:
+** 828×1792 pixels at 326ppi
+**/
+@media only screen 
+    and (width: 414px) 
+    and (height: 896px) 
+    and (-webkit-device-pixel-ratio: 2) { }
+
+/**
+** For iPhone Xs Max, and iPhone 11 Pro Max:
+** 1242×2688 pixels at 458ppi
+**/
+@media only screen 
+    and (width: 414px) 
+    and (height: 896px) 
+    and (-webkit-device-pixel-ratio: 3) { }
+
+/**
+** For iPhone 7 (2016), iPhone 8 (2017), and iPhone SE (1st to 3rd gen):
+** 750×1334 pixels at 326ppi
+**/
+@media only screen 
+    and (width: 375px) 
+    and (height: 667px) 
+    and (-webkit-device-pixel-ratio: 2) { }
+
+/**
+** Device orientation
+** and (orientation: portrait)
+** and (orientation: landscape)
+**/

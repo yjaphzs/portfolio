@@ -1,35 +1,74 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect } from "react";
+
+// Layout imports
+import Content from "./components/Content";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import Division from "./components/Division";
+import Card from "./components/Card";
+
+// Section imports
+import Profile from "./components/About/Profile/Profile";
+
+// Tool imports
+import Cover from "./components/tools/Cover";
+import Pointer from "./components/tools/Pointer";
+
+import "./App.scss";
 
 function App() {
-  const [count, setCount] = useState(0)
+    useEffect(() => {
+        const smoothScrollLinks = document.querySelectorAll('a[href^="#"]');
+        const handleClick = function (
+            this: HTMLAnchorElement,
+            event: MouseEvent
+        ) {
+            event.preventDefault();
+            const href = this.getAttribute("href");
+            if (!href) return;
+            const target = document.querySelector(href);
+            if (target) {
+                target.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start",
+                });
+            }
+        };
+        smoothScrollLinks.forEach((link) => {
+            link.addEventListener("click", handleClick as EventListener);
+        });
+        return () => {
+            smoothScrollLinks.forEach((link) => {
+                link.removeEventListener("click", handleClick as EventListener);
+            });
+        };
+    }, []);
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    return (
+        <>
+            {/* Pointer Circle Background */}
+            <Pointer />
+
+            {/* Main Content */}
+            <Content>
+                {/* Header */}
+                <Header />
+
+                {/* About Section */}
+                <Division id="about">
+                    <Card color="black">
+                        <Profile />
+                    </Card>
+                </Division>
+
+                {/* Footer */}
+                <Footer />
+            </Content>
+
+            {/* Page Load/Resize Cover */}
+            <Cover />
+        </>
+    );
 }
 
-export default App
+export default App;

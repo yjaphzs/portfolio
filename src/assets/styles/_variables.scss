@@ -1,0 +1,40 @@
+:root{
+    --yellow: #ffb301;
+    --black: #080808;
+    --white: #ffffff;
+    --light: #8f8f8f;
+    --gray: #a4a8a9;
+
+    /**
+    **  Socials Color
+    **/
+    --github: #9c70ff;
+    --linkedin: #1a8cff;
+    --instagram: #ff478e;
+}
+
+$yellow: var(--yellow);
+$black: var(--black);
+$white: var(--white);
+$light: var(--light);
+$gray: var(--gray);
+
+$github: var(--github);
+$linkedin: var(--linkedin);
+$instagram: var(--instagram);
+
+// Circles
+$spin-time: 2s;
+$circle-color: #ffaa00;
+$circle-size: 40vmin;
+$displacement: 1.5%;
+
+// Devices
+$max: 1800px;
+$xxxl: 1600px;
+$xxl: 1400px;
+$xl: 1200px;
+$lg: 992px;
+$md: 768px;
+$sm: 576px;
+$xs: 320px;
