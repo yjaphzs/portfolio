@@ -7,6 +7,7 @@ import Division from "./components/Division";
 import Card from "./components/Card";
 
 // Section imports
+import Profile from "./components/Profile/Profile";
 import About from "./components/About/About";
 import Contact from "./components/Contact/Contact";
 
@@ -57,12 +58,16 @@ function App() {
                 {/* About Section */}
                 <Division id="about">
                     <Card color="black">
+                        <Profile />
+                    </Card>
+
+                    <Card color="white">
                         <About />
                     </Card>
                 </Division>
 
                 <Division id="contact">
-                    <Card color="white">
+                    <Card color="black">
                         <Contact />
                     </Card>
                 </Division>

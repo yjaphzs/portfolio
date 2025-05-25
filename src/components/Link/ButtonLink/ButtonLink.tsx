@@ -1,4 +1,5 @@
 import React from "react";
+import "./ButtonLink.scss";
 
 interface Props {
     children?: React.ReactNode;
@@ -9,7 +10,7 @@ interface Props {
 function ButtonLink({ children, className, href }: Props) {
     return (
         <a
-            className={`contact-btn ${className || ""}`}
+            className={`button-link ${className || ""}`}
             href={href ?? "#"}
             rel="noopener noreferrer"
             target="_blank"

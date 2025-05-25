@@ -1,0 +1,16 @@
+.technology-wrapper {
+    .technology-list {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 0;
+
+        justify-content: left;
+
+        .technology-item {
+            display: inline-block;
+            margin-right: 0.375rem;
+            margin-top: 0.375rem;
+            margin-bottom: 0.375rem;
+        }
+    }
+}

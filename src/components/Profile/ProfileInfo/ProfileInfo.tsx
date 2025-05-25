@@ -1,11 +1,9 @@
-import "./Profile.scss";
+import "./ProfileInfo.scss";
 
-import Circles from "../../../components/tools/Circles";
-import Socials from "../../../components/About/Socials/Socials";
+import Socials from "../Socials/Socials";
 import TextLink from "../../Link/TextLink/TextLink";
-import ProfilePhoto from "../../../assets/images/profile-photo.png";
 
-function Profile() {
+function ProfileInfo() {
     return (
         <>
             <div className="profile-info">
@@ -37,16 +35,8 @@ function Profile() {
                     </svg>
                 </TextLink>
             </div>
-
-            <div className="profile-image">
-                <div className="image-wrapper">
-                    <img src={ProfilePhoto} alt="Profile Photo" />
-
-                    <Circles />
-                </div>
-            </div>
         </>
     );
 }
 
-export default Profile;
+export default ProfileInfo;
