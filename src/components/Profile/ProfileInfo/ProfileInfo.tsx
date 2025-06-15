@@ -2,6 +2,7 @@ import "./ProfileInfo.scss";
 
 import Socials from "../Socials/Socials";
 import TextLink from "../../Link/TextLink/TextLink";
+import ResumePDF from "../../../assets/documents/JBautista-Resume.pdf";
 
 function ProfileInfo() {
     return (
@@ -18,7 +19,7 @@ function ProfileInfo() {
 
                 <Socials />
 
-                <TextLink>
+                <TextLink href={ResumePDF} download="JBautista-Resume.pdf">
                     View Resumé{" "}
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
