@@ -7,23 +7,14 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    position: relative;
 
     text-align: center;
     max-width: 728px;
 
-    height: 100%;
-
     .about-info {
-        &:hover .me {
-            color: $yellow;
-        }
-
         .about-title {
             color: $black;
-
-            .me {
-                transition: color 0.5s ease;
-            }
         }
 
         .about-details-wrapper {

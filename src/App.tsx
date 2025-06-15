@@ -1,4 +1,6 @@
 import { useEffect } from "react";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 // Layout imports
 import Content from "./components/Content";
@@ -9,6 +11,8 @@ import Card from "./components/Card";
 // Section imports
 import Profile from "./components/Profile/Profile";
 import About from "./components/About/About";
+import Work from "./components/Work/Work";
+import Projects from "./components/Projects/Projects";
 import Contact from "./components/Contact/Contact";
 
 // Tool imports
@@ -63,6 +67,17 @@ function App() {
 
                     <Card color="white">
                         <About />
+                    </Card>
+                </Division>
+
+                {/* Portfolio Section */}
+                <Division id="portfolio">
+                    <Card color="black">
+                        <Work />
+                    </Card>
+
+                    <Card color="white">
+                        <Projects />
                     </Card>
                 </Division>
 

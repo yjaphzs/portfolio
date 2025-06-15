@@ -1,0 +1,40 @@
+/**
+* Use variables from variables.scss
+*/
+@use "../../assets/styles/_variables" as *;
+
+.projects-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    text-align: center;
+
+    height: 100%;
+
+    .projects-info {
+        text-align: center;
+        margin-bottom: 2rem;
+
+        .projects-title {
+            color: $black;
+        }
+    }
+
+    .projects-slider-wrapper {
+        .project-slide {
+            .project-slide-image {
+                display: flex;
+                justify-content: center;
+                text-align: center;
+
+                img {
+                    width: 100%;
+                    height: auto;
+                    object-fit: cover;
+                    max-width: 500px;
+                }
+            }
+        }
+    }
+}

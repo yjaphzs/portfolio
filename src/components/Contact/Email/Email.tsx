@@ -1,3 +1,5 @@
+import "./Email.scss";
+
 import ButtonLink from "../../Link/ButtonLink/ButtonLink";
 
 function Email() {

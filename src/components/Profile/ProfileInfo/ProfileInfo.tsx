@@ -8,7 +8,7 @@ function ProfileInfo() {
         <>
             <div className="profile-info">
                 <h1 className="name">
-                    <span className="first-name">Jan</span> Bautista
+                    <span className="first-name yellow-text">Jan</span> Bautista
                 </h1>
                 <div className="position-wrapper">
                     <h3 className="position">

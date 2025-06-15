@@ -3,44 +3,49 @@
 */
 @use "./variables" as *;
 
-*{
+* {
     box-sizing: border-box;
     scroll-behavior: smooth;
 }
 
-html{
+html {
     scroll-behavior: smooth;
 }
 
-body{
-    font-family: 'Noto Sans', sans-serif;
+body {
+    font-family: "Noto Sans", sans-serif;
     padding: 0;
     margin: 0;
     overflow: hidden;
 }
 
-h1, h2, h3, h4, h5, h6{
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     margin: 0;
 }
 
-h1{
-    font-family: 'Bebas Neue', sans-serif;
+h1 {
+    font-family: "Bebas Neue", sans-serif;
     font-weight: 400;
     font-size: 8rem;
     letter-spacing: 0.37rem;
     line-height: 7rem;
 }
 
-h2{
-    font-family: 'Bebas Neue', sans-serif;
+h2 {
+    font-family: "Bebas Neue", sans-serif;
     font-weight: 400;
     font-size: 4rem;
     letter-spacing: 0.37rem;
     line-height: 4rem;
 }
 
-h3{
-    font-family: 'Bebas Neue', sans-serif;
+h3 {
+    font-family: "Bebas Neue", sans-serif;
     font-weight: 400;
     font-size: 2rem;
     text-transform: uppercase;
@@ -48,9 +53,9 @@ h3{
     line-height: 2rem;
 }
 
-::-webkit-scrollbar{
+::-webkit-scrollbar {
     background-color: $black;
-	width: 5px;
+    width: 5px;
     height: 5px;
 }
 
@@ -59,12 +64,12 @@ h3{
     background-color: $yellow;
 }
 
-::selection{
-    color: $white;
+::selection {
+    color: $black;
     background-color: $yellow;
 }
 
-#pointer-gradient{
+#pointer-gradient {
     position: fixed;
 
     top: 0;
@@ -86,7 +91,7 @@ h3{
     opacity: 1;
     z-index: 9999;
 
-    #cover-logo{
+    #cover-logo {
         position: fixed;
         top: 50%;
         left: 0;
@@ -99,13 +104,13 @@ h3{
     }
 }
 
-.fadeOut{
+.fadeOut {
     animation-name: fadeOut;
     animation-duration: 1s;
     animation-timing-function: ease-in;
 }
 
-#content-viewer{
+#content-viewer {
     width: 100vw;
     height: 100vh;
     scroll-snap-type: y proximity;
@@ -113,14 +118,22 @@ h3{
     overflow-x: hidden;
 }
 
-.pill{
+.pill {
     display: flex;
     align-items: center;
     font-weight: 700;
-    font-size: .75rem;
+    font-size: 0.75rem;
     color: $black;
-    padding: .25rem .75rem;
+    padding: 0.25rem 0.75rem;
     line-height: 1.25rem;
     border-radius: 9999px;
-    background-color: rgba(8, 8, 8, .1);
+    background-color: rgba(8, 8, 8, 0.1);
+}
+
+.yellow-text {
+    transition: color 0.5s ease;
+
+    &:hover {
+        color: $yellow;
+    }
 }

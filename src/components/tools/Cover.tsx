@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import Logo from "../../assets/images/global/logo.svg";
 
 function Cover() {

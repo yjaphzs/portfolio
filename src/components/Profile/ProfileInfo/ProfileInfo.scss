@@ -18,20 +18,11 @@
     align-items: center;
     justify-content: center;
 
-    &:hover .first-name {
-        color: $yellow;
-    }
-
-    // &:hover .developer{
-    //     color: $white;
-    // }
-
     .name {
         cursor: pointer;
 
         .first-name {
             display: block;
-            transition: color 0.5s ease;
         }
     }
 

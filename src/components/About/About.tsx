@@ -7,7 +7,7 @@ function About() {
         <div className="about-wrapper">
             <div className="about-info">
                 <h2 className="about-title">
-                    About <span className="me">Me!</span>
+                    About <span className="me yellow-text">Me!</span>
                 </h2>
                 <div className="about-details-wrapper">
                     <p className="about-details">
