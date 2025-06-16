@@ -3,6 +3,22 @@
 */
 @use "./variables" as *;
 
+@media only screen and (max-height: 800px) {
+    #portfolio {
+        .fullscreen {
+            &:nth-child(2) {
+                height: auto;
+                .section {
+                    height: auto;
+                    .wrapper {
+                        padding: 4rem 0;
+                    }
+                }
+            }
+        }
+    }
+}
+
 @media only screen and (max-width: $xs) {
     .section {
         max-width: 100% !important;
