@@ -22,7 +22,7 @@
 
     .projects-details-wrapper {
         max-width: 728px;
-        margin: 0 auto 2rem;
+        margin: 0 auto;
 
         .projects-details {
             font-family: "Montserrat", sans-serif;
@@ -92,16 +92,95 @@
         }
 
         .project-slide {
-            .project-slide-image {
-                display: flex;
-                justify-content: center;
-                text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 150px 20px 20px;
 
-                img {
+            .card-wrapper {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                position: relative;
+                background-color: #fff;
+                border-radius: 15px;
+                margin: 0 auto;
+                padding: 40px;
+                width: 100%;
+                max-width: 700px;
+                box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.2);
+
+                .card-image {
+                    position: absolute;
+                    top: 0;
+                    transform: translateY(-50%);
+                    left: 0;
+                    right: 0;
+                    margin: 0 auto;
                     width: 100%;
-                    height: auto;
-                    object-fit: cover;
-                    max-width: 500px;
+                    max-width: 400px;
+                    z-index: 3;
+
+                    img {
+                        width: 100%;
+                        height: auto;
+                        max-width: 400px;
+                        margin: 0 auto;
+                        border-radius: 15px;
+                        box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.2);
+                    }
+
+                    &:after {
+                        content: "";
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        right: 0;
+                        bottom: 0;
+                        border-radius: 15px;
+                        background-color: $yellow;
+                        opacity: 0;
+                        pointer-events: none;
+                        transition: opacity 0.3s ease;
+                    }
+
+                    &:hover:after {
+                        opacity: 0.5;
+                    }
+                }
+
+                .card-details {
+                    margin-top: 100px;
+                    text-align: center;
+
+                    .project-title {
+                        font-family: "Montserrat", sans-serif;
+                        font-weight: 700;
+                        font-size: 1.15rem;
+                        line-height: 1.15rem;
+                        letter-spacing: 0.1rem;
+                        color: $black;
+                        margin-bottom: 10px;
+                        cursor: pointer;
+                        transition: color 0.3s ease;
+                        text-decoration: none;
+
+                        &:hover {
+                            color: $yellow;
+                        }
+                    }
+
+                    p {
+                        font-size: 1rem;
+                        margin-bottom: 2px;
+
+                        span {
+                            font-weight: 700;
+                            margin-right: 10px;
+                        }
+                    }
                 }
             }
         }

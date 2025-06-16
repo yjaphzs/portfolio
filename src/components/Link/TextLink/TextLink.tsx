@@ -5,15 +5,14 @@ interface Props {
     children?: React.ReactNode;
     className?: string;
     href?: string;
-    download?: boolean | string;
 }
 
-function TextLink({ children, className, download, href }: Props) {
+function TextLink({ children, className, href }: Props) {
     return (
         <a
             href={href}
-            download={download ? download : true}
             target="_blank"
+            rel="noopener noreferrer"
             className={`text-link ${className || ""}`}
         >
             {children}

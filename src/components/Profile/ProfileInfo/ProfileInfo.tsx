@@ -19,7 +19,7 @@ function ProfileInfo() {
 
                 <Socials />
 
-                <TextLink href={ResumePDF} download="JBautista-Resume.pdf">
+                <TextLink href={ResumePDF}>
                     View Resumé{" "}
                     <svg
                         xmlns="http://www.w3.org/2000/svg"

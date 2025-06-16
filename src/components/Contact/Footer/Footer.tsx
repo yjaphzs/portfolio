@@ -5,24 +5,15 @@ function Footer() {
         <footer className="footer">
             <div className="footer-content">
                 <p>
-                    Loosely inspired by Brittany Chiang's{" "}
+                    Design inspired by industry portfolios, including{" "}
                     <a
                         className="contact-btn"
                         href="https://brittanychiang.com/"
                         rel="noopener noreferrer"
                         target="_blank"
                     >
-                        portfolio website
+                        Brittany Chiang
                     </a>{" "}
-                    and crafted in{" "}
-                    <a
-                        className="contact-btn"
-                        href="https://code.visualstudio.com/"
-                        rel="noopener noreferrer"
-                        target="_blank"
-                    >
-                        Visual Studio Code
-                    </a>
                     . Built with{" "}
                     <a
                         className="contact-btn"
