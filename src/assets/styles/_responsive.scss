@@ -7,6 +7,200 @@
     .section {
         max-width: 100% !important;
     }
+
+    .wrapper {
+        padding: 1rem;
+    }
+
+    #about {
+        .fullscreen {
+            &:nth-child(1) {
+                .section {
+                    .wrapper {
+                        flex-direction: column;
+
+                        .profile-info {
+                            width: 100%;
+                            height: 40%;
+                            text-align: center;
+                            padding: 1rem 1rem 0;
+
+                            .name {
+                                font-size: 5rem;
+                                letter-spacing: 0.1rem;
+                                line-height: 4rem;
+
+                                .first-name {
+                                    color: $yellow;
+                                }
+                            }
+
+                            .position-wrapper {
+                                .position {
+                                    font-size: 1.2rem;
+                                    letter-spacing: 0.12rem;
+                                }
+                            }
+
+                            .socials {
+                                margin-top: 0.5rem;
+                                .socials-list {
+                                    margin: 0;
+                                    .socials-item {
+                                        .socials-link {
+                                            width: 20px;
+                                            height: 20px;
+                                        }
+                                    }
+                                }
+                            }
+
+                            .text-link {
+                                margin-top: 0.5rem;
+                            }
+                        }
+
+                        .profile-image {
+                            width: 100%;
+                            height: 60%;
+
+                            .image-wrapper {
+                                height: 95%;
+
+                                .circles {
+                                    height: 75vmin;
+                                    width: 75vmin;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            &:nth-child(2) {
+                height: auto;
+
+                .section {
+                    padding: 4rem 0 4rem;
+                    height: auto;
+
+                    .wrapper {
+                        .about-info {
+                            .about-title {
+                                letter-spacing: 0.2rem;
+
+                                .me {
+                                    color: $yellow;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    #portfolio {
+        .fullscreen {
+            &:nth-child(1) {
+                .section {
+                    .wrapper {
+                        .experience-wrapper {
+                            .experiences-info {
+                                .experiences-title {
+                                    letter-spacing: 0.2rem;
+
+                                    .experience {
+                                        color: $yellow;
+                                    }
+                                }
+                            }
+
+                            .work-experiences-wrapper {
+                                .work-experience-list {
+                                    .work-experience {
+                                        &:nth-child(even) {
+                                            text-align: left;
+                                            .details {
+                                                .details-list {
+                                                    .detail {
+                                                        padding-right: 0;
+                                                        padding-left: 30px;
+
+                                                        &:after {
+                                                            content: "▹";
+                                                            position: absolute;
+                                                            left: 0px;
+                                                            top: 0px;
+                                                            color: $yellow;
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            &:nth-child(2) {
+                .section {
+                    .wrapper {
+                        padding: 2rem;
+                        .projects-wrapper {
+                            .projects-info {
+                                .projects-title {
+                                    letter-spacing: 0.2rem;
+
+                                    .projects {
+                                        color: $yellow;
+                                    }
+                                }
+                            }
+
+                            .projects-details-wrapper {
+                                margin: 0 -1rem;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    #contact {
+        .fullscreen {
+            .section {
+                .wrapper {
+                    .contact-wrapper {
+                        .contact-info {
+                            .contact-title {
+                                letter-spacing: 0.2rem;
+
+                                .connect {
+                                    color: $yellow;
+                                }
+                            }
+                        }
+                    }
+
+                    .footer {
+                        max-width: 100%;
+                        padding: 1rem 0;
+                        .footer-content {
+                            p {
+                                font-size: 0.9rem;
+                                margin: 0;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 // @media
@@ -277,6 +471,8 @@
                     .wrapper {
                         .about-info {
                             .about-title {
+                                letter-spacing: 0.2rem;
+
                                 .me {
                                     color: $yellow;
                                 }
@@ -294,6 +490,16 @@
                 .section {
                     .wrapper {
                         .experience-wrapper {
+                            .experiences-info {
+                                .experiences-title {
+                                    letter-spacing: 0.2rem;
+
+                                    .experience {
+                                        color: $yellow;
+                                    }
+                                }
+                            }
+
                             .work-experiences-wrapper {
                                 .work-experience-list {
                                     .work-experience {
@@ -323,6 +529,29 @@
                     }
                 }
             }
+
+            &:nth-child(2) {
+                .section {
+                    .wrapper {
+                        padding: 2rem;
+                        .projects-wrapper {
+                            .projects-info {
+                                .projects-title {
+                                    letter-spacing: 0.2rem;
+
+                                    .projects {
+                                        color: $yellow;
+                                    }
+                                }
+                            }
+
+                            .projects-details-wrapper {
+                                margin: 0 -1rem;
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 
@@ -333,6 +562,8 @@
                     .contact-wrapper {
                         .contact-info {
                             .contact-title {
+                                letter-spacing: 0.2rem;
+
                                 .connect {
                                     color: $yellow;
                                 }
@@ -423,6 +654,8 @@
                     .wrapper {
                         .about-info {
                             .about-title {
+                                letter-spacing: 0.2rem;
+
                                 .me {
                                     color: $yellow;
                                 }
@@ -440,6 +673,16 @@
                 .section {
                     .wrapper {
                         .experience-wrapper {
+                            .experiences-info {
+                                .experiences-title {
+                                    letter-spacing: 0.2rem;
+
+                                    .experience {
+                                        color: $yellow;
+                                    }
+                                }
+                            }
+
                             .work-experiences-wrapper {
                                 .work-experience-list {
                                     .work-experience {
@@ -469,6 +712,29 @@
                     }
                 }
             }
+
+            &:nth-child(2) {
+                .section {
+                    .wrapper {
+                        padding: 2rem;
+                        .projects-wrapper {
+                            .projects-info {
+                                .projects-title {
+                                    letter-spacing: 0.2rem;
+
+                                    .projects {
+                                        color: $yellow;
+                                    }
+                                }
+                            }
+
+                            .projects-details-wrapper {
+                                margin: 0 -1rem;
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 
@@ -479,6 +745,8 @@
                     .contact-wrapper {
                         .contact-info {
                             .contact-title {
+                                letter-spacing: 0.2rem;
+
                                 .connect {
                                     color: $yellow;
                                 }

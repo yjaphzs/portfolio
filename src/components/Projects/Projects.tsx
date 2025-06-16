@@ -82,7 +82,7 @@ function Projects() {
             <div className="projects-info">
                 <h2 className="projects-title">
                     Recent{" "}
-                    <span className="experience yellow-text">Projects</span>
+                    <span className="projects yellow-text">Projects</span>
                 </h2>
             </div>
 
