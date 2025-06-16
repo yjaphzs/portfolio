@@ -183,6 +183,22 @@
                     }
                 }
             }
+
+            @media (max-width: 430px) {
+                padding: 20px;
+
+                .card-wrapper {
+                    padding: 0;
+
+                    .card-image {
+                        position: unset !important;
+                        transform: translate(0);
+                    }
+                    .card-details {
+                        display: none;
+                    }
+                }
+            }
         }
     }
 }
