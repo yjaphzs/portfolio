@@ -11,7 +11,81 @@
                 .section {
                     height: auto;
                     .wrapper {
-                        padding: 4rem 0;
+                        padding: 4rem 2rem;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 600px) and (max-height: 900px) {
+    #portfolio {
+        .fullscreen {
+            &:nth-child(2) {
+                height: auto;
+                .section {
+                    height: auto;
+                    .wrapper {
+                        padding: 4rem 2rem;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 600px) and (max-height: 600px) {
+    #about {
+        .fullscreen {
+            &:nth-child(2) {
+                height: auto;
+                .section {
+                    height: auto;
+                    .wrapper {
+                        padding: 4rem 2rem;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 600px) and (max-height: 500px) {
+    #contact {
+        .fullscreen {
+            height: auto;
+            .section {
+                height: auto;
+                .wrapper {
+                    padding: 4rem 2rem 0;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 425px) and (max-height: 700px) {
+    #about {
+        .fullscreen {
+            &:nth-child(1) {
+                height: auto;
+                .section {
+                    height: auto;
+                    .wrapper {
+                        padding: 2rem 2rem 0;
+                        .profile-info {
+                            .text-link {
+                                margin-bottom: 1rem;
+                            }
+                        }
+                        .profile-image {
+                            .image-wrapper {
+                                img {
+                                    height: 400px;
+                                }
+                            }
+                        }
                     }
                 }
             }
