@@ -103,6 +103,12 @@
                     .wrapper {
                         padding: 4rem 2rem 0;
                         .profile-info {
+                            .name {
+                                .first-name {
+                                    color: $yellow;
+                                }
+                            }
+
                             .text-link {
                                 margin-bottom: 1rem;
                             }
@@ -115,6 +121,74 @@
                                 .circles {
                                     height: 75vmin;
                                     width: 75vmin;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            &:nth-child(2) {
+                .section {
+                    .wrapper {
+                        .about-info {
+                            .about-title {
+                                .me {
+                                    color: $yellow;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    #portfolio {
+        .fullscreen {
+            &:nth-child(1) {
+                .section {
+                    .wrapper {
+                        .experience-wrapper {
+                            .experiences-info {
+                                .experiences-title {
+                                    .experience {
+                                        color: $yellow;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            &:nth-child(2) {
+                .section {
+                    .wrapper {
+                        .projects-wrapper {
+                            .projects-info {
+                                .projects-title {
+                                    .projects {
+                                        color: $yellow;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    #contact {
+        .fullscreen {
+            .section {
+                .wrapper {
+                    .contact-wrapper {
+                        .contact-info {
+                            .contact-title {
+                                .connect {
+                                    color: $yellow;
                                 }
                             }
                         }
