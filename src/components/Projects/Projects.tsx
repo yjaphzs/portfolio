@@ -3,7 +3,7 @@ import "./Projects.scss";
 import Slider from "react-slick";
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
 
-import RadiisScreenshot from "../../assets/images/projects/radiis.png";
+import RadiisScreenshot from "../../assets/images/projects/radiis-home.png";
 import BasisScreenshot from "../../assets/images/projects/basis.png";
 import CLSU360Screenshot from "../../assets/images/projects/360.png";
 
