@@ -24,7 +24,7 @@ https://yjaphzs.xyz
 
 ## 📸 Demo & Screenshot
 - **Demo**
-![Animation](https://github.com/user-attachments/assets/f6da4d0f-22bf-4eca-98f6-4da563109a69)
+![Uploading Animation.gif…]()
 
 - **Screenshot**
 ![screenshot-2025-06-26-10-30-17](https://github.com/user-attachments/assets/d156fd43-7e8f-49ed-b065-d4d19429ab37)
