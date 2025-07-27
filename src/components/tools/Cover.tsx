@@ -1,7 +1,11 @@
 import { useEffect, useRef } from "react";
 import Logo from "../../assets/images/global/logo.svg";
 
-function Cover() {
+interface CoverProps {
+    isVisible?: boolean;
+}
+
+function Cover({ isVisible = true }: CoverProps) {
     const overlayRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
@@ -29,6 +33,15 @@ function Cover() {
             }, 250);
         }
 
+        // Handle isVisible prop changes
+        if (!isVisible && coverOverlay) {
+            coverOverlay.classList.add("fadeOut");
+        } else if (isVisible && coverOverlay) {
+            coverOverlay.classList.remove("fadeOut");
+            coverOverlay.style.opacity = "1";
+            coverOverlay.style.zIndex = "999";
+        }
+
         coverOverlay.addEventListener("animationend", handleAnimationEnd);
         coverOverlay.addEventListener("webkitAnimationEnd", handleAnimationEnd);
         coverOverlay.addEventListener("oAnimationEnd", handleAnimationEnd);
@@ -52,7 +65,7 @@ function Cover() {
     }, []);
 
     return (
-        <div id="cover-overlay" className="fadeOut" ref={overlayRef}>
+        <div id="cover-overlay" className={isVisible ? "" : "fadeOut"}  ref={overlayRef}>
             <img
                 id="cover-logo"
                 className="fadeOutFaster"

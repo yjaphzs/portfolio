@@ -1,11 +1,15 @@
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import ProfileImage from "./ProfileImage/ProfileImage";
 
-function Profile() {
+interface ProfileProps {
+    onProfileImageLoad?: () => void;
+}
+
+function Profile({ onProfileImageLoad }: ProfileProps) {
     return (
         <>
             <ProfileInfo />
-            <ProfileImage />
+            <ProfileImage onImageLoad={onProfileImageLoad} />
         </>
     );
 }

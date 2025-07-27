@@ -41,6 +41,7 @@
             &:nth-child(2) {
                 height: auto;
                 .section {
+                    min-height: 100vh;
                     height: auto;
                     .wrapper {
                         padding: 4rem 2rem;
@@ -129,8 +130,15 @@
             }
 
             &:nth-child(2) {
+                min-height: 100vh;
+                height: auto;
+
                 .section {
+                    min-height: 100vh;
+                    height: auto;
+
                     .wrapper {
+                        padding: 4rem 2rem;
                         .about-info {
                             .about-title {
                                 .me {
@@ -163,7 +171,16 @@
             }
 
             &:nth-child(2) {
+                min-height: 100vh;
+                height: auto;
+
                 .section {
+                    min-height: 100vh;
+                    height: auto;
+
+                    display: flex;
+                    align-items: center;
+                    
                     .wrapper {
                         .projects-wrapper {
                             .projects-info {
@@ -847,7 +864,12 @@
 
             &:nth-child(2) {
                 .section {
+                    min-height: 100vh;
+                    height: auto;
+
                     .wrapper {
+                        padding: 4rem 2rem;
+             
                         .about-info {
                             .about-title {
                                 letter-spacing: 0.2rem;

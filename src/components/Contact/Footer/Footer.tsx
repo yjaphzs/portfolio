@@ -5,15 +5,7 @@ function Footer() {
         <footer className="footer">
             <div className="footer-content">
                 <p>
-                    Design inspired by industry portfolios, including{" "}
-                    <a
-                        className="contact-btn"
-                        href="https://brittanychiang.com/"
-                        rel="noopener noreferrer"
-                        target="_blank"
-                    >
-                        Brittany Chiang
-                    </a>{" "}
+                    Design inspired by industry portfolios
                     . Built with{" "}
                     <a
                         className="contact-btn"

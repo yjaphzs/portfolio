@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
@@ -22,6 +22,8 @@ import Pointer from "./components/tools/Pointer";
 import "./App.scss";
 
 function App() {
+    const [profileImageLoaded, setProfileImageLoaded] = useState(false);
+
     useEffect(() => {
         const smoothScrollLinks = document.querySelectorAll('a[href^="#"]');
         const handleClick = function (
@@ -49,6 +51,10 @@ function App() {
         };
     }, []);
 
+    const handleProfileImageLoad = () => {
+        setProfileImageLoaded(true);
+    };
+
     return (
         <>
             {/* Pointer Circle Background */}
@@ -62,7 +68,7 @@ function App() {
                 {/* About Section */}
                 <Division id="about">
                     <Card color="black">
-                        <Profile />
+                        <Profile onProfileImageLoad={handleProfileImageLoad} />
                     </Card>
 
                     <Card color="white">
@@ -89,7 +95,7 @@ function App() {
             </Content>
 
             {/* Page Load/Resize Cover */}
-            <Cover />
+             <Cover isVisible={!profileImageLoaded} />
         </>
     );
 }
