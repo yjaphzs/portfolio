@@ -1,0 +1,134 @@
+/**
+* Use variables from variables.scss
+*/
+@use "./variables" as *;
+
+.archived-portfolio {
+    * {
+        box-sizing: border-box;
+        scroll-behavior: smooth;
+    }
+
+    font-family: "Noto Sans", sans-serif;
+    padding: 0;
+    margin: 0;
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        margin: 0;
+    }
+
+    h1 {
+        font-family: "Bebas Neue", sans-serif;
+        font-weight: 400;
+        font-size: 8rem;
+        letter-spacing: 0.37rem;
+        line-height: 7rem;
+    }
+
+    h2 {
+        font-family: "Bebas Neue", sans-serif;
+        font-weight: 400;
+        font-size: 4rem;
+        letter-spacing: 0.37rem;
+        line-height: 4rem;
+    }
+
+    h3 {
+        font-family: "Bebas Neue", sans-serif;
+        font-weight: 400;
+        font-size: 2rem;
+        text-transform: uppercase;
+        letter-spacing: 0.15rem;
+        line-height: 2rem;
+    }
+
+    ::-webkit-scrollbar {
+        background-color: $black;
+        width: 5px;
+        height: 5px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        border-radius: 5px;
+        background-color: $yellow;
+    }
+
+    ::selection {
+        color: $black;
+        background-color: $yellow;
+    }
+}
+
+#pointer-gradient {
+    position: fixed;
+
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    pointer-events: none;
+    z-index: 500;
+}
+
+#cover-overlay {
+    background: $black;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    opacity: 1;
+    z-index: 9999;
+
+    #cover-logo {
+        position: fixed;
+        top: 50%;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        transform: translateY(-50%);
+        width: 100px;
+        height: 100px;
+        z-index: 10000;
+    }
+}
+
+.fadeOut {
+    animation-name: fadeOut;
+    animation-duration: 1s;
+    animation-timing-function: ease-in;
+}
+
+#content-viewer {
+    width: 100vw;
+    height: 100vh;
+    scroll-snap-type: y proximity;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.pill {
+    display: flex;
+    align-items: center;
+    font-weight: 700;
+    font-size: 0.75rem;
+    color: $black;
+    padding: 0.25rem 0.75rem;
+    line-height: 1.25rem;
+    border-radius: 9999px;
+    background-color: rgba(8, 8, 8, 0.1);
+}
+
+.yellow-text {
+    transition: color 0.5s ease;
+
+    &:hover {
+        color: $yellow;
+    }
+}
