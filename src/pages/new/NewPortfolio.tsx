@@ -17,12 +17,65 @@ import { techStack, TECH_PREVIEW_COUNT } from "@/data/techStack";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel"
+import { ImageZoom } from "@/components/ui/image-zoom";
 import { Separator } from "@/components/ui/separator";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { useTheme } from "@/components/theme-provider";
 import { ProfilePicture } from "@/components/ProfilePicture";
 
 // ─── Assets ──────────────────────────────────────────────────────────────────
+
+import carousel1 from "@/assets/v2/images/carousel/carousel-1.jpg";
+import carousel2 from "@/assets/v2/images/carousel/carousel-2.jpg";
+import carousel3 from "@/assets/v2/images/carousel/carousel-3.jpg";
+import carousel4 from "@/assets/v2/images/carousel/carousel-4.jpg";
+import carousel5 from "@/assets/v2/images/carousel/carousel-5.jpg";
+import carousel6 from "@/assets/v2/images/carousel/carousel-6.jpg";
+import carousel7 from "@/assets/v2/images/carousel/carousel-7.jpg";
+import carousel8 from "@/assets/v2/images/carousel/carousel-8.jpg";
+import carousel9 from "@/assets/v2/images/carousel/carousel-9.jpg";
+import carousel10 from "@/assets/v2/images/carousel/carousel-10.jpg";
+import carousel11 from "@/assets/v2/images/carousel/carousel-11.jpg";
+import carousel12 from "@/assets/v2/images/carousel/carousel-12.jpg";
+import carousel13 from "@/assets/v2/images/carousel/carousel-13.jpg";
+import carousel14 from "@/assets/v2/images/carousel/carousel-14.jpg";
+import carousel15 from "@/assets/v2/images/carousel/carousel-15.jpg";
+import carousel16 from "@/assets/v2/images/carousel/carousel-16.jpg";
+import carousel17 from "@/assets/v2/images/carousel/carousel-17.jpg";
+import carousel18 from "@/assets/v2/images/carousel/carousel-18.jpg";
+import carousel19 from "@/assets/v2/images/carousel/carousel-19.jpg";
+import carousel20 from "@/assets/v2/images/carousel/carousel-20.jpg";
+
+const CAROUSEL_IMAGES = [
+  carousel1,
+  carousel2,
+  carousel3,
+  carousel4,
+  carousel5,
+  carousel6,
+  carousel7,
+  carousel8,
+  carousel9,
+  carousel10,
+  carousel11,
+  carousel12,
+  carousel13,
+  carousel14,
+  carousel15,
+  carousel16,
+  carousel17,
+  carousel18,
+  carousel19,
+  carousel20,
+];
+
 import profilePicLightDefault from "@/assets/v2/images/profile-pic/light/default.jpg";
 import profilePicLightHover from "@/assets/v2/images/profile-pic/light/hover.jpg";
 import profilePicLightClicked from "@/assets/v2/images/profile-pic/light/clicked.jpg";
@@ -536,6 +589,36 @@ export default function NewPortfolio() {
                       </span>
                     </div>
                   ))}
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            {/* Gallery */}
+            <motion.div {...fadeUp(0.4)}>
+              <Card className="shadow-sm">
+                <CardHeader>
+                  <CardTitle className="font-semibold uppercase tracking-wide">
+                    Gallery
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="flex items-center justify-center">
+                  <Carousel className="w-full max-w-xs sm:max-w-md md:max-w-lg lg:max-w-xl">
+                    <CarouselContent className="-ml-1">
+                      {CAROUSEL_IMAGES.map((img, index) => (
+                        <CarouselItem key={index} className="basis-1/3 md:basis-1/4 pl-1 lg:basis-1/5">
+                          <ImageZoom>
+                            <img
+                              src={img}
+                              alt={`Gallery image ${index + 1}`}
+                              className="object-cover w-full h-full rounded-md aspect-square border border-border cursor-zoom-in"
+                            />
+                          </ImageZoom>
+                        </CarouselItem>
+                      ))}
+                    </CarouselContent>
+                    <CarouselPrevious />
+                    <CarouselNext />
+                  </Carousel>
                 </CardContent>
               </Card>
             </motion.div>
