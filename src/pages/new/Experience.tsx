@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { ArrowLeft, Calendar } from "lucide-react";
 import { motion } from "motion/react";
 
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { experience } from "./NewPortfolio";
 
@@ -46,17 +46,20 @@ export default function ExperiencePage() {
                             }}
                         >
                             <Card className="shadow-sm">
-                                <CardContent className="p-4 sm:p-5">
+                                <CardHeader>
+                                  <CardTitle>
                                     <a
                                         href={exp.url}
                                         target="_blank"
                                         rel="noreferrer noopener"
-                                        className="text-sm font-semibold hover:underline no-underline text-foreground"
+                                        className="font-semibold hover:underline no-underline text-foreground uppercase"
                                     >
                                         {exp.company}
                                     </a>
-
-                                    <div className="relative mt-3 space-y-0">
+                                  </CardTitle>
+                                </CardHeader>
+                                <CardContent>
+                                    <div className="relative space-y-0">
                                         {/* Timeline line */}
                                         <div className="absolute left-1.25 top-1.5 bottom-1.5 w-px bg-border" />
 
@@ -78,9 +81,16 @@ export default function ExperiencePage() {
                                                         <Calendar className="h-2.5 w-2.5" />
                                                         {role.period}
                                                     </p>
-                                                    <p className="text-[11.5px] text-muted-foreground mt-1.5 leading-snug">
-                                                        {role.description}
-                                                    </p>
+                                                    <ul className="my-6 ml-6 list-disc [&>li]:mt-2">
+                                                        {role.bullets?.map((bullet, bIdx) => (
+                                                            <li
+                                                                key={bIdx}
+                                                                className="text-muted-foreground leading-snug"
+                                                            >
+                                                                {bullet}
+                                                            </li>
+                                                        ))}
+                                                    </ul>
                                                 </div>
                                             );
                                         })}

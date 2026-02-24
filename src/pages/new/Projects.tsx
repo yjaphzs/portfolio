@@ -47,7 +47,7 @@ export default function ProjectsPage() {
                             }}
                         >
                             <Card className="shadow-sm h-full">
-                                <CardContent className="p-4 sm:p-5 flex flex-col h-full">
+                                <CardContent className="flex flex-col h-full">
                                     <a
                                         href={project.url}
                                         target="_blank"
