@@ -65,30 +65,16 @@ export function VersionSwitcher() {
     const faviconPrefix = isArchived ? "/v1" : "";
 
     useEffect(() => {
-        const setFavicon = (
-            selector: string,
-            attr: string,
-            path: string
-        ) => {
+        const updateFavicon = (selector: string, path: string) => {
             const el = document.querySelector<HTMLLinkElement>(selector);
-            if (el) el.setAttribute(attr, path);
+            if (el) el.href = path;
         };
 
-        setFavicon(
-            'link[rel="apple-touch-icon"]',
-            "href",
-            `${faviconPrefix}/apple-touch-icon.png`
-        );
-        setFavicon(
-            'link[rel="icon"][sizes="32x32"]',
-            "href",
-            `${faviconPrefix}/favicon-32x32.png`
-        );
-        setFavicon(
-            'link[rel="icon"][sizes="16x16"]',
-            "href",
-            `${faviconPrefix}/favicon-16x16.png`
-        );
+        const cacheBust = `?v=${Date.now()}`;
+        updateFavicon('link[rel="icon"][sizes="any"]', `${faviconPrefix}/favicon.ico${cacheBust}`);
+        updateFavicon('link[rel="icon"][sizes="32x32"]', `${faviconPrefix}/favicon-32x32.png${cacheBust}`);
+        updateFavicon('link[rel="icon"][sizes="16x16"]', `${faviconPrefix}/favicon-16x16.png${cacheBust}`);
+        updateFavicon('link[rel="apple-touch-icon"]', `${faviconPrefix}/apple-touch-icon.png${cacheBust}`);
     }, [faviconPrefix]);
 
     // Hide on 404 page — only show on known routes
@@ -106,7 +92,7 @@ export function VersionSwitcher() {
         <>
             {/* Floating button */}
             <motion.div
-                className="fixed bottom-5 right-5 z-50"
+                className="fixed bottom-5 right-5 z-[10001]"
                 initial={{ opacity: 0, scale: 0.8, y: 20 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 transition={{ delay: 0.8, duration: 0.4, ease: "easeOut" }}
