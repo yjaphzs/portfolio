@@ -2,7 +2,20 @@ import { Link } from "react-router-dom";
 import { ArrowLeft, Calendar } from "lucide-react";
 import { motion } from "motion/react";
 
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardContent
+} from "@/components/ui/card";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel"
+import { ImageZoom } from "@/components/ui/image-zoom";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { experience } from "./NewPortfolio";
 
@@ -58,8 +71,8 @@ export default function ExperiencePage() {
                                     </a>
                                   </CardTitle>
                                 </CardHeader>
-                                <CardContent>
-                                    <div className="relative space-y-0">
+                                <CardContent className="flex flex-col justify-center items-center gap-4">
+                                    <div className="relative space-y-0 w-full">
                                         {/* Timeline line */}
                                         <div className="absolute left-1.25 top-1.5 bottom-1.5 w-px bg-border" />
 
@@ -95,6 +108,25 @@ export default function ExperiencePage() {
                                             );
                                         })}
                                     </div>
+                                    {exp.carouselImages && exp.carouselImages.length > 0 && (
+                                      <Carousel className="w-[calc(100%-6rem)]">
+                                        <CarouselContent className="-ml-1">
+                                          {exp.carouselImages.map((img, index) => (
+                                            <CarouselItem key={index} className="basis-1/2 sm:basis-1/3 md:basis-1/4 pl-1 lg:basis-1/5">
+                                              <ImageZoom>
+                                                <img
+                                                  src={img}
+                                                  alt={`Gallery image ${index + 1}`}
+                                                  className="object-cover w-full h-full rounded-md aspect-square border border-border cursor-zoom-in"
+                                                />
+                                              </ImageZoom>
+                                            </CarouselItem>
+                                          ))}
+                                        </CarouselContent>
+                                        <CarouselPrevious />
+                                        <CarouselNext />
+                                      </Carousel>
+                                    )}
                                 </CardContent>
                             </Card>
                         </motion.div>

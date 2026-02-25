@@ -48,15 +48,21 @@ export default function ProjectsPage() {
                         >
                             <Card className="shadow-sm h-full">
                                 <CardContent className="flex flex-col h-full">
-                                    <a
-                                        href={project.url}
-                                        target="_blank"
-                                        rel="noreferrer noopener"
-                                        className="text-[13px] font-semibold hover:underline no-underline text-foreground inline-flex items-center gap-1"
-                                    >
-                                        {project.title}
-                                        <ExternalLink className="h-3 w-3 text-muted-foreground" />
-                                    </a>
+                                    {project.url ? (
+                                        <a
+                                            href={project.url}
+                                            target="_blank"
+                                            rel="noreferrer noopener"
+                                            className="text-[13px] font-semibold hover:underline no-underline text-foreground inline-flex items-center gap-1"
+                                        >
+                                            {project.title}
+                                            <ExternalLink className="h-3 w-3 text-muted-foreground" />
+                                        </a>
+                                    ) : (
+                                        <span className="text-[13px] font-semibold text-foreground inline-flex items-center gap-1">
+                                            {project.title}
+                                        </span>
+                                    )}
                                     <p className="text-[11px] text-muted-foreground mt-0.5 leading-snug">
                                         {project.fullTitle}
                                     </p>

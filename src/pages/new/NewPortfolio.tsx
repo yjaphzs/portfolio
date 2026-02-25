@@ -76,6 +76,45 @@ const CAROUSEL_IMAGES = [
   carousel20,
 ];
 
+import global2025co1 from "@/assets/v2/images/experience/globalco2025/carousel/carousel-1.jpg";
+import global2025co2 from "@/assets/v2/images/experience/globalco2025/carousel/carousel-2.jpg";
+import global2025co3 from "@/assets/v2/images/experience/globalco2025/carousel/carousel-3.jpg";
+import global2025co4 from "@/assets/v2/images/experience/globalco2025/carousel/carousel-4.jpg";
+import global2025co5 from "@/assets/v2/images/experience/globalco2025/carousel/carousel-5.jpg";
+
+import clsu2022co1 from "@/assets/v2/images/experience/clsu2022/carousel/carousel-1.jpg";
+import clsu2022co2 from "@/assets/v2/images/experience/clsu2022/carousel/carousel-2.jpg";
+import clsu2022co3 from "@/assets/v2/images/experience/clsu2022/carousel/carousel-3.jpg";
+import clsu2022co4 from "@/assets/v2/images/experience/clsu2022/carousel/carousel-4.jpg";
+import clsu2022co5 from "@/assets/v2/images/experience/clsu2022/carousel/carousel-5.jpg";
+import clsu2022co6 from "@/assets/v2/images/experience/clsu2022/carousel/carousel-6.jpg";
+import clsu2022co7 from "@/assets/v2/images/experience/clsu2022/carousel/carousel-7.jpg";
+import clsu2022co8 from "@/assets/v2/images/experience/clsu2022/carousel/carousel-8.jpg";
+import clsu2022co9 from "@/assets/v2/images/experience/clsu2022/carousel/carousel-9.jpg";
+import clsu2022co10 from "@/assets/v2/images/experience/clsu2022/carousel/carousel-10.jpg";
+import clsu2022co11 from "@/assets/v2/images/experience/clsu2022/carousel/carousel-11.jpg";
+import clsu2022co12 from "@/assets/v2/images/experience/clsu2022/carousel/carousel-12.jpg";
+import clsu2022co13 from "@/assets/v2/images/experience/clsu2022/carousel/carousel-13.jpg";
+import clsu2022co14 from "@/assets/v2/images/experience/clsu2022/carousel/carousel-14.jpg";
+import clsu2022co15 from "@/assets/v2/images/experience/clsu2022/carousel/carousel-15.jpg";
+
+import philrice2021co1 from "@/assets/v2/images/experience/philrice2021/carousel/carousel-1.jpg";
+import philrice2021co2 from "@/assets/v2/images/experience/philrice2021/carousel/carousel-2.jpg";
+import philrice2021co3 from "@/assets/v2/images/experience/philrice2021/carousel/carousel-3.jpg";
+import philrice2021co4 from "@/assets/v2/images/experience/philrice2021/carousel/carousel-4.jpg";
+
+import wideout2020co1 from "@/assets/v2/images/experience/wideout2020/carousel/carousel-1.jpg";
+import wideout2020co2 from "@/assets/v2/images/experience/wideout2020/carousel/carousel-2.jpg";
+import wideout2020co3 from "@/assets/v2/images/experience/wideout2020/carousel/carousel-3.jpg";
+import wideout2020co4 from "@/assets/v2/images/experience/wideout2020/carousel/carousel-4.jpg";
+
+import clsu2019co1 from "@/assets/v2/images/experience/clsu2019/carousel/carousel-1.jpg";
+import clsu2019co2 from "@/assets/v2/images/experience/clsu2019/carousel/carousel-2.jpg";
+
+import technodream2019co1 from "@/assets/v2/images/experience/technodream2019/carousel/carousel-1.jpg";
+import technodream2019co2 from "@/assets/v2/images/experience/technodream2019/carousel/carousel-2.jpg";
+import technodream2019co3 from "@/assets/v2/images/experience/technodream2019/carousel/carousel-3.jpg";
+
 import profilePicLightDefault from "@/assets/v2/images/profile-pic/light/default.jpg";
 import profilePicLightHover from "@/assets/v2/images/profile-pic/light/hover.jpg";
 import profilePicLightClicked from "@/assets/v2/images/profile-pic/light/clicked.jpg";
@@ -144,6 +183,13 @@ export const experience = [
         ],
       },
     ],
+    carouselImages: [
+      global2025co1,
+      global2025co2,
+      global2025co3,
+      global2025co4,
+      global2025co5,
+    ]
   },
   {
     company: "Central Luzon State University",
@@ -175,6 +221,23 @@ export const experience = [
         ],
       },
     ],
+    carouselImages: [
+      clsu2022co1,
+      clsu2022co2,
+      clsu2022co3,
+      clsu2022co4,
+      clsu2022co5,
+      clsu2022co6,
+      clsu2022co7,
+      clsu2022co8,
+      clsu2022co9,
+      clsu2022co10,
+      clsu2022co11,
+      clsu2022co12,
+      clsu2022co13,
+      clsu2022co14,
+      clsu2022co15,
+    ]
   },
   {
     company: "Philippine Rice Research Institute",
@@ -192,6 +255,12 @@ export const experience = [
         ],
       },
     ],
+    carouselImages: [
+      philrice2021co1,
+      philrice2021co2,
+      philrice2021co3,
+      philrice2021co4,
+    ]
   },
   {
     company: "Wideout (AQA)",
@@ -218,6 +287,12 @@ export const experience = [
         ],
       },
     ],
+    carouselImages: [
+      wideout2020co1,
+      wideout2020co2,
+      wideout2020co3,
+      wideout2020co4,
+    ]
   },
   {
     company: "Central Luzon State University",
@@ -234,6 +309,10 @@ export const experience = [
         ],
       },
     ],
+    carouselImages: [
+      clsu2019co1,
+      clsu2019co2,
+    ]
   },
   {
     company: "TechnoDream Web Works",
@@ -250,6 +329,11 @@ export const experience = [
         ],
       },
     ],
+    carouselImages: [
+      technodream2019co1,
+      technodream2019co2,
+      technodream2019co3,
+    ]
   },
 ];
 
@@ -294,6 +378,22 @@ export const projects = [
     url: "https://360.clsu.edu.ph",
     tech: ["JavaScript", "Laravel", "MySQL", "CSS"],
   },
+  {
+    title: "Turkey Travel Planner",
+    fullTitle: "Turkey Travel Planner by Jimmy Çay (chai)",
+    description:
+      "A comprehensive travel guide website for Turkey, featuring detailed information on destinations, itineraries, and travel tips to help travelers plan their trips effectively.",
+    url: "https://turkeytravelplanner.com/",
+    tech: ["WordPress", "PHP", "HTML", "CSS", "JavaScript"],
+  },
+  {
+    title: "Makisig Rescue 3121",
+    fullTitle: "Makisig Rescue 3121 Emergency Alerting App with GIS Mapping & Tracking System",
+    description:
+      "An undergraduate capstone project that provides real-time emergency alerting and location tracking to enhance disaster response and public safety.",
+    url: "",
+    tech: ["Firebase", "Laravel", "Bootstrap", "MySQL", "JavaScript"],
+  }
 ];
 
 const education = [
@@ -602,10 +702,10 @@ export default function NewPortfolio() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="flex items-center justify-center">
-                  <Carousel className="w-full max-w-xs sm:max-w-md md:max-w-lg lg:max-w-xl">
+                  <Carousel className="w-[calc(100%-6rem)]">
                     <CarouselContent className="-ml-1">
                       {CAROUSEL_IMAGES.map((img, index) => (
-                        <CarouselItem key={index} className="basis-1/3 md:basis-1/4 pl-1 lg:basis-1/5">
+                        <CarouselItem key={index} className="basis-1/2 sm:basis-1/3 md:basis-1/4 pl-1 lg:basis-1/5">
                           <ImageZoom>
                             <img
                               src={img}
