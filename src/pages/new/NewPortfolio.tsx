@@ -46,11 +46,6 @@ import carousel12 from "@/assets/v2/images/carousel/carousel-12.jpg";
 import carousel13 from "@/assets/v2/images/carousel/carousel-13.jpg";
 import carousel14 from "@/assets/v2/images/carousel/carousel-14.jpg";
 import carousel15 from "@/assets/v2/images/carousel/carousel-15.jpg";
-import carousel16 from "@/assets/v2/images/carousel/carousel-16.jpg";
-import carousel17 from "@/assets/v2/images/carousel/carousel-17.jpg";
-import carousel18 from "@/assets/v2/images/carousel/carousel-18.jpg";
-import carousel19 from "@/assets/v2/images/carousel/carousel-19.jpg";
-import carousel20 from "@/assets/v2/images/carousel/carousel-20.jpg";
 
 const CAROUSEL_IMAGES = [
   carousel1,
@@ -67,19 +62,13 @@ const CAROUSEL_IMAGES = [
   carousel12,
   carousel13,
   carousel14,
-  carousel15,
-  carousel16,
-  carousel17,
-  carousel18,
-  carousel19,
-  carousel20,
+  carousel15
 ];
 
 import global2025co1 from "@/assets/v2/images/experience/globalco2025/carousel/carousel-1.jpg";
 import global2025co2 from "@/assets/v2/images/experience/globalco2025/carousel/carousel-2.jpg";
 import global2025co3 from "@/assets/v2/images/experience/globalco2025/carousel/carousel-3.jpg";
 import global2025co4 from "@/assets/v2/images/experience/globalco2025/carousel/carousel-4.jpg";
-import global2025co5 from "@/assets/v2/images/experience/globalco2025/carousel/carousel-5.jpg";
 
 import clsu2022co1 from "@/assets/v2/images/experience/clsu2022/carousel/carousel-1.jpg";
 import clsu2022co2 from "@/assets/v2/images/experience/clsu2022/carousel/carousel-2.jpg";
@@ -187,7 +176,6 @@ export const experience = [
       global2025co2,
       global2025co3,
       global2025co4,
-      global2025co5,
     ]
   },
   {
@@ -337,22 +325,6 @@ export const experience = [
 ];
 
 export const projects = [
-  {
-    title: "Barker Portal",
-    fullTitle: "Barker Portal",
-    description:
-      "Barker Portal is an internal platform that helps financial teams manage asset valuations for lending. Built as a micro-frontend monorepo, it brings together real-time AI-powered pricing, contract management, audit trails, notifications, and secure access—all in one place. The Portal makes it easy to track submissions, collaborate, and handle the full valuation process efficiently and securely.",
-    url: "https://barkerportal.com/",
-    tech: ["ReactJS", "TypeScript", "Tailwind CSS", "Vite", "Shadcn UI", "Firebase"],
-  },
-  {
-    title: "The Barker Price",
-    fullTitle: "The Barker Price",
-    description:
-      "The Barker Price is Barker’s public-facing website, designed to share information about the company’s technology, services, and value in asset-based lending. It explains how Barker’s AI-driven platform delivers accurate collateral valuations and helps lenders make smarter decisions.",
-    url: "https://thebarkerprice.com/",
-    tech: ["HTML", "CSS", "JavaScript", "PHP", "WordPress", "SASS"],
-  },
   {
     title: "RADIIS",
     fullTitle: "Research & Development Integrated Information System",
