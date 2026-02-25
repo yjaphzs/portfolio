@@ -4,7 +4,6 @@ import {
   ExternalLink,
   Github,
   Linkedin,
-  Instagram,
   FileText,
   Calendar,
   Dot,
@@ -152,17 +151,16 @@ const profile = {
      "At CLSU, I led the development of institution-wide platforms and taught programming, bridging technical solutions with real user needs.",
   ],
   socials: [
-    { name: "GitHub", url: "https://github.com/yjaphzs", icon: Github },
+    { 
+      name: "GitHub",
+      url: "https://github.com/yjaphzs",
+      icon: Github
+    },
     {
       name: "LinkedIn",
       url: "https://www.linkedin.com/in/yjaphzs/",
       icon: Linkedin,
-    },
-    {
-      name: "Instagram",
-      url: "https://www.instagram.com/yjaphzs/",
-      icon: Instagram,
-    },
+    }
   ],
 };
 

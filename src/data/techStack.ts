@@ -13,6 +13,8 @@ export const techStack: Record<string, string[]> = {
         "Font Awesome",
         "ESLint",
         "Prettier",
+        "Vite",
+        "Webpack",
     ],
     "Back End": [
         "Laravel",
@@ -36,9 +38,16 @@ export const techStack: Record<string, string[]> = {
         "Postman",
         "Docker",
         "Linux",
-        "Vite",
         "WordPress",
         "Discord",
+    ],
+    "Tooling": [
+        "PNPM",
+        "Turborepo",
+    ],
+    "Design": [
+        "Adobe Photoshop",
+        "Adobe Illustrator",
     ]
 };
 
