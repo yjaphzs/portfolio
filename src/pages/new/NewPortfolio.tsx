@@ -81,10 +81,6 @@ import clsu2022co8 from "@/assets/v2/images/experience/clsu2022/carousel/carouse
 import clsu2022co9 from "@/assets/v2/images/experience/clsu2022/carousel/carousel-9.jpg";
 import clsu2022co10 from "@/assets/v2/images/experience/clsu2022/carousel/carousel-10.jpg";
 import clsu2022co11 from "@/assets/v2/images/experience/clsu2022/carousel/carousel-11.jpg";
-import clsu2022co12 from "@/assets/v2/images/experience/clsu2022/carousel/carousel-12.jpg";
-import clsu2022co13 from "@/assets/v2/images/experience/clsu2022/carousel/carousel-13.jpg";
-import clsu2022co14 from "@/assets/v2/images/experience/clsu2022/carousel/carousel-14.jpg";
-import clsu2022co15 from "@/assets/v2/images/experience/clsu2022/carousel/carousel-15.jpg";
 
 import philrice2021co1 from "@/assets/v2/images/experience/philrice2021/carousel/carousel-1.jpg";
 import philrice2021co2 from "@/assets/v2/images/experience/philrice2021/carousel/carousel-2.jpg";
@@ -220,10 +216,6 @@ export const experience = [
       clsu2022co9,
       clsu2022co10,
       clsu2022co11,
-      clsu2022co12,
-      clsu2022co13,
-      clsu2022co14,
-      clsu2022co15,
     ]
   },
   {
