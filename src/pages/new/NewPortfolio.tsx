@@ -147,8 +147,9 @@ const profile = {
     },
   },
   bio: [
-    "I’m a Full-Stack Developer passionate about building useful, modern web apps. My experience spans university systems, creative web ads, and IT support, always focused on making things simpler and more impactful.",
-    "At CLSU, I led the development of institution-wide platforms and taught programming, bridging technical solutions with real user needs.",
+     "I’m a Full-Stack Developer passionate about building useful, modern web apps. My experience spans university systems, creative web ads, IT support, and scalable financial technology platforms—always focused on making things simpler and more impactful.",
+     "My latest experience is with a financial technology company, where I architected and developed real-time, scalable web systems and internal portals for secure asset valuation and management.",
+     "At CLSU, I led the development of institution-wide platforms and taught programming, bridging technical solutions with real user needs.",
   ],
   socials: [
     { name: "GitHub", url: "https://github.com/yjaphzs", icon: Github },
