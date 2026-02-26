@@ -2,8 +2,6 @@ import {
   Mail,
   MapPin,
   ExternalLink,
-  Github,
-  Linkedin,
   FileText,
   Calendar,
   Dot,
@@ -29,357 +27,11 @@ import { ThemeToggle } from "@/components/theme-toggle";
 import { useTheme } from "@/components/theme-provider";
 import { ProfilePicture } from "@/components/ProfilePicture";
 
-// ─── Assets ──────────────────────────────────────────────────────────────────
-
-import carousel1 from "@/assets/v2/images/carousel/carousel-1.jpg";
-import carousel2 from "@/assets/v2/images/carousel/carousel-2.jpg";
-import carousel3 from "@/assets/v2/images/carousel/carousel-3.jpg";
-import carousel4 from "@/assets/v2/images/carousel/carousel-4.jpg";
-import carousel5 from "@/assets/v2/images/carousel/carousel-5.jpg";
-import carousel6 from "@/assets/v2/images/carousel/carousel-6.jpg";
-import carousel7 from "@/assets/v2/images/carousel/carousel-7.jpg";
-import carousel8 from "@/assets/v2/images/carousel/carousel-8.jpg";
-import carousel9 from "@/assets/v2/images/carousel/carousel-9.jpg";
-import carousel10 from "@/assets/v2/images/carousel/carousel-10.jpg";
-import carousel11 from "@/assets/v2/images/carousel/carousel-11.jpg";
-import carousel12 from "@/assets/v2/images/carousel/carousel-12.jpg";
-import carousel13 from "@/assets/v2/images/carousel/carousel-13.jpg";
-import carousel14 from "@/assets/v2/images/carousel/carousel-14.jpg";
-import carousel15 from "@/assets/v2/images/carousel/carousel-15.jpg";
-
-const CAROUSEL_IMAGES = [
-  carousel1,
-  carousel2,
-  carousel3,
-  carousel4,
-  carousel5,
-  carousel6,
-  carousel7,
-  carousel8,
-  carousel9,
-  carousel10,
-  carousel11,
-  carousel12,
-  carousel13,
-  carousel14,
-  carousel15
-];
-
-import global2025co1 from "@/assets/v2/images/experience/globalco2025/carousel/carousel-1.jpg";
-import global2025co2 from "@/assets/v2/images/experience/globalco2025/carousel/carousel-2.jpg";
-import global2025co3 from "@/assets/v2/images/experience/globalco2025/carousel/carousel-3.jpg";
-import global2025co4 from "@/assets/v2/images/experience/globalco2025/carousel/carousel-4.jpg";
-
-import clsu2022co1 from "@/assets/v2/images/experience/clsu2022/carousel/carousel-1.jpg";
-import clsu2022co2 from "@/assets/v2/images/experience/clsu2022/carousel/carousel-2.jpg";
-import clsu2022co3 from "@/assets/v2/images/experience/clsu2022/carousel/carousel-3.jpg";
-import clsu2022co4 from "@/assets/v2/images/experience/clsu2022/carousel/carousel-4.jpg";
-import clsu2022co5 from "@/assets/v2/images/experience/clsu2022/carousel/carousel-5.jpg";
-import clsu2022co6 from "@/assets/v2/images/experience/clsu2022/carousel/carousel-6.jpg";
-import clsu2022co7 from "@/assets/v2/images/experience/clsu2022/carousel/carousel-7.jpg";
-import clsu2022co8 from "@/assets/v2/images/experience/clsu2022/carousel/carousel-8.jpg";
-import clsu2022co9 from "@/assets/v2/images/experience/clsu2022/carousel/carousel-9.jpg";
-import clsu2022co10 from "@/assets/v2/images/experience/clsu2022/carousel/carousel-10.jpg";
-import clsu2022co11 from "@/assets/v2/images/experience/clsu2022/carousel/carousel-11.jpg";
-
-import philrice2021co1 from "@/assets/v2/images/experience/philrice2021/carousel/carousel-1.jpg";
-import philrice2021co2 from "@/assets/v2/images/experience/philrice2021/carousel/carousel-2.jpg";
-import philrice2021co3 from "@/assets/v2/images/experience/philrice2021/carousel/carousel-3.jpg";
-import philrice2021co4 from "@/assets/v2/images/experience/philrice2021/carousel/carousel-4.jpg";
-
-import wideout2020co1 from "@/assets/v2/images/experience/wideout2020/carousel/carousel-1.jpg";
-import wideout2020co2 from "@/assets/v2/images/experience/wideout2020/carousel/carousel-2.jpg";
-import wideout2020co3 from "@/assets/v2/images/experience/wideout2020/carousel/carousel-3.jpg";
-import wideout2020co4 from "@/assets/v2/images/experience/wideout2020/carousel/carousel-4.jpg";
-
-import clsu2019co1 from "@/assets/v2/images/experience/clsu2019/carousel/carousel-1.jpg";
-import clsu2019co2 from "@/assets/v2/images/experience/clsu2019/carousel/carousel-2.jpg";
-
-import technodream2019co1 from "@/assets/v2/images/experience/technodream2019/carousel/carousel-1.jpg";
-import technodream2019co2 from "@/assets/v2/images/experience/technodream2019/carousel/carousel-2.jpg";
-import technodream2019co3 from "@/assets/v2/images/experience/technodream2019/carousel/carousel-3.jpg";
-
-import profilePicLightDefault from "@/assets/v2/images/profile-pic/light/default.jpg";
-import profilePicLightHover from "@/assets/v2/images/profile-pic/light/hover.jpg";
-import profilePicLightClicked from "@/assets/v2/images/profile-pic/light/clicked.jpg";
-
-import profilePicDarkDefault from "@/assets/v2/images/profile-pic/dark/default.jpg";
-import profilePicDarkHover from "@/assets/v2/images/profile-pic/dark/hover.jpg";
-import profilePicDarkClicked from "@/assets/v2/images/profile-pic/dark/clicked.jpg";
-
-import resume from "@/assets/v2/documents/JBautista-Resume-2026.pdf";
-
-// ─── Data ────────────────────────────────────────────────────────────────────
-
-const profile = {
-  name: "Jan Bautista",
-  initials: "JB",
-  title: "Full-Stack Developer",
-  location: "Nueva Ecija, Philippines",
-  email: "yjaphzs@gmail.com",
-  resumeUrl: resume,
-  avatarImages: {
-    light: {
-      default: profilePicLightDefault,
-      hover: profilePicLightHover,
-      clicked: profilePicLightClicked,
-    },
-    dark: {
-      default: profilePicDarkDefault,
-      hover: profilePicDarkHover,
-      clicked: profilePicDarkClicked,
-    },
-  },
-  bio: [
-     "I’m a Full-Stack Developer passionate about building useful, modern web apps. My experience spans university systems, creative web ads, IT support, and scalable financial technology platforms—always focused on making things simpler and more impactful.",
-     "My latest experience is with a financial technology company, where I architected and developed real-time, scalable web systems and internal portals for secure asset valuation and management.",
-     "At CLSU, I led the development of institution-wide platforms and taught programming, bridging technical solutions with real user needs.",
-  ],
-  socials: [
-    { 
-      name: "GitHub",
-      url: "https://github.com/yjaphzs",
-      icon: Github
-    },
-    {
-      name: "LinkedIn",
-      url: "https://www.linkedin.com/in/yjaphzs/",
-      icon: Linkedin,
-    }
-  ],
-};
-
-export const experience = [
-  {
-    company: "Globalco",
-    shortName: "Globalco",
-    url: "",
-    roles: [
-      {
-        title: "Full-Stack Developer",
-        period: "Aug 2025 – Present",
-        bullets: [
-          "Architected scalable systems using ReactJS, Firebase (Firestore, Auth, Functions, etc.), and Micro-frontend monorepo architecture.",
-          "Developed custom WordPress themes and integrated PHP scripts using a modern HTML/SASS/JS workflow.",
-          "Modernized backend workflows by converting local Python scripts into callable APIs via Cloud Functions.",
-          "Streamlined deployment by designing and implementing CI/CD pipelines using GitHub Actions.",
-          "Collaborated closely with cross-functional teams including developers, data engineers, data scientists, and QA specialists to deliver high-quality, scalable solutions.",
-        ],
-      },
-    ],
-    carouselImages: [
-      global2025co1,
-      global2025co2,
-      global2025co3,
-      global2025co4,
-    ]
-  },
-  {
-    company: "Central Luzon State University",
-    shortName: "CLSU",
-    url: "https://clsu.edu.ph/",
-    roles: [
-      {
-        title: "Full-Stack Developer",
-        period: "Aug 2022 – Jun 2025",
-        bullets: [
-          "Built and maintained full-stack web applications using Laravel, Livewire, Bootstrap, JavaScript, SASS, and MySQL to support the university’s research, extension, and administrative processes.",
-          "Worked closely with administrative offices and the MISO team to understand their needs and turn them into practical digital tools that streamlined their workflows.",
-          "Provided regular support and training to faculty and staff, helping them navigate the systems, resolve issues, and confidently use the tools in their daily work.",
-          "Regularly improved and updated system features based on user feedback to ensure alignment with the institution’s research and development initiatives.",
-          "Performed regular system checks and security reviews to protect against threats like Remote Code Execution (RCE) attacks and SEO poisoning, making sure everything stayed safe and reliable.",
-        ],
-      },
-      {
-        title: "Instructor I",
-        period: "Aug 2022 – Jun 2025",
-        bullets: [
-          "Delivered lectures and facilitated laboratory classes on programming-related subjects.",
-          "Developed and prepared instructional materials, including PowerPoint presentations and other teaching resources.",
-          "Advised students on Capstone Projects and On-the-Job Training (OJT), providing academic and technical guidance.",
-          "Provided mentorship and support to students beyond official working hours to help them succeed academically and professionally.",
-          'Participated in research and extension activities as a faculty researcher for the project titled "CLSU Virtual Explorer: Embracing CLSU\'s Rich Heritage and Modern Technology through an Interactive Virtual Journey (A Virtual Explorer Web Application)."',
-          "Served as Chair and Panel Critic in multiple Capstone Project defenses.",
-          "Maintained Outstanding Faculty Performance Ratings throughout the entire duration of employment and recognized as the Highest Rated Outstanding IT Faculty by Students for both the 1st and 2nd Semesters of S.Y. 2023–2024.",
-        ],
-      },
-    ],
-    carouselImages: [
-      clsu2022co1,
-      clsu2022co2,
-      clsu2022co3,
-      clsu2022co4,
-      clsu2022co5,
-      clsu2022co6,
-      clsu2022co7,
-      clsu2022co8,
-      clsu2022co9,
-      clsu2022co10,
-      clsu2022co11,
-    ]
-  },
-  {
-    company: "Philippine Rice Research Institute",
-    shortName: "PhilRice",
-    url: "https://www.philrice.gov.ph/",
-    roles: [
-      {
-        title: "Information System Analyst I",
-        period: "Oct 2021 – Aug 2022",
-        bullets: [
-          "Provided IT support for the division, creating and updating training materials (tarpaulins, PowerPoints, infographics) and offering technical assistance.",
-          "Documented activities and training sessions as the photo documentation personnel",
-          "Edited photos and videos to support training materials and promotional activities.",
-          "Supported online learning and training sessions, including the Training of Trainers on Rice Integrated Crop Management (PalayCheck) for 32 Sri Lankan agricultural workers, backed by DFA-TCCP.",
-        ],
-      },
-    ],
-    carouselImages: [
-      philrice2021co1,
-      philrice2021co2,
-      philrice2021co3,
-      philrice2021co4,
-    ]
-  },
-  {
-    company: "Wideout (AQA)",
-    shortName: "Wideout",
-    url: "https://www.aqa.work/",
-    roles: [
-      {
-        title: "Quality Assurance Specialist",
-        period: "Nov 2020 – Sep 2021",
-        bullets: [
-          "Ensured that the developed creatives were pixel-perfect based on the instructions and design specifications.",
-          "Followed a standardized process to QA the work of creative developers.",
-          "Tested and debugged creatives also ensured cross-browser compatibility of creative web advertisements.",
-        ],
-      },
-      {
-        title: "Creative Developer",
-        period: "Nov 2020 – Sep 2021",
-        bullets: [
-          "Converted designs into pixel-perfect animated and static web ads using HTML, CSS, and vanilla JavaScript.",
-          "Produced multiple banner sizes (160x600, 300x250, 300x600, 728x90, etc.) for creative ads based on initial designs.",
-          "Designed and created storyboards in Adobe Photoshop to illustrate concepts and animations for web ads.",
-          "Tested and debugged creatives, ensuring cross-browser compatibility.",
-        ],
-      },
-    ],
-    carouselImages: [
-      wideout2020co1,
-      wideout2020co2,
-      wideout2020co3,
-      wideout2020co4,
-    ]
-  },
-  {
-    company: "Central Luzon State University",
-    shortName: "CLSU",
-    url: "https://clsu.edu.ph/",
-    roles: [
-      {
-        title: "Part-time Instructor",
-        period: "Aug 2019 – Apr 2020",
-        bullets: [
-          "Lecturer for both lecture and laboratory classes on programming subjects.",
-          "Prepare learning materials such as PowerPoint presentations and other instructional resources.",
-          "Serve as Capstone and OJT advisor for IT students to provide guidance and support.",
-        ],
-      },
-    ],
-    carouselImages: [
-      clsu2019co1,
-      clsu2019co2,
-    ]
-  },
-  {
-    company: "TechnoDream Web Works",
-    shortName: "TechnoDream",
-    url: "https://technodreamoutsourcing.com/",
-    roles: [
-      {
-        title: "Programmer",
-        period: "Feb 2019 – May 2019",
-        bullets: [
-          "Converted daily web designs into pixel-perfect, responsive static web pages using HTML, CSS, and JavaScript.",
-          "Successfully converted 34+ designs into responsive web pages.",
-          "Assisted in migrating pages from an outdated website to a new WordPress template for Turkey Travel Planner, increasing delivery time by 60% and converting up to 20% of the pages.",
-        ],
-      },
-    ],
-    carouselImages: [
-      technodream2019co1,
-      technodream2019co2,
-      technodream2019co3,
-    ]
-  },
-];
-
-export const projects = [
-  {
-    title: "RADIIS",
-    fullTitle: "Research & Development Integrated Information System",
-    description:
-      "A web app to manage and organize CLSU's research programs, projects, and studies with built-in analytics.",
-    url: "https://radiis.clsu.edu.ph",
-    tech: ["Laravel", "Livewire", "MySQL", "Bootstrap"],
-  },
-  {
-    title: "BASIS",
-    fullTitle: "Business Affairs Strategic Integrated System",
-    description:
-      "A centralized platform to modernize and streamline CLSU's business operations across multiple programs.",
-    url: "https://basis.clsu.edu.ph",
-    tech: ["Laravel", "Livewire", "MySQL", "Bootstrap"],
-  },
-  {
-    title: "CLSU Virtual Explorer",
-    fullTitle: "Interactive 360° Virtual Campus Tour",
-    description:
-      "An interactive web app that lets anyone explore CLSU's campuses through immersive 360-degree panoramic images.",
-    url: "https://360.clsu.edu.ph",
-    tech: ["JavaScript", "Laravel", "MySQL", "CSS"],
-  },
-  {
-    title: "Turkey Travel Planner",
-    fullTitle: "Turkey Travel Planner by Jimmy Çay (chai)",
-    description:
-      "A comprehensive travel guide website for Turkey, featuring detailed information on destinations, itineraries, and travel tips to help travelers plan their trips effectively.",
-    url: "https://turkeytravelplanner.com/",
-    tech: ["WordPress", "PHP", "HTML", "CSS", "JavaScript"],
-  },
-  {
-    title: "Makisig Rescue 3121",
-    fullTitle: "Makisig Rescue 3121 Emergency Alerting App with GIS Mapping & Tracking System",
-    description:
-      "An undergraduate capstone project that provides real-time emergency alerting and location tracking to enhance disaster response and public safety.",
-    url: "",
-    tech: ["Firebase", "Laravel", "Bootstrap", "MySQL", "JavaScript"],
-  }
-];
-
-const education = [
-  {
-    degree: "BS Information Technology",
-    school: "Central Luzon State University",
-    period: "2015 – 2019",
-  },
-];
-
-const RELEVANT_TITLES = [
-  "Full-Stack Developer",
-  "Quality Assurance Specialist",
-  "Creative Developer",
-  "Programmer",
-];
-
-const relevantExperience = experience
-  .map((exp) => ({
-    ...exp,
-    roles: exp.roles.filter((role) => RELEVANT_TITLES.includes(role.title)),
-  }))
-  .filter((exp) => exp.roles.length > 0);
+import profile from "@/data/profile";
+import projects from "@/data/projects";
+import education from "@/data/education";
+import { relevantExperience } from "@/data/experience";
+import gallery from "@/data/gallery";
 
 // ─── Animation helpers ───────────────────────────────────────────────────────
 
@@ -428,7 +80,7 @@ export default function NewPortfolio() {
                 <div>
                   <h1 className="text-lg sm:text-2xl font-bold tracking-tight leading-tight inline-flex items-center gap-1.5">
                     {profile.name}
-                    <CheckBadgeIcon className="h-4 w-4 sm:h-5 sm:w-5 text-[#1877F2]" />
+                    <CheckBadgeIcon className="h-4 w-4 sm:h-4.5 sm:w-4.5 text-[#1877F2]" />
                   </h1>
                   <p className="text-xs sm:text-[13px] text-muted-foreground">
                     {profile.title}
@@ -635,23 +287,25 @@ export default function NewPortfolio() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  {education.map((edu, idx) => (
-                    <div
-                      key={idx}
-                      className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 sm:gap-2"
-                    >
-                      <div>
-                        <p className="text-[13px] font-medium">{edu.degree}</p>
-                        <p className="text-xs text-muted-foreground">
-                          {edu.school}
-                        </p>
+                  <div className="space-y-3">
+                    {education.map((edu, idx) => (
+                      <div
+                        key={idx}
+                        className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 sm:gap-2"
+                      >
+                        <div>
+                          <p className="text-[13px] font-medium">{edu.degree}</p>
+                          <p className="text-xs text-muted-foreground">
+                            {edu.school}
+                          </p>
+                        </div>
+                        <span className="shrink-0 inline-flex items-center gap-1 text-[11px] text-muted-foreground pt-0.5">
+                          <Calendar className="h-3 w-3" />
+                          {edu.period}
+                        </span>
                       </div>
-                      <span className="shrink-0 inline-flex items-center gap-1 text-[11px] text-muted-foreground pt-0.5">
-                        <Calendar className="h-3 w-3" />
-                        {edu.period}
-                      </span>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
                 </CardContent>
               </Card>
             </motion.div>
@@ -667,7 +321,7 @@ export default function NewPortfolio() {
                 <CardContent className="flex items-center justify-center">
                   <Carousel className="w-[calc(100%-6rem)]">
                     <CarouselContent className="-ml-1">
-                      {CAROUSEL_IMAGES.map((img, index) => (
+                      {gallery.map((img, index) => (
                         <CarouselItem key={index} className="basis-1/2 sm:basis-1/3 md:basis-1/4 pl-1 lg:basis-1/5">
                           <ImageZoom>
                             <img

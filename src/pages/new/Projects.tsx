@@ -5,7 +5,8 @@ import { motion } from "motion/react";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { ThemeToggle } from "@/components/theme-toggle";
-import { projects } from "./NewPortfolio";
+
+import projects from "@/data/projects";
 
 export default function ProjectsPage() {
     return (

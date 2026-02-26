@@ -17,7 +17,7 @@ import {
 } from "@/components/ui/carousel"
 import { ImageZoom } from "@/components/ui/image-zoom";
 import { ThemeToggle } from "@/components/theme-toggle";
-import { experience } from "./NewPortfolio";
+import { experience } from "@/data/experience";
 
 export default function ExperiencePage() {
     return (

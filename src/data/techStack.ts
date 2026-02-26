@@ -4,7 +4,7 @@ export const techStack: Record<string, string[]> = {
         "JavaScript",
         "TypeScript",
         "Tailwind CSS",
-        "SASS",
+        "SASS/SCSS",
         "Bootstrap",
         "HTML & CSS",
         "Livewire",
