@@ -33,7 +33,7 @@ export const experience = [
   {
     company: "Globalco",
     shortName: "Globalco",
-    url: "",
+    url: "https://www.globalco.com/",
     roles: [
       {
         title: "Full-Stack Developer",

@@ -32,6 +32,7 @@ import projects from "@/data/projects";
 import education from "@/data/education";
 import { relevantExperience } from "@/data/experience";
 import gallery from "@/data/gallery";
+import certifications from "@/data/certifications";
 
 // ─── Animation helpers ───────────────────────────────────────────────────────
 
@@ -400,6 +401,49 @@ export default function NewPortfolio() {
                       </div>
                     ))}
                   </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            {/* Certifications */}
+            <motion.div {...fadeUp(0.3)}>
+              <Card className="shadow-sm">
+                <CardHeader>
+                  <CardTitle className="font-semibold uppercase tracking-wide">
+                    Certifications
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-3">
+                  {certifications.map((cert, idx) => (
+                    <div key={idx}>
+                      {cert.certificateUrl ? (
+                        <a
+                          href={cert.certificateUrl}
+                          target="_blank"
+                          rel="noreferrer noopener"
+                          className="block text-[12.5px] font-semibold leading-tight"
+                        >
+                          {cert.name}
+                        </a>
+                      ) : (
+                        <p className="text-[12.5px] font-semibold leading-tight">
+                          {cert.name}
+                        </p>
+                      )}
+                      <a
+                        href={cert.issuerUrl}
+                        target="_blank"
+                        rel="noreferrer noopener"
+                        className="text-[11.5px] text-muted-foreground hover:text-foreground transition-colors no-underline"
+                      >
+                        {cert.issuer}
+                      </a>
+                      <p className="text-[11px] text-muted-foreground flex items-center gap-0.5 mt-0.5">
+                        <Calendar className="h-2.5 w-2.5" />
+                        {cert.date}
+                      </p>
+                    </div>
+                  ))}
                 </CardContent>
               </Card>
             </motion.div>
