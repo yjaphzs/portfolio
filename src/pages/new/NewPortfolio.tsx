@@ -21,7 +21,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel"
-import { ImageZoom } from "@/components/ui/image-zoom";
+import { useLightbox, LightboxDialog } from "@/components/ui/image-lightbox";
 import { Separator } from "@/components/ui/separator";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { useTheme } from "@/components/theme-provider";
@@ -53,6 +53,7 @@ export default function NewPortfolio() {
         : "light"
       : theme;
   const avatarImages = profile.avatarImages[resolvedTheme];
+  const galleryLightbox = useLightbox(gallery.length);
 
   return (
     <div className="min-h-screen bg-muted/30 font-[Inter,system-ui,sans-serif] text-[13px] leading-relaxed text-foreground antialiased">
@@ -324,19 +325,25 @@ export default function NewPortfolio() {
                     <CarouselContent className="-ml-1">
                       {gallery.map((img, index) => (
                         <CarouselItem key={index} className="basis-1/2 sm:basis-1/3 md:basis-1/4 pl-1 lg:basis-1/5">
-                          <ImageZoom>
+                          <button type="button" onClick={() => galleryLightbox.openAt(index)} className="w-full cursor-zoom-in">
                             <img
                               src={img}
                               alt={`Gallery image ${index + 1}`}
-                              className="object-cover w-full h-full rounded-md aspect-square border border-border cursor-zoom-in"
+                              className="object-cover w-full h-full rounded-md aspect-square border border-border"
                             />
-                          </ImageZoom>
+                          </button>
                         </CarouselItem>
                       ))}
                     </CarouselContent>
                     <CarouselPrevious />
                     <CarouselNext />
                   </Carousel>
+                  <LightboxDialog
+                    images={gallery}
+                    alt="Gallery image"
+                    {...galleryLightbox}
+                    onOpenChange={(v) => { if (!v) galleryLightbox.close(); }}
+                  />
                 </CardContent>
               </Card>
             </motion.div>

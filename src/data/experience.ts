@@ -124,7 +124,7 @@ export const experience = [
   {
     company: "Wideout (AQA)",
     shortName: "Wideout",
-    url: "https://www.aqa.work/",
+    url: "https://core.wideout.com/",
     roles: [
       {
         title: "Quality Assurance Specialist",

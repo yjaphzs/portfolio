@@ -1,5 +1,29 @@
 export const projects = [
   {
+    title: "Barker Portal",
+    fullTitle: "Barker Portal",
+    description:
+      "A secure client portal for Barker that allows financial institutions to access services related to asset valuation and collateral management.",
+    url: "https://barkerportal.com/",
+    tech: ["React", "Firebase", "TypeScript", "Vite", "Shadcn UI", "Lucide React", "ESLint", "Tailwind CSS"],
+  },
+  {
+    title: "Barker Website",
+    fullTitle: "Barker Website",
+    description:
+      "A corporate website for Barker, a fintech company providing AI-powered valuation solutions for hard assets to support financial institutions in lending decisions.",
+    url: "https://thebarkerprice.com/",
+    tech: ["WordPress", "PHP", "HTML", "CSS", "SCSS", "JavaScript"],
+  },
+  {
+    title: "Expense Tracker",
+    fullTitle: "Expense Tracker",
+    description:
+      "A simple web app that helps users track their expenses and manage their budget effectively.",
+    url: "https://yjaphzs.github.io/expense-tracker/",
+    tech: ["React", "TypeScript", "Vite", "Shadcn UI", "Lucide React", "ESLint", "Tailwind CSS"],
+  },
+  {
     title: "GWA Calculator",
     fullTitle: "Grade Weighted Average (GWA) Calculator",
     description:
