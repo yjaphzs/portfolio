@@ -1,18 +1,18 @@
 export const projects = [
   {
-    title: "Barker Portal",
-    fullTitle: "Barker Portal",
+    title: "Barkr AI Portal",
+    fullTitle: "Barkr AI Portal",
     description:
-      "A secure client portal for Barker that allows financial institutions to access services related to asset valuation and collateral management.",
-    url: "https://barkerportal.com/",
+      "A secure client portal for Barkr that allows financial institutions to access services related to asset valuation and collateral management.",
+    url: "https://portal.barkr.ai/",
     tech: ["React", "Firebase", "TypeScript", "Vite", "Shadcn UI", "Lucide React", "ESLint", "Tailwind CSS"],
   },
   {
-    title: "Barker Website",
-    fullTitle: "Barker Website",
+    title: "Barkr AI Website",
+    fullTitle: "Barkr AI Website",
     description:
-      "A corporate website for Barker, a fintech company providing AI-powered valuation solutions for hard assets to support financial institutions in lending decisions.",
-    url: "https://thebarkerprice.com/",
+      "A corporate website for Barkr, a fintech company providing AI-powered valuation solutions for hard assets to support financial institutions in lending decisions.",
+    url: "https://barkr.ai/",
     tech: ["WordPress", "PHP", "HTML", "CSS", "SCSS", "JavaScript"],
   },
   {
