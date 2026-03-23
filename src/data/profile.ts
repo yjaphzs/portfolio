@@ -16,7 +16,7 @@ const profile = {
   name: "Jan Bautista",
   initials: "JB",
   title: "Full-Stack Developer",
-  location: "Nueva Ecija, Philippines",
+  location: "Makati City, Philippines",
   email: "yjaphzs@gmail.com",
   resumeUrl: resume,
   avatarImages: {

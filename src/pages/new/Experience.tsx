@@ -15,38 +15,31 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel"
-import { useLightbox, LightboxDialog } from "@/components/ui/image-lightbox";
+import { ImageLightbox } from "@/components/ui/image-lightbox";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { experience } from "@/data/experience";
 
 function ExperienceCarousel({ images, company }: { images: string[]; company: string }) {
-    const lightbox = useLightbox(images.length);
     return (
-        <>
-            <Carousel className="w-[calc(100%-6rem)]">
-                <CarouselContent className="-ml-1">
-                    {images.map((img, index) => (
-                        <CarouselItem key={index} className="basis-1/2 sm:basis-1/3 md:basis-1/4 pl-1 lg:basis-1/5">
-                            <button type="button" onClick={() => lightbox.openAt(index)} className="w-full cursor-zoom-in">
+        <Carousel className="w-[calc(100%-6rem)]">
+            <CarouselContent className="-ml-1">
+                {images.map((img, index) => (
+                    <CarouselItem key={index} className="basis-1/2 sm:basis-1/3 md:basis-1/4 pl-1 lg:basis-1/5">
+                        <ImageLightbox images={images} initialIndex={index} alt={`${company} image`}>
+                            <button type="button" className="w-full cursor-zoom-in">
                                 <img
                                     src={img}
                                     alt={`${company} image ${index + 1}`}
                                     className="object-cover w-full h-full rounded-md aspect-square border border-border"
                                 />
                             </button>
-                        </CarouselItem>
-                    ))}
-                </CarouselContent>
-                <CarouselPrevious />
-                <CarouselNext />
-            </Carousel>
-            <LightboxDialog
-                images={images}
-                alt={`${company} image`}
-                {...lightbox}
-                onOpenChange={(v) => { if (!v) lightbox.close(); }}
-            />
-        </>
+                        </ImageLightbox>
+                    </CarouselItem>
+                ))}
+            </CarouselContent>
+            <CarouselPrevious />
+            <CarouselNext />
+        </Carousel>
     );
 }
 
