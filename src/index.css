@@ -123,3 +123,30 @@
     font-family: "Inter", system-ui, -apple-system, sans-serif;
   }
 }
+
+/* ─── Dot grid cursor color ───────────────────────────────────────────────── */
+:root {
+  --dot-color: oklch(0.4 0 0 / 0.15);
+}
+.dark {
+  --dot-color: oklch(1 0 0 / 0.1);
+}
+
+/* Waving gradient button */
+@keyframes gradient-wave {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.btn-gradient-wave {
+  transition: all 0.3s ease;
+}
+
+.btn-gradient-wave:hover {
+  background: linear-gradient(270deg, #f97316, #ec4899, #8b5cf6, #3b82f6, #06b6d4, #f97316);
+  background-size: 300% 100%;
+  animation: gradient-wave 4s ease infinite;
+  color: white !important;
+  border-color: transparent !important;
+}

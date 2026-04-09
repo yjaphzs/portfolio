@@ -23,6 +23,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel"
 import { ImageLightbox } from "@/components/ui/image-lightbox";
+import { DotGrid } from "@/components/ui/dot-grid";
 import { Separator } from "@/components/ui/separator";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { useTheme } from "@/components/theme-provider";
@@ -51,7 +52,8 @@ export default function NewPortfolio() {
 
   return (
     <div className="min-h-screen bg-muted/30 font-[Inter,system-ui,sans-serif] text-[13px] leading-relaxed text-foreground antialiased">
-      <div className="mx-auto max-w-6xl px-3 py-4 sm:px-6 lg:px-8">
+      <DotGrid />
+      <div className="relative z-1 mx-auto max-w-6xl px-3 py-4 sm:px-6 lg:px-8">
         {/* ── Profile Header (full width) ──────────────────── */}
         <motion.header className="mb-4 sm:mb-6" {...fadeUp(0)}>
           <Card className="shadow-sm">
@@ -445,36 +447,46 @@ export default function NewPortfolio() {
               </Card>
             </motion.div>
 
-            {/* Contact & Links */}
+            {/* App Hub */}
             <motion.div {...fadeUp(0.3)}>
-              <Card className="shadow-sm">
-                <CardHeader>
-                  <CardTitle className="font-semibold uppercase tracking-wide">
-                    App Hub
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-3">
-                  <p className="text-[12px] sm:text-[13px] text-muted-foreground leading-relaxed">
-                    All my personal web apps in one place. Check them out!
-                  </p>
-                  <Button
-                    size="sm"
-                    className="w-full h-8 text-[11px] sm:text-xs"
-                    asChild
-                  >
-                    <a
-                      href="https://app-hub.yjaphzs.xyz"
-                      target="_blank"
-                      rel="noreferrer noopener"
-                      className="no-underline"
+              <div className="group relative rounded-xl p-px overflow-hidden">
+                {/* Gradient border */}
+                <div
+                  className="absolute inset-0 rounded-xl opacity-70 group-hover:opacity-100 transition-opacity duration-500"
+                  style={{
+                    background:
+                      "conic-gradient(from 0deg, #f97316, #ec4899, #8b5cf6, #3b82f6, #06b6d4, #f97316)",
+                  }}
+                />
+                {/* Inner card */}
+                <Card className="relative shadow-sm bg-card">
+                  <CardHeader>
+                    <CardTitle className="font-semibold uppercase tracking-wide mb-0">
+                      App Hub
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-3">
+                    <p className="text-[12px] sm:text-[13px] text-muted-foreground leading-relaxed">
+                      All my personal web apps in one place. Check them out!
+                    </p>
+                    <Button
+                      size="sm"
+                      className="btn-gradient-wave w-full h-8 text-[11px] sm:text-xs"
+                      asChild
                     >
-                      <LayoutGrid className="h-3.5 w-3.5 mr-1.5" />
-                      Visit App Hub
-                      <ExternalLink className="h-3 w-3 ml-1.5" />
-                    </a>
-                  </Button>
-                </CardContent>
-              </Card>
+                      <a
+                        href="https://app-hub.yjaphzs.xyz"
+                        target="_blank"
+                        rel="noreferrer noopener"
+                        className="no-underline"
+                      >
+                        <LayoutGrid className="h-3.5 w-3.5 mr-1.5" />
+                        Visit App Hub
+                      </a>
+                    </Button>
+                  </CardContent>
+                </Card>
+              </div>
             </motion.div>
 
             {/* Contact & Links */}

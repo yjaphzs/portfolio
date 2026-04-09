@@ -3,13 +3,15 @@ import { ArrowLeft } from "lucide-react";
 import { motion } from "motion/react";
 
 import { Badge } from "@/components/ui/badge";
+import { DotGrid } from "@/components/ui/dot-grid";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { techStack } from "@/data/techStack";
 
 export default function TechStackPage() {
     return (
         <div className="min-h-screen bg-muted/30 font-[Inter,system-ui,sans-serif] text-[13px] leading-relaxed text-foreground antialiased">
-            <div className="mx-auto max-w-4xl px-4 py-6 sm:px-6 lg:px-8">
+            <DotGrid />
+            <div className="relative z-1 mx-auto max-w-4xl px-4 py-6 sm:px-6 lg:px-8">
                 {/* Header */}
                 <motion.div
                     className="mb-6"
