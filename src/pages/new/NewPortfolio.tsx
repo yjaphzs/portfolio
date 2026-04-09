@@ -5,6 +5,7 @@ import {
   FileText,
   Calendar,
   Dot,
+  LayoutGrid,
 } from "lucide-react";
 import { CheckBadgeIcon, ArrowRightIcon } from "@heroicons/react/24/solid";
 import { Link } from "react-router-dom";
@@ -440,6 +441,38 @@ export default function NewPortfolio() {
                       </p>
                     </div>
                   ))}
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            {/* Contact & Links */}
+            <motion.div {...fadeUp(0.3)}>
+              <Card className="shadow-sm">
+                <CardHeader>
+                  <CardTitle className="font-semibold uppercase tracking-wide">
+                    App Hub
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-3">
+                  <p className="text-[12px] sm:text-[13px] text-muted-foreground leading-relaxed">
+                    All my personal web apps in one place. Check them out!
+                  </p>
+                  <Button
+                    size="sm"
+                    className="w-full h-8 text-[11px] sm:text-xs"
+                    asChild
+                  >
+                    <a
+                      href="https://app-hub.yjaphzs.xyz"
+                      target="_blank"
+                      rel="noreferrer noopener"
+                      className="no-underline"
+                    >
+                      <LayoutGrid className="h-3.5 w-3.5 mr-1.5" />
+                      Visit App Hub
+                      <ExternalLink className="h-3 w-3 ml-1.5" />
+                    </a>
+                  </Button>
                 </CardContent>
               </Card>
             </motion.div>

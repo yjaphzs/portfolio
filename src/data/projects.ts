@@ -16,6 +16,14 @@ export const projects = [
     tech: ["WordPress", "PHP", "HTML", "CSS", "SCSS", "JavaScript"],
   },
   {
+    title: "App Hub",
+    fullTitle: "App Hub",
+    description:
+      "A centralized launcher for all my personal web apps, providing quick access to each project in one place.",
+    url: "https://app-hub.yjaphzs.xyz",
+    tech: ["React", "TypeScript", "Vite", "Shadcn UI", "Framer Motion", "Tailwind CSS"],
+  },
+  {
     title: "Expense Tracker",
     fullTitle: "Expense Tracker",
     description:
