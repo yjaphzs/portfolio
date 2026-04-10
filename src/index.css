@@ -150,3 +150,7 @@
   color: white !important;
   border-color: transparent !important;
 }
+
+.react-activity-calendar__scroll-container {
+  overflow: hidden !important;
+}

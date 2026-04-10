@@ -6,7 +6,9 @@ import {
   Calendar,
   Dot,
   LayoutGrid,
+  Github,
 } from "lucide-react";
+import { GitHubCalendar } from "react-github-calendar";
 import { CheckBadgeIcon, ArrowRightIcon } from "@heroicons/react/24/solid";
 import { Link } from "react-router-dom";
 import { motion } from "motion/react";
@@ -336,6 +338,42 @@ export default function NewPortfolio() {
                     <CarouselPrevious />
                     <CarouselNext />
                   </Carousel>
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            {/* GitHub Contributions */}
+            <motion.div {...fadeUp(0.5)}>
+              <Card className="shadow-sm">
+                <CardHeader>
+                  <CardTitle className="font-semibold uppercase tracking-wide inline-flex items-center gap-2">
+                    <Github className="h-4 w-4" />
+                    GitHub Contributions
+                  </CardTitle>
+                  <p className="text-[11px] text-muted-foreground mt-1">
+                    Personal contributions only — does not include work-related activity.
+                  </p>
+                </CardHeader>
+                <CardContent>
+                  <div className="overflow-hidden [&_.react-activity-calendar]:w-full [&_svg]:w-full">
+                    <GitHubCalendar
+                      username="yjaphzs"
+                      colorScheme={resolvedTheme === "dark" ? "dark" : "light"}
+                      fontSize={11}
+                      blockSize={10}
+                      blockMargin={3}
+                      blockRadius={2}
+                      showWeekdayLabels={["mon", "wed", "fri"]}
+                      theme={{
+                        light: ["hsl(0, 0%, 92%)", "hsl(131, 41%, 46%)"],
+                        dark: ["hsl(0, 0%, 22%)", "hsl(131, 50%, 50%)"],
+                      }}
+                      labels={{
+                        totalCount: "{{count}} contributions in {{year}}",
+                      }}
+                      style={{ maxWidth: "100%" }}
+                    />
+                  </div>
                 </CardContent>
               </Card>
             </motion.div>
