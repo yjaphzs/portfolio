@@ -487,14 +487,14 @@ export default function NewPortfolio() {
 
             {/* App Hub */}
             <motion.div {...fadeUp(0.3)}>
-              <div className="group relative rounded-xl p-px overflow-hidden">
+              <div className="group relative rounded-xl p-px">
+                {/* Glow effect */}
+                <div
+                  className="gradient-border-rotate absolute -inset-1 rounded-xl opacity-40 group-hover:opacity-75 blur-lg transition-opacity duration-500"
+                />
                 {/* Gradient border */}
                 <div
-                  className="absolute inset-0 rounded-xl opacity-70 group-hover:opacity-100 transition-opacity duration-500"
-                  style={{
-                    background:
-                      "conic-gradient(from 0deg, #f97316, #ec4899, #8b5cf6, #3b82f6, #06b6d4, #f97316)",
-                  }}
+                  className="gradient-border-rotate absolute inset-0 rounded-xl opacity-70 group-hover:opacity-100 transition-opacity duration-500"
                 />
                 {/* Inner card */}
                 <Card className="relative shadow-sm bg-card">
