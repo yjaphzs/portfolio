@@ -36,8 +36,17 @@ export const experience = [
     url: "https://www.globalco.com/",
     roles: [
       {
+        title: "Senior Full-Stack Developer",
+        period: "May 2026 – Present",
+        bullets: [
+          "Lead full-stack development and supervise teams across multiple projects.",
+          "Drive architecture decisions, code quality, and delivery across frontend and backend workstreams.",
+          "Mentor junior developers and collaborate with cross-functional teams to ship reliable product improvements.",
+        ],
+      },
+      {
         title: "Full-Stack Developer",
-        period: "Aug 2025 – Present",
+        period: "Aug 2025 – May 2026",
         bullets: [
           "Architected scalable systems using ReactJS, Firebase (Firestore, Auth, Functions, etc.), and Micro-frontend monorepo architecture.",
           "Developed custom WordPress themes and integrated PHP scripts using a modern HTML/SASS/JS workflow.",
@@ -197,6 +206,7 @@ export const experience = [
 ];
 
 const RELEVANT_TITLES = [
+  "Senior Full-Stack Developer",
   "Full-Stack Developer",
   "Quality Assurance Specialist",
   "Creative Developer",
