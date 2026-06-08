@@ -1,5 +1,6 @@
 export const techStack: Record<string, string[]> = {
     "Front End": [
+        "Next.js",
         "React",
         "JavaScript",
         "TypeScript",
