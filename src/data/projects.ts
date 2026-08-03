@@ -3,7 +3,7 @@ export const projects = [
     title: "Barkr AI Portal",
     fullTitle: "Barkr AI Portal",
     description:
-      "A secure client portal for Barkr that allows financial institutions to access services related to asset valuation and collateral management.",
+      "Secure portal for financial institutions to access asset valuation and collateral management.",
     url: "https://portal.barkr.ai/",
     tech: ["React", "Firebase", "TypeScript", "Vite", "Shadcn UI", "Lucide React", "ESLint", "Tailwind CSS"],
   },
@@ -51,7 +51,7 @@ export const projects = [
     title: "RADIIS (v2.0)",
     fullTitle: "Research & Development Integrated Information System",
     description:
-      "An upgraded version of the original RADIIS, this web app features enhanced functionalities for managing CLSU's research programs, projects, and studies, along with improved analytics and user experience.",
+      "Upgraded platform for managing CLSU research programs, projects, and studies, with analytics.",
     url: "https://radiis.clsu.edu.ph",
     tech: ["PHP", "Laravel", "Livewire", "HTML & CSS", "JavaScript", "SASS/SCSS", "MySQL", "Bootstrap"],
   },

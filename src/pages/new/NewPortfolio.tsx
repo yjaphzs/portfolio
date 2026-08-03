@@ -132,15 +132,10 @@ export default function NewPortfolio() {
                     className="h-7 px-2 sm:px-2.5 text-[11px] sm:text-xs"
                     asChild
                   >
-                    <a
-                      href={profile.resumeUrl}
-                      target="_blank"
-                      rel="noreferrer noopener"
-                      className="no-underline"
-                    >
+                    <Link to="/resume" className="no-underline">
                       <FileText className="h-3 w-3 sm:h-3.5 sm:w-3.5 mr-1" />
                       Resume
-                    </a>
+                    </Link>
                   </Button>
                 </div>
               </div>
@@ -188,7 +183,7 @@ export default function NewPortfolio() {
                   </Link>
                 </CardHeader>
                 <CardContent className="space-y-3">
-                  {Object.entries(techStack).slice(0,3).map(([category, techs]) => {
+                  {Object.entries(techStack).slice(0,4).map(([category, techs]) => {
                     const visible = techs.slice(0, TECH_PREVIEW_COUNT);
                     const hiddenCount = techs.length - visible.length;
                     return (
@@ -561,15 +556,13 @@ export default function NewPortfolio() {
                     </a>
                   ))}
                   <Separator className="my-2" />
-                  <a
-                    href={profile.resumeUrl}
-                    target="_blank"
-                    rel="noreferrer noopener"
+                  <Link
+                    to="/resume"
                     className="flex items-center gap-2 text-xs font-medium text-foreground hover:underline no-underline"
                   >
                     <FileText className="h-3.5 w-3.5 shrink-0" />
-                    Download Resume
-                  </a>
+                    View Resume
+                  </Link>
                 </CardContent>
               </Card>
             </motion.div>
