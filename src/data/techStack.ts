@@ -60,6 +60,14 @@ export const techStack: Record<string, string[]> = {
     "AI Tools": [
         "Claude",
         "Codex",
+        "Agentic AI",
+        "Data Annotation",
+    ],
+    "Data & Automation": [
+        "Playwright",
+        "Scrapy",
+        "Selenium",
+        "Web Crawling",
     ],
     "Developer Tools": [
         "Git",

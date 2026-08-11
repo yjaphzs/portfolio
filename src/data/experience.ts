@@ -48,6 +48,7 @@ export const experience = [
           "Integrate Gmail and Drive APIs; run IAM service accounts and Dockerized apps on Compute Engine.",
           "Plan and track delivery across teams in Asana, with AI-assisted development using Claude and Codex.",
           "Tune reliability and delivery with Realtime Database, Remote Config, Performance Monitoring, and Firebase Hosting.",
+          "Build Agentic AI / AI Agent workflows for data annotation and data crawling, automating browser-based collection with Playwright, Scrapy, and Selenium.",
           "Mentor junior developers and partner with data engineers, data scientists, and QA to ship reliable product improvements.",
         ],
       },

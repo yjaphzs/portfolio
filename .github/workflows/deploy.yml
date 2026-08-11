@@ -1,50 +1,114 @@
-name: Deploy to GitHub Pages
+name: Firebase Deploy - CI/CD
 
 on:
-  push:
-    branches:
-      - main
+    push:
+        branches:
+            - "main"
+        paths-ignore:
+            - "**/*.md"
+            - "docs/**"
+            - "LICENSE"
+            - ".claude/**"
+            - "models-src/**"
+    workflow_dispatch:
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+    contents: read
 
 concurrency:
-  group: pages
-  cancel-in-progress: true
+    group: deploy-${{ github.ref }}
+    cancel-in-progress: false
+
+env:
+    # Pinned rather than `npm i -g firebase-tools`, so a CLI release can never
+    # change what a re-run of an old commit deploys.
+    FIREBASE_TOOLS_VERSION: "14.28.0"
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+    lint:
+        name: Lint
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
+              with:
+                  node-version: 20
+                  cache: "npm"
+            - run: npm ci
+            - run: npm run lint
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: npm
+    typecheck:
+        name: Type Check
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
+              with:
+                  node-version: 20
+                  cache: "npm"
+            - run: npm ci
+            - run: npm run typecheck
 
-      - name: Install dependencies
-        run: npm ci
+    build_and_deploy:
+        name: Build and Deploy
+        needs: [lint, typecheck]
+        runs-on: ubuntu-latest
+        env:
+            GOOGLE_APPLICATION_CREDENTIALS: google-application-credentials.json
+            FIREBASE_PROJECT_ID: ${{ vars.VITE_FIREBASE_PROJECT_ID }}
 
-      - name: Build
-        run: npm run build
+        steps:
+            - uses: actions/checkout@v4
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: dist
+            - uses: actions/setup-node@v4
+              with:
+                  node-version: 20
+                  cache: "npm"
 
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+            - run: npm ci
+
+            # These are repository VARIABLES, not secrets. Vite inlines them into
+            # the bundle, so they are public by definition — and Actions masks
+            # secret values in logs, which would only make build failures harder
+            # to read. The Firebase web API key is an identifier; Database Rules
+            # are the actual access control.
+            #
+            # Leave them unset and the build still succeeds: the presence counter
+            # detects the missing config and stays hidden.
+            - name: Build
+              env:
+                  VITE_FIREBASE_API_KEY: ${{ vars.VITE_FIREBASE_API_KEY }}
+                  VITE_FIREBASE_AUTH_DOMAIN: ${{ vars.VITE_FIREBASE_AUTH_DOMAIN }}
+                  VITE_FIREBASE_PROJECT_ID: ${{ vars.VITE_FIREBASE_PROJECT_ID }}
+                  VITE_FIREBASE_APP_ID: ${{ vars.VITE_FIREBASE_APP_ID }}
+                  VITE_FIREBASE_DATABASE_URL: ${{ vars.VITE_FIREBASE_DATABASE_URL }}
+                  VITE_FIREBASE_STORAGE_BUCKET: ${{ vars.VITE_FIREBASE_STORAGE_BUCKET }}
+                  VITE_FIREBASE_MESSAGING_SENDER_ID: ${{ vars.VITE_FIREBASE_MESSAGING_SENDER_ID }}
+              run: npm run build
+
+            - name: Install Firebase CLI
+              run: npm install -g firebase-tools@${{ env.FIREBASE_TOOLS_VERSION }}
+
+            - name: Prepare Google Application Credentials
+              env:
+                  CREDENTIALS_BASE64: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS_BASE64 }}
+              shell: bash
+              run: echo "$CREDENTIALS_BASE64" | base64 --decode > "google-application-credentials.json"
+
+            # Rules before hosting: if a rules change is rejected the deploy stops
+            # before the new bundle is live, rather than shipping a client that
+            # expects rules the database does not yet have.
+            - name: Deploy Realtime Database Rules
+              run: firebase deploy --only database --project "$FIREBASE_PROJECT_ID" --non-interactive
+
+            # No firestore:indexes target — the stats docs are fetched by id with
+            # no composite queries, so there is no index to deploy.
+            - name: Deploy Firestore Rules
+              run: firebase deploy --only firestore:rules --project "$FIREBASE_PROJECT_ID" --non-interactive
+
+            - name: Deploy Hosting
+              run: firebase deploy --only hosting --project "$FIREBASE_PROJECT_ID" --non-interactive
+
+            - name: Remove Credentials File
+              if: always()
+              run: rm -f google-application-credentials.json

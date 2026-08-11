@@ -1,0 +1,55 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ── Visitor statistics ───────────────────────────────────────────────
+    // Anonymous aggregate counters only. No per-visitor documents, no IDs, no
+    // IP-derived data — nothing here identifies anyone, so it stays clear of
+    // personal-data handling entirely.
+    //
+    // Writes are unauthenticated by necessity (there is no login), so the rules
+    // constrain the SHAPE of a write rather than who makes it: exactly one
+    // counter may move, and only by exactly +1. A client cannot set an
+    // arbitrary value, cannot decrement, and cannot introduce new fields.
+    //
+    // What this does NOT stop is volume — anyone can call the REST API in a loop
+    // and inflate the count one increment at a time. That is accepted: this is a
+    // vanity counter, and on the Spark plan the worst case is a wrong number and
+    // exhausted daily quota, never a bill. App Check would close it if it ever
+    // mattered.
+    match /stats/{docId} {
+      allow read: if true;
+
+      allow update: if isSingleIncrement('totalVisits')
+                    || isSingleIncrement('visits')
+                    || isPeakRaise();
+
+      // Documents are seeded once by hand; clients may never create or remove.
+      allow create, delete: if false;
+    }
+
+    // Exactly one counter field (+ its timestamp) changed, and it went up by 1.
+    function isSingleIncrement(field) {
+      return request.resource.data.diff(resource.data).affectedKeys()
+               .hasOnly([field, 'updatedAt'])
+             && request.resource.data[field] is int
+             && request.resource.data[field] == resource.data[field] + 1;
+    }
+
+    // Peak concurrent may only ratchet upward, and only by a plausible step.
+    // Bounding the delta stops a single request from parking it at a huge number.
+    function isPeakRaise() {
+      return request.resource.data.diff(resource.data).affectedKeys()
+               .hasOnly(['peak', 'updatedAt'])
+             && request.resource.data.peak is int
+             && request.resource.data.peak > resource.data.peak
+             && request.resource.data.peak <= resource.data.peak + 50;
+    }
+
+    // Default deny — anything not matched above is private.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

@@ -171,6 +171,377 @@
   overflow: hidden !important;
 }
 
+/* ─── v3 · Retro CRT design tokens ────────────────────────────────────────
+ * Semantic roles from .claude/skills/retro-crt-design/SKILL.md. Defined on
+ * :root/.dark and mapped through @theme inline below, so they become real
+ * Tailwind utilities (bg-crt-bg, text-crt-accent, border-crt-line) that still
+ * respond to the theme toggle. Scoped names keep them clear of the shadcn
+ * tokens that archived v2 still depends on.
+ */
+:root {
+  --crt-bg: #fafbfc;
+  --crt-surface: #ffffff;
+  --crt-elevated: #f3f5f7;
+  --crt-line: #e4e8ec;
+  --crt-line-strong: #cfd6dd;
+  --crt-muted: #6b7683;
+  --crt-secondary: #4a5560;
+  --crt-ink: #0b0e12;
+  --crt-accent: #0e7490;
+  --crt-accent-dim: #7fb8cc;
+  --crt-amber: #b45309;
+}
+
+.dark {
+  --crt-bg: #08090b;
+  --crt-surface: #0f1216;
+  --crt-elevated: #151a20;
+  --crt-line: #1f262f;
+  --crt-line-strong: #2b3540;
+  --crt-muted: #6e7a88;
+  --crt-secondary: #94a1af;
+  --crt-ink: #e6edf3;
+  /* Same phosphor as the retro TV screen shader — keep the two in sync. */
+  --crt-accent: #9fdcff;
+  --crt-accent-dim: #3e8fb8;
+  --crt-amber: #ffb454;
+}
+
+@theme inline {
+  --color-crt-bg: var(--crt-bg);
+  --color-crt-surface: var(--crt-surface);
+  --color-crt-elevated: var(--crt-elevated);
+  --color-crt-line: var(--crt-line);
+  --color-crt-line-strong: var(--crt-line-strong);
+  --color-crt-muted: var(--crt-muted);
+  --color-crt-secondary: var(--crt-secondary);
+  --color-crt-ink: var(--crt-ink);
+  --color-crt-accent: var(--crt-accent);
+  --color-crt-accent-dim: var(--crt-accent-dim);
+  --color-crt-amber: var(--crt-amber);
+
+  --font-pixel: "Silkscreen", ui-monospace, monospace;
+  --font-crt-mono: "IBM Plex Mono", ui-monospace, monospace;
+}
+
+/* Halftone — the page-corner texture. Masked at the call site so it dissolves. */
+.halftone {
+  background-image: radial-gradient(
+    circle at center,
+    var(--crt-ink) 1px,
+    transparent 1.6px
+  );
+  background-size: 9px 9px;
+}
+.halftone-wide {
+  background-size: 13px 13px;
+}
+.mask-tr {
+  -webkit-mask-image: radial-gradient(ellipse 80% 80% at 100% 0%, #000, transparent 65%);
+  mask-image: radial-gradient(ellipse 80% 80% at 100% 0%, #000, transparent 65%);
+}
+.mask-bl {
+  -webkit-mask-image: radial-gradient(ellipse 80% 80% at 0% 100%, #000, transparent 65%);
+  mask-image: radial-gradient(ellipse 80% 80% at 0% 100%, #000, transparent 65%);
+}
+
+/* Rotating accent border (App Hub card). Reuses the @property --gradient-angle
+ * registration defined further down — without that registration the conic
+ * gradient cannot interpolate and jumps instead of sweeping. Built from the
+ * phosphor tokens rather than v2's five-hue rainbow. */
+.crt-border-rotate {
+  background: conic-gradient(
+    from var(--gradient-angle),
+    var(--crt-accent),
+    var(--crt-accent-dim),
+    transparent,
+    var(--crt-accent-dim),
+    var(--crt-accent)
+  );
+  animation: gradient-rotate 6s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .crt-border-rotate {
+    animation: none;
+  }
+}
+
+/* ── Presence avatars ────────────────────────────────────────────────────
+ * The source PNGs are black and white. Tinting here rather than baking the
+ * colour in means one asset set serves both themes: `mix-blend-mode: color`
+ * takes hue+saturation from the overlay and luminosity from the image, and the
+ * overlay reads --crt-accent, which flips with the theme.
+ */
+.presence-avatar {
+  position: relative;
+  overflow: hidden;
+  background: var(--crt-elevated);
+  /* Contain the blend. Without isolation the ::after would composite against
+     whatever sits behind the avatar in the stacking context — the rail, the
+     halftone, the page — instead of only the image inside it. */
+  isolation: isolate;
+}
+
+.presence-avatar img {
+  filter: grayscale(1) contrast(1.12);
+}
+
+.presence-avatar::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--crt-accent);
+  mix-blend-mode: color;
+  pointer-events: none;
+}
+
+/* ── Gear shot ───────────────────────────────────────────────────────────
+ * Sibling of .presence-avatar, but it CANNOT use that recipe, and the reason
+ * is worth stating so it does not get "simplified" back into a bug.
+ *
+ * `mix-blend-mode: color` keeps the LUMINOSITY of the image. The avatars are
+ * true black-and-white photographs, so that reads as a tint. The gear shots are
+ * products cut out on a pure white ground — luminosity 1.0 — so `color` would
+ * leave that ground pure white and the card would still glare on a dark page.
+ *
+ * `multiply` inverts the problem: white is multiply's identity, so the white
+ * ground takes the plate colour exactly and vanishes into it, while the dark
+ * product multiplies down and stays legible. This is why the plate must stay
+ * LIGHT — multiplying against a dark plate would crush the products into it.
+ *
+ * image-rendering: pixelated is deliberate. The sources are 144x144 and get
+ * shown much larger; sharp blocks read as a lo-fi CRT print, soft ones read as
+ * a mistake.
+ */
+:root {
+  --gear-plate: #eef3f6;
+}
+
+.dark {
+  --gear-plate: #8fb6c8;
+}
+
+.gear-shot {
+  position: relative;
+  overflow: hidden;
+  background: var(--gear-plate);
+  isolation: isolate;
+}
+
+.gear-shot img {
+  filter: grayscale(1) contrast(1.05);
+  mix-blend-mode: multiply;
+  image-rendering: pixelated;
+}
+
+/* ── Gear card ───────────────────────────────────────────────────────────
+ * Trading-card flip. The faces share one grid cell rather than being absolutely
+ * positioned, so the card sizes itself to whichever face is taller and no fixed
+ * height has to be kept in sync with the spec sheets.
+ */
+.gear-card {
+  perspective: 1200px;
+}
+
+.gear-card-inner {
+  display: grid;
+  transform-style: preserve-3d;
+  transition: transform 520ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.gear-card[data-flipped="true"] .gear-card-inner {
+  transform: rotateY(180deg);
+}
+
+.gear-card-face {
+  grid-area: 1 / 1;
+  backface-visibility: hidden;
+}
+
+.gear-card-back {
+  transform: rotateY(180deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gear-card-inner {
+    transition: none;
+  }
+}
+
+/* ── Tuner rail ──────────────────────────────────────────────────────────
+ * Faint scanlines over the nav, masked so they dissolve rather than stopping
+ * at the border. Reuses the CRT line pattern at a much lower strength.
+ */
+.tuner-scanlines {
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0 2px,
+    var(--crt-ink) 3px 3px
+  );
+  opacity: 0.05;
+  -webkit-mask-image: linear-gradient(to bottom, #000, transparent 85%);
+  mask-image: linear-gradient(to bottom, #000, transparent 85%);
+}
+
+/* The needle. Slides between rows; distance is set inline from the row index. */
+.tuner-needle {
+  transition: transform 320ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tuner-needle {
+    transition: none;
+  }
+}
+
+/* ── Scrollbars ──────────────────────────────────────────────────────────
+ * Themed to the phosphor palette. Both syntaxes are needed: the standard
+ * scrollbar-color/-width (Firefox, Chrome 121+) and the ::-webkit- pseudo
+ * elements for older Blink/WebKit.
+ *
+ * The archived v1 scopes its own yellow scrollbar under `.archived-portfolio`,
+ * which is more specific than these bare pseudo-element selectors, so the
+ * archive keeps the styling it shipped with.
+ */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: var(--crt-line-strong) transparent;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track,
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  /* Transparent border + content-box clip insets the thumb, so it reads as a
+     slim pill floating in the gutter rather than filling it. */
+  background-color: var(--crt-line-strong);
+  border: 4px solid transparent;
+  background-clip: content-box;
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--crt-accent);
+}
+
+/* Filmstrips scroll but must not show a bar — it cuts across a deliberately
+   quiet layout. The class selector outranks the bare pseudo-element above. */
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hiding the bar removes the cue that there is more to see, so the edges
+   dissolve instead. Both ends fade, since these strips scroll either way.
+   NOTE: this is a mask, so it applies to descendants — any scroll control must
+   live OUTSIDE the scrolling element or it fades along with the content. */
+.filmstrip-fade {
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    #000 4%,
+    #000 96%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    #000 4%,
+    #000 96%,
+    transparent 100%
+  );
+}
+
+/* ── CRT gallery ─────────────────────────────────────────────────────────
+ * The picture tube: a soft inner vignette plus a phosphor bloom at the edges,
+ * so the image sits *inside* glass rather than being pasted onto a panel.
+ */
+.crt-screen {
+  position: relative;
+  isolation: isolate;
+  background: #05070a;
+}
+
+.crt-screen::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      ellipse at center,
+      transparent 55%,
+      rgba(0, 0, 0, 0.55) 100%
+    ),
+    radial-gradient(
+      ellipse at center,
+      color-mix(in srgb, var(--crt-accent) 12%, transparent) 0%,
+      transparent 60%
+    );
+}
+
+/* Scanlines sized for a panel rather than a full viewport — finer and softer
+   than .crt-scanlines, which is tuned for the fullscreen channel guide. */
+.crt-screen-lines {
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0 2px,
+    rgba(0, 0, 0, 0.28) 3px 3px
+  );
+}
+
+/* Contribution matrix caption — the library renders it into a <footer>. */
+.crt-calendar footer {
+  margin-top: 1rem;
+  font-family: var(--font-crt-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--crt-muted);
+}
+
+/* Entrance — fade up 12px / 700ms, staggered 70ms, capped at five steps. */
+@keyframes crt-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.crt-reveal {
+  opacity: 0;
+  animation: crt-fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.crt-d1 { animation-delay: 0.05s; }
+.crt-d2 { animation-delay: 0.12s; }
+.crt-d3 { animation-delay: 0.19s; }
+.crt-d4 { animation-delay: 0.26s; }
+.crt-d5 { animation-delay: 0.33s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .crt-reveal {
+    opacity: 1;
+    animation: none;
+  }
+}
+
 /* ─── Retro TV time machine ───────────────────────────────────────────────
  * Corner trigger effects and the fullscreen CRT channel guide. Kept in CSS
  * rather than Tailwind utilities because they need keyframes, masks, and an
@@ -317,6 +688,7 @@
   .tv-standby-pulse {
     animation: none;
   }
+
 }
 
 /* ─── Printable resume (/resume) ──────────────────────────────────────────
