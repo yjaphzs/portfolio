@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import { ArrowLeft, ExternalLink } from "lucide-react";
 import { motion } from "motion/react";
 
+import { v2Path } from "./routes";
+
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { DotGrid } from "@/components/ui/dot-grid";
@@ -23,7 +25,7 @@ export default function ProjectsPage() {
                 >
                     <div className="flex items-center justify-between mb-2">
                         <Link
-                            to="/"
+                            to={v2Path()}
                             className="inline-flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-colors no-underline"
                         >
                             <ArrowLeft className="h-3.5 w-3.5" />

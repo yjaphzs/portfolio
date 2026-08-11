@@ -59,8 +59,44 @@ import profilePicDarkDefault from "@/assets/v2/images/profile-pic/dark/default.j
 import profilePicDarkHover from "@/assets/v2/images/profile-pic/dark/hover.jpg";
 import profilePicDarkClicked from "@/assets/v2/images/profile-pic/dark/clicked.jpg";
 
+// Presence avatars (v3) — black and white by design; tinted to the phosphor
+// palette in CSS so they follow the active theme.
+import avatar1 from "@/assets/v3/images/avatar-1.webp";
+import avatar2 from "@/assets/v3/images/avatar-2.webp";
+import avatar3 from "@/assets/v3/images/avatar-3.webp";
+import avatar4 from "@/assets/v3/images/avatar-4.webp";
+import avatar5 from "@/assets/v3/images/avatar-5.webp";
+import avatar6 from "@/assets/v3/images/avatar-6.webp";
+import avatar7 from "@/assets/v3/images/avatar-7.webp";
+
+// Single static portrait for v3. v2 keeps its own theme-aware jpg set.
+import profilePhoto from "@/assets/v3/images/profile-photo.webp";
+
+// Desk setup product shots (v3) — one per entry in src/data/setup.ts.
+import gearThinkpad from "@/assets/v3/images/gear/thinkpad-p16-v2.webp";
+import gearKoorui from "@/assets/v3/images/gear/koorui-27e6qc.webp";
+import gearMchose from "@/assets/v3/images/gear/mchose-x75-v2.webp";
+import gearAula from "@/assets/v3/images/gear/aula-f75.webp";
+import gearRapoo from "@/assets/v3/images/gear/rapoo-mt760l.webp";
+import gearMaono from "@/assets/v3/images/gear/maono-pm422.webp";
+import gearEdifier from "@/assets/v3/images/gear/edifier-r1000t4.webp";
+import gearMoondrop from "@/assets/v3/images/gear/moondrop-aria-2.webp";
+import gearHoto from "@/assets/v3/images/gear/hoto-kit-pro.webp";
+
 // Resume
 import resume from "@/assets/v2/documents/JBautista-Resume-2026.pdf";
+
+export { profilePhoto };
+
+export const presenceAvatars = [
+  avatar1,
+  avatar2,
+  avatar3,
+  avatar4,
+  avatar5,
+  avatar6,
+  avatar7,
+];
 
 export {
   // Gallery Images
@@ -117,6 +153,17 @@ export {
   profilePicDarkDefault,
   profilePicDarkHover,
   profilePicDarkClicked,
+
+  // Gear Images
+  gearThinkpad,
+  gearKoorui,
+  gearMchose,
+  gearAula,
+  gearRapoo,
+  gearMaono,
+  gearEdifier,
+  gearMoondrop,
+  gearHoto,
 
   // Resume
   resume,

@@ -57,7 +57,10 @@ export function ProfilePicture({
         <div
             className={cn(
                 "shrink-0 rounded-xl border border-border overflow-hidden relative select-none",
-                hasInteraction && "cursor-pointer",
+                // role="button" + tabIndex made this focusable but there was no
+                // visible focus state, so keyboard users had no idea where they were.
+                hasInteraction &&
+                    "cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-sky-300/80 focus-visible:ring-offset-2",
                 className
             )}
             onMouseEnter={() => setIsHovered(true)}
@@ -87,22 +90,25 @@ export function ProfilePicture({
                 draggable={false}
             />
 
-            {/* Hover image */}
+            {/* Hover and clicked images are crossfade layers, not separate
+                content — alt="" keeps screen readers from announcing the same
+                name three times. */}
             {hoverSrc && (
                 <img
                     src={hoverSrc}
-                    alt={alt}
+                    alt=""
+                    aria-hidden
                     className="absolute inset-0 h-full w-full object-cover transition-opacity duration-300 ease-in-out"
                     style={{ opacity: activeSrc === hoverSrc ? 1 : 0 }}
                     draggable={false}
                 />
             )}
 
-            {/* Clicked image */}
             {clickedSrc && (
                 <img
                     src={clickedSrc}
-                    alt={alt}
+                    alt=""
+                    aria-hidden
                     className="absolute inset-0 h-full w-full object-cover transition-opacity duration-300 ease-in-out"
                     style={{ opacity: activeSrc === clickedSrc ? 1 : 0 }}
                     draggable={false}

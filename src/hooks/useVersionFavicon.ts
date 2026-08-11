@@ -1,18 +1,22 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
+import { versionForPath } from "@/data/versions";
+
 /**
- * Swaps the document favicons to the archived v1 icon set while an archived
- * portfolio version is being viewed, and back again on the way out.
+ * Swaps the document favicons to whichever set the current portfolio version
+ * owns, and back again on the way out.
  *
- * Extracted verbatim from the original VersionSwitcher, which owned this as a
- * side effect. It lives in its own hook now so the version-switching UI can be
- * swapped or fall back without silently taking favicon behaviour with it.
+ * The prefix is resolved per-version from `versions.ts` rather than by sniffing
+ * the path. The previous `startsWith("/archived") ? "/v1"` shortcut worked only
+ * while exactly one archived version existed — a second would silently inherit
+ * v1's icons. Unknown routes (404) fall back to the root set.
+ *
  * Call it from a component that is mounted on every route.
  */
 export function useVersionFavicon() {
   const location = useLocation();
-  const faviconPrefix = location.pathname.startsWith("/archived") ? "/v1" : "";
+  const faviconPrefix = versionForPath(location.pathname)?.faviconPrefix ?? "";
 
   useEffect(() => {
     const updateFavicon = (selector: string, path: string) => {

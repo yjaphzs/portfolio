@@ -11,6 +11,7 @@ import {
 import { GitHubCalendar } from "react-github-calendar";
 import { CheckBadgeIcon, ArrowRightIcon } from "@heroicons/react/24/solid";
 import { Link } from "react-router-dom";
+import { v2Path } from "./routes";
 import { motion } from "motion/react";
 import { techStack, TECH_PREVIEW_COUNT } from "@/data/techStack";
 
@@ -173,7 +174,7 @@ export default function NewPortfolio() {
                     Tech Stack
                   </CardTitle>
                   <Link
-                    to="/tech-stack"
+                    to={v2Path("/tech-stack")}
                     className="text-[11px] sm:text-xs text-muted-foreground hover:text-foreground transition-colors no-underline"
                   >
                     <div className="inline-flex items-center gap-1">
@@ -202,7 +203,7 @@ export default function NewPortfolio() {
                             </Badge>
                           ))}
                           {hiddenCount > 0 && (
-                            <Link to="/tech-stack">
+                            <Link to={v2Path("/tech-stack")}>
                               <Badge
                                 variant="outline"
                                 className="text-[11px] font-normal px-2.5 py-0.5 rounded-full cursor-pointer"
@@ -227,7 +228,7 @@ export default function NewPortfolio() {
                     Recent Projects
                   </CardTitle>
                   <Link
-                    to="/projects"
+                    to={v2Path("/projects")}
                     className="text-[11px] sm:text-xs text-muted-foreground hover:text-foreground transition-colors no-underline"
                   >
                     <div className="inline-flex items-center gap-1">
@@ -384,7 +385,7 @@ export default function NewPortfolio() {
                     Relevant Experience
                   </CardTitle>
                   <Link
-                    to="/experience"
+                    to={v2Path("/experience")}
                     className="text-[11px] sm:text-xs text-muted-foreground hover:text-foreground transition-colors no-underline"
                   >
                     <div className="inline-flex items-center gap-1">
