@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 
+import { ensureAppCheck } from "@/lib/appCheck";
 import { firebaseConfig, isFirebaseConfigured } from "@/lib/firebase";
 
 export type Presence = {
@@ -43,6 +44,9 @@ export function usePresence(): Presence {
         if (cancelled) return;
 
         const app = getApps()[0] ?? initializeApp(firebaseConfig);
+        await ensureAppCheck(app);
+        if (cancelled) return;
+
         const database = db.getDatabase(app);
         const presenceRef = db.ref(database, "presence");
         const connectedRef = db.ref(database, ".info/connected");

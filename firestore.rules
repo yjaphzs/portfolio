@@ -10,7 +10,8 @@ service cloud.firestore {
     //
     // Writes are unauthenticated by necessity (there is no login), so the rules
     // constrain the SHAPE of a write rather than who makes it: exactly one
-    // counter may move, and only by exactly +1. A client cannot set an
+    // counter may move, and only by exactly +1 (or, for a document that doesn't
+    // exist yet, be born at its first legitimate value). A client cannot set an
     // arbitrary value, cannot decrement, and cannot introduce new fields.
     //
     // What this does NOT stop is volume — anyone can call the REST API in a loop
@@ -21,12 +22,24 @@ service cloud.firestore {
     match /stats/{docId} {
       allow read: if true;
 
+      // A global/day doc doesn't exist until its first visitor creates it —
+      // self-healing, so nothing needs to be seeded by hand.
+      allow create: if isBootstrap();
+
       allow update: if isSingleIncrement('totalVisits')
                     || isSingleIncrement('visits')
-                    || isPeakRaise();
+                    || isPeakUpdate();
 
-      // Documents are seeded once by hand; clients may never create or remove.
-      allow create, delete: if false;
+      allow delete: if false;
+    }
+
+    // A brand-new doc may hold exactly one known counter, at its first
+    // legitimate value.
+    function isBootstrap() {
+      let d = request.resource.data;
+      return (d.keys().hasOnly(['totalVisits', 'updatedAt']) && d.totalVisits == 1)
+          || (d.keys().hasOnly(['visits', 'updatedAt']) && d.visits == 1)
+          || (d.keys().hasOnly(['peak', 'updatedAt']) && d.peak >= 2 && d.peak <= 50);
     }
 
     // Exactly one counter field (+ its timestamp) changed, and it went up by 1.
@@ -37,14 +50,17 @@ service cloud.firestore {
              && request.resource.data[field] == resource.data[field] + 1;
     }
 
-    // Peak concurrent may only ratchet upward, and only by a plausible step.
+    // Peak concurrent may only ratchet upward, and only by a plausible step —
+    // covers both its first appearance on an existing doc and later raises.
     // Bounding the delta stops a single request from parking it at a huge number.
-    function isPeakRaise() {
+    function isPeakUpdate() {
+      let newPeak = request.resource.data.peak;
+      let oldPeak = 'peak' in resource.data ? resource.data.peak : 0;
       return request.resource.data.diff(resource.data).affectedKeys()
                .hasOnly(['peak', 'updatedAt'])
-             && request.resource.data.peak is int
-             && request.resource.data.peak > resource.data.peak
-             && request.resource.data.peak <= resource.data.peak + 50;
+             && newPeak is int
+             && newPeak > oldPeak
+             && newPeak <= oldPeak + 50;
     }
 
     // Default deny — anything not matched above is private.
