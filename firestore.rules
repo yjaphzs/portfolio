@@ -42,12 +42,15 @@ service cloud.firestore {
           || (d.keys().hasOnly(['peak', 'updatedAt']) && d.peak >= 2 && d.peak <= 50);
     }
 
-    // Exactly one counter field (+ its timestamp) changed, and it went up by 1.
+    // Exactly one counter field (+ its timestamp) changed, and it went up by 1
+    // from whatever it held before — 0 if the field hasn't appeared yet (e.g.
+    // a day doc that peak bootstrapped before any visit was counted).
     function isSingleIncrement(field) {
+      let oldVal = field in resource.data ? resource.data[field] : 0;
       return request.resource.data.diff(resource.data).affectedKeys()
                .hasOnly([field, 'updatedAt'])
              && request.resource.data[field] is int
-             && request.resource.data[field] == resource.data[field] + 1;
+             && request.resource.data[field] == oldVal + 1;
     }
 
     // Peak concurrent may only ratchet upward, and only by a plausible step —
