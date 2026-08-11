@@ -2,9 +2,12 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import profile from "@/data/profile";
+import { GLOBAL_KEYS } from "@/data/shortcuts";
+import { useGlobalShortcut } from "@/hooks/useGlobalShortcut";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 
 import { PresenceStack } from "./PresenceStack";
+import { ShortcutsPanel } from "./ShortcutsPanel";
 
 type Item = {
   /** "#about" for in-page anchors, "/stack" for routes. */
@@ -48,8 +51,15 @@ export function SideNav({ items, activeHref }: Props) {
   const navigate = useNavigate();
   const reducedMotion = usePrefersReducedMotion();
   const [tuning, setTuning] = useState(false);
+  const [shortcutsOpen, setShortcutsOpen] = useState(false);
   const timer = useRef<number | undefined>(undefined);
   const barRef = useRef<HTMLUListElement>(null);
+  const dialRef = useRef<HTMLUListElement>(null);
+
+  // The rail is the one component mounted on every v3 page, so it owns the
+  // legend — the same reason PresenceStack owns the stats panel. Nothing in
+  // Portfolio or PageShell has to know about it.
+  useGlobalShortcut(GLOBAL_KEYS.help, () => setShortcutsOpen((o) => !o));
 
   useEffect(() => () => window.clearTimeout(timer.current), []);
 
@@ -122,6 +132,58 @@ export function SideNav({ items, activeHref }: Props) {
     [tune]
   );
 
+  /**
+   * Arrow and digit tuning, bound to the dial rather than the document.
+   *
+   * Scoped on purpose: a global ArrowUp/ArrowDown would take scrolling away
+   * from the page, which is exactly why CrtGallery refuses to bind arrows
+   * outside fullscreen. React's synthetic bubbling means this only runs when a
+   * channel link already has focus.
+   *
+   * Moving the cursor moves DOM focus too, so the keyboard and the needle never
+   * disagree — the same approach ChannelGuide takes.
+   */
+  const onDialKeyDown = useCallback(
+    (e: React.KeyboardEvent<HTMLUListElement>) => {
+      if (e.metaKey || e.ctrlKey || e.altKey) return;
+
+      const focusChannel = (index: number) => {
+        const wrapped = (index + items.length) % items.length;
+        dialRef.current
+          ?.querySelector<HTMLElement>(`[data-dial="${wrapped}"]`)
+          ?.focus();
+      };
+
+      const current = Number(
+        (e.target as HTMLElement)?.dataset?.dial ?? activeIndex
+      );
+
+      if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+        e.preventDefault();
+        focusChannel(current + (e.key === "ArrowDown" ? 1 : -1));
+        return;
+      }
+
+      if (e.key === "Home" || e.key === "End") {
+        e.preventDefault();
+        focusChannel(e.key === "Home" ? 0 : items.length - 1);
+        return;
+      }
+
+      // Digits jump straight to a channel. Matched against the channel NUMBER
+      // rather than the array index, so the key agrees with the "CH 05" label
+      // the visitor is actually reading.
+      if (/^[1-9]$/.test(e.key)) {
+        const target = items.findIndex((i) => i.number === Number(e.key));
+        if (target === -1) return;
+        e.preventDefault();
+        focusChannel(target);
+        tune(items[target].href);
+      }
+    },
+    [items, activeIndex, tune]
+  );
+
   return (
     <>
       {/* Fullscreen static during a channel change. -inset-[6%] because
@@ -172,7 +234,7 @@ export function SideNav({ items, activeHref }: Props) {
               }}
             />
 
-            <ul className="flex flex-col">
+            <ul ref={dialRef} onKeyDown={onDialKeyDown} className="flex flex-col">
               {items.map((item, i) => {
                 const tuned = i === activeIndex;
                 const inner = (
@@ -207,6 +269,7 @@ export function SideNav({ items, activeHref }: Props) {
                         intercepts plain left-clicks to play the static first. */}
                     <a
                       href={item.href}
+                      data-dial={i}
                       onClick={(e) => onChannelClick(e, item.href)}
                       aria-current={tuned ? "true" : undefined}
                       className={cls}
@@ -225,7 +288,17 @@ export function SideNav({ items, activeHref }: Props) {
         <div className="relative border-t border-crt-line pt-4">
           <PresenceStack />
 
-          <ul className="mt-4 flex flex-col gap-1.5">
+          {/* Sits in the socials' type register so it reads as their sibling
+              rather than a control bolted onto the rail. */}
+          <button
+            type="button"
+            onClick={() => setShortcutsOpen(true)}
+            className="mt-4 cursor-pointer font-crt-mono text-[10px] uppercase tracking-[0.05em] text-crt-muted transition-colors hover:text-crt-accent focus-visible:text-crt-accent focus-visible:outline-none"
+          >
+            [?] Shortcuts
+          </button>
+
+          <ul className="mt-1.5 flex flex-col gap-1.5">
             {profile.socials.map((s) => (
               <li key={s.name}>
                 <a
@@ -272,6 +345,14 @@ export function SideNav({ items, activeHref }: Props) {
           })}
         </ul>
       </nav>
+
+      {/* Last in the fragment on purpose. The tuning static above is also
+          z-10002 with no explicit ordering between them, so DOM order decides
+          — rendered earlier, the legend would be painted over by a channel
+          change that happened while it was open. */}
+      {shortcutsOpen && (
+        <ShortcutsPanel onClose={() => setShortcutsOpen(false)} />
+      )}
     </>
   );
 }

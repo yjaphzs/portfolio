@@ -3,6 +3,8 @@ import { useLocation } from "react-router-dom";
 import { AnimatePresence } from "motion/react";
 
 import { knownPaths } from "@/data/versions";
+import { GLOBAL_KEYS } from "@/data/shortcuts";
+import { useGlobalShortcut } from "@/hooks/useGlobalShortcut";
 import { useVersionFavicon } from "@/hooks/useVersionFavicon";
 import { useWebGLSupport } from "@/hooks/useWebGLSupport";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
@@ -101,6 +103,27 @@ export function TimeMachine() {
       );
     }
   }, [webgl, saveData, canvasFailed]);
+
+  /*
+   * `T` opens the guide from anywhere — until now the only way in was to find
+   * and click the tube.
+   *
+   * The enabled flag mirrors the early returns below rather than living after
+   * them, because hooks cannot be called conditionally. Without it the key
+   * would appear to do nothing on a route with no TV, or when the fallback
+   * switcher is showing and `open` drives nothing.
+   */
+  const guideAvailable =
+    knownPaths.includes(location.pathname) &&
+    webgl === true &&
+    !saveData &&
+    !canvasFailed;
+
+  useGlobalShortcut(
+    GLOBAL_KEYS.timeMachine,
+    () => setOpen((o) => !o),
+    guideAvailable
+  );
 
   // Hidden on 404 and any route not part of a portfolio version.
   if (!knownPaths.includes(location.pathname)) return null;

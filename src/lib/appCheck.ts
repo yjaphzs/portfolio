@@ -16,7 +16,7 @@ const initialized = new WeakSet<FirebaseApp>();
 let pending: Promise<void> | null = null;
 
 export function ensureAppCheck(app: FirebaseApp): Promise<void> {
-  if (!isFirebaseConfigured || !firebaseConfig.recaptchaSiteKey) {
+  if (!isFirebaseConfigured || !firebaseConfig.appCheckSiteKey) {
     return Promise.resolve();
   }
   if (initialized.has(app)) return Promise.resolve();
@@ -29,14 +29,16 @@ export function ensureAppCheck(app: FirebaseApp): Promise<void> {
         );
 
         if (import.meta.env.DEV) {
-          // Registered per-browser under App Check → Apps → Manage debug
-          // tokens, so local dev passes enforcement without a real challenge.
+          // A fixed token registered under App Check → Apps → Manage debug
+          // tokens, so local dev passes enforcement without reprovisioning a
+          // new one every session. Falls back to `true`, which mints a fresh
+          // token and logs it to the console for one-time registration.
           (self as unknown as Record<string, unknown>).FIREBASE_APPCHECK_DEBUG_TOKEN =
-            true;
+            firebaseConfig.appCheckDebugToken || true;
         }
 
         initializeAppCheck(app, {
-          provider: new ReCaptchaV3Provider(firebaseConfig.recaptchaSiteKey),
+          provider: new ReCaptchaV3Provider(firebaseConfig.appCheckSiteKey),
           isTokenAutoRefreshEnabled: true,
         });
         initialized.add(app);

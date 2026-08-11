@@ -64,23 +64,38 @@ export function useVisitorStats() {
         sessionStorage.setItem(SESSION_KEY, "1");
         // setDoc + merge, not updateDoc: the doc may not exist yet (first ever
         // visit, or first visit of the day), and updateDoc can never create
-        // one. Fire and forget — rules permit exactly +1 (or a fresh doc at
-        // its first legitimate value), so a rejected write costs a wrong
-        // number and nothing else, never a blocked panel.
-        void fs
-          .setDoc(
+        // one — it carries an `exists: true` precondition and answers 404.
+        //
+        // Awaited, not fire-and-forget. firestore/lite has no local cache, so
+        // reading in the same tick as the write always returned the
+        // pre-increment value and the first panel open of a session showed a
+        // stale number. Costs one round trip, once per session, behind the
+        // sessionStorage guard above.
+        //
+        // Settled rather than all: a rejected write must cost a wrong number
+        // and nothing else. Rules permit exactly +1 (or a fresh doc at its
+        // first legitimate value), so a rejection means the rules and this
+        // client disagree — worth a warning, never a blocked panel.
+        const writes = await Promise.allSettled([
+          fs.setDoc(
             globalRef,
             { totalVisits: fs.increment(1), updatedAt: fs.serverTimestamp() },
             { merge: true },
-          )
-          .catch(() => {});
-        void fs
-          .setDoc(
+          ),
+          fs.setDoc(
             dayRef,
             { visits: fs.increment(1), updatedAt: fs.serverTimestamp() },
             { merge: true },
-          )
-          .catch(() => {});
+          ),
+        ]);
+
+        // Silence here is what hid this bug for so long: the reads kept
+        // succeeding, so the panel rendered a confident 0 instead of an error.
+        for (const write of writes) {
+          if (write.status === "rejected") {
+            console.warn("[stats] counter write rejected:", write.reason);
+          }
+        }
       }
 
       const [globalSnap, daySnap] = await Promise.all([
