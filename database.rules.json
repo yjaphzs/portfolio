@@ -9,7 +9,7 @@
       "$connection": {
         ".write": "!data.exists() || !newData.exists()",
 
-        ".validate": "newData.hasChildren(['at']) && newData.child('at').isNumber() && newData.children().length === 1",
+        ".validate": "newData.hasChildren(['at']) && newData.child('at').isNumber()",
 
         "at": {
           ".validate": "newData.isNumber()"
