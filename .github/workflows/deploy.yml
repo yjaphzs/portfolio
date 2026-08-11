@@ -22,7 +22,7 @@ concurrency:
 env:
     # Pinned rather than `npm i -g firebase-tools`, so a CLI release can never
     # change what a re-run of an old commit deploys.
-    FIREBASE_TOOLS_VERSION: "14.28.0"
+    FIREBASE_TOOLS_VERSION: "14.27.0"
 
 jobs:
     lint:
