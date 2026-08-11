@@ -9,8 +9,8 @@ function Pointer() {
 
         function gradientFollow() {
             if (!pointerGradient) return;
-            let x = coords.x + "px";
-            let y = coords.y + "px";
+            const x = coords.x + "px";
+            const y = coords.y + "px";
             pointerGradient.style.background = `radial-gradient(600px at ${x} ${y}, rgba(255, 179, 1, 0.10), transparent 80%)`;
         }
 
