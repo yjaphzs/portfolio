@@ -26,8 +26,22 @@ export function GearDeck() {
 
   const item = setup[index];
 
+  /**
+   * Arrows step the deck, but only while focus is inside it.
+   *
+   * Bound here rather than on the document deliberately: global arrows would
+   * take scrolling away from the page, which is the same reason CrtGallery
+   * only binds them in fullscreen.
+   */
+  const onKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    if (e.key !== "ArrowLeft" && e.key !== "ArrowRight") return;
+    e.preventDefault();
+    step(e.key === "ArrowRight" ? 1 : -1);
+  };
+
   return (
-    <div>
+    <div onKeyDown={onKeyDown}>
       <div className="relative mx-auto w-full max-w-[320px]">
         <div
           className="transition-opacity duration-200"
