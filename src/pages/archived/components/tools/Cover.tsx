@@ -24,9 +24,9 @@ function Cover({ isVisible = true }: CoverProps) {
             coverOverlay.style.opacity = "1";
             coverOverlay.style.zIndex = "999";
 
-            // @ts-ignore
+            // @ts-expect-error resizedFinished is an ad-hoc property on window
             clearTimeout(window.resizedFinished);
-            // @ts-ignore
+            // @ts-expect-error resizedFinished is an ad-hoc property on window
             window.resizedFinished = setTimeout(() => {
                 if (!coverOverlay) return;
                 coverOverlay.classList.add("fadeOut");
@@ -62,7 +62,7 @@ function Cover({ isVisible = true }: CoverProps) {
             );
             window.removeEventListener("resize", handleResize);
         };
-    }, []);
+    }, [isVisible]);
 
     return (
         <div id="cover-overlay" className={isVisible ? "" : "fadeOut"}  ref={overlayRef}>

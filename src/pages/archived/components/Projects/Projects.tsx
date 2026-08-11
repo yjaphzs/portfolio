@@ -7,7 +7,13 @@ import RadiisScreenshot from "../../../../assets/v1/images/projects/radiis-home.
 import BasisScreenshot from "../../../../assets/v1/images/projects/basis.png";
 import CLSU360Screenshot from "../../../../assets/v1/images/projects/360.png";
 
-function NextArrow(props: any) {
+interface ArrowProps {
+    className?: string;
+    style?: React.CSSProperties;
+    onClick?: () => void;
+}
+
+function NextArrow(props: ArrowProps) {
     const { className, style, onClick } = props;
     return (
         <div onClick={onClick} style={style} className={`arrow ${className}`}>
@@ -19,7 +25,7 @@ function NextArrow(props: any) {
     );
 }
 
-function PrevArrow(props: any) {
+function PrevArrow(props: ArrowProps) {
     const { className, style, onClick } = props;
     return (
         <div onClick={onClick} style={style} className={`arrow ${className}`}>

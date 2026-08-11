@@ -29,7 +29,7 @@ import { ImageLightbox } from "@/components/ui/image-lightbox";
 import { DotGrid } from "@/components/ui/dot-grid";
 import { Separator } from "@/components/ui/separator";
 import { ThemeToggle } from "@/components/theme-toggle";
-import { useTheme } from "@/components/theme-provider";
+import { useTheme } from "@/hooks/useTheme";
 import { ProfilePicture } from "@/components/ProfilePicture";
 
 import profile from "@/data/profile";
