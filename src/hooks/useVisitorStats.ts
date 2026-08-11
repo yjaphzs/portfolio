@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 
+import { ensureAppCheck } from "@/lib/appCheck";
 import { firebaseConfig, isFirebaseConfigured } from "@/lib/firebase";
 
 export type VisitorStats = {
@@ -49,6 +50,7 @@ export function useVisitorStats() {
       ]);
 
       const app = getApps()[0] ?? initializeApp(firebaseConfig);
+      await ensureAppCheck(app);
       const db = fs.getFirestore(app);
 
       const globalRef = fs.doc(db, "stats", "global");
@@ -60,19 +62,24 @@ export function useVisitorStats() {
       if (!counted.current && !sessionStorage.getItem(SESSION_KEY)) {
         counted.current = true;
         sessionStorage.setItem(SESSION_KEY, "1");
-        // Fire and forget. Rules permit exactly +1 on one field, so a rejected
-        // write costs a wrong number and nothing else — never block the panel.
+        // setDoc + merge, not updateDoc: the doc may not exist yet (first ever
+        // visit, or first visit of the day), and updateDoc can never create
+        // one. Fire and forget — rules permit exactly +1 (or a fresh doc at
+        // its first legitimate value), so a rejected write costs a wrong
+        // number and nothing else, never a blocked panel.
         void fs
-          .updateDoc(globalRef, {
-            totalVisits: fs.increment(1),
-            updatedAt: fs.serverTimestamp(),
-          })
+          .setDoc(
+            globalRef,
+            { totalVisits: fs.increment(1), updatedAt: fs.serverTimestamp() },
+            { merge: true },
+          )
           .catch(() => {});
         void fs
-          .updateDoc(dayRef, {
-            visits: fs.increment(1),
-            updatedAt: fs.serverTimestamp(),
-          })
+          .setDoc(
+            dayRef,
+            { visits: fs.increment(1), updatedAt: fs.serverTimestamp() },
+            { merge: true },
+          )
           .catch(() => {});
       }
 
@@ -124,16 +131,21 @@ export function usePeakReporter(liveCount: number, enabled: boolean) {
         if (cancelled) return;
 
         const app = getApps()[0] ?? initializeApp(firebaseConfig);
+        await ensureAppCheck(app);
+        if (cancelled) return;
+
         const ref = fs.doc(fs.getFirestore(app), "stats", dayId());
         const snap = await fs.getDoc(ref);
         const current = (snap.data()?.peak as number) ?? 0;
 
         // Rules only allow peak to ratchet upward, so a stale read simply fails.
+        // setDoc + merge, not updateDoc: the day doc may not exist yet.
         if (liveCount > current) {
-          await fs.updateDoc(ref, {
-            peak: liveCount,
-            updatedAt: fs.serverTimestamp(),
-          });
+          await fs.setDoc(
+            ref,
+            { peak: liveCount, updatedAt: fs.serverTimestamp() },
+            { merge: true },
+          );
         }
       } catch {
         // Peak tracking is best-effort; never surface it.
