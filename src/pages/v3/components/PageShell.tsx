@@ -1,8 +1,7 @@
 import { useLocation } from "react-router-dom";
 
-import { ThemeToggle } from "@/components/theme-toggle";
-
 import { PAGE_LINKS, sectionNumber } from "../sections";
+import { PictureSwitch } from "./PictureSwitch";
 import { SideNav } from "./SideNav";
 
 type Props = {
@@ -33,9 +32,11 @@ export function PageShell({ sectionId, title, intro, children }: Props) {
       <SideNav items={PAGE_LINKS} activeHref={pathname} />
 
       <main className="relative z-10 lg:pl-56">
-        <div className="mx-auto max-w-[720px] px-6 pb-20 pt-12">
-          <div className="crt-reveal mb-10 flex items-center justify-end">
-            <ThemeToggle />
+        {/* Same reasoning as the homepage masthead: the mobile channel bar
+            already fills the band this padding was reserving. */}
+        <div className="mx-auto max-w-[720px] px-6 pb-20 pt-8 lg:pt-12">
+          <div className="crt-reveal mb-8 flex items-center justify-end lg:mb-10">
+            <PictureSwitch />
           </div>
 
           <header className="crt-reveal crt-d1 mb-10">
