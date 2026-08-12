@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 
-import { ThemeToggle } from "@/components/theme-toggle";
 import { ProfilePicture } from "@/components/ProfilePicture";
 import profile from "@/data/profile";
 import education from "@/data/education";
@@ -17,6 +16,7 @@ import { SideNav } from "./components/SideNav";
 import { SectionHeader } from "./components/SectionHeader";
 import { ContributionMatrix } from "./components/ContributionMatrix";
 import { PresenceStack } from "./components/PresenceStack";
+import { PictureSwitch } from "./components/PictureSwitch";
 import { GearDeck } from "./components/GearDeck";
 import { CrtGallery } from "./components/CrtGallery";
 import { AppHubCard } from "./components/AppHubCard";
@@ -81,9 +81,12 @@ export default function Portfolio() {
       <main className="relative z-10 lg:pl-56">
         <div className="mx-auto max-w-3xl px-6">
         {/* ── Masthead ──────────────────────────────────────────── */}
-        <header className="crt-reveal pb-4 pt-20">
+        {/* The 80px lead-in is for the rail layout, where nothing sits above
+            the column. Below lg the sticky channel bar already occupies that
+            band, so the same padding read as dead space above the switch. */}
+        <header className="crt-reveal pb-4 pt-8 lg:pt-20">
           <div className="mb-6 flex justify-end">
-            <ThemeToggle />
+            <PictureSwitch />
           </div>
 
           {/* Two columns above sm, stacked below. The portrait is sized by the

@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 
@@ -296,34 +297,41 @@ export function CrtGallery({ images, alt }: Props) {
         )}
       </div>
 
-      {fullscreen && (
-        <div
-          role="dialog"
-          aria-modal="true"
-          aria-label={`${alt} viewer`}
-          className="fixed inset-0 z-10002 flex flex-col items-center justify-center gap-4 bg-crt-bg/95 p-6 backdrop-blur-sm print:hidden"
-        >
-          <button
-            type="button"
-            aria-label="Close viewer"
-            onClick={() => setFullscreen(false)}
-            className="absolute inset-0 cursor-default"
-          />
-
-          <div className="relative w-full max-w-4xl">
-            {screen}
-            {readout}
-          </div>
-
-          <button
-            type="button"
-            onClick={() => setFullscreen(false)}
-            className="relative cursor-pointer font-crt-mono text-[11px] uppercase tracking-[0.05em] text-crt-muted transition-colors hover:text-crt-accent"
+      {/* Portalled into <body> for the same reason OsdPanel is: the gallery
+          lives inside a `.crt-reveal` section, whose forwards-filled transform
+          animation makes it the containing block for `position: fixed`, and
+          inside `<main class="relative z-10">`, which the mobile channel bar
+          outranks. Fullscreen has to escape both. */}
+      {fullscreen &&
+        createPortal(
+          <div
+            role="dialog"
+            aria-modal="true"
+            aria-label={`${alt} viewer`}
+            className="fixed inset-x-0 top-0 z-10002 flex h-dvh flex-col items-center justify-center gap-4 bg-crt-bg/95 p-4 backdrop-blur-sm sm:p-6 print:hidden"
           >
-            [Esc] Close
-          </button>
-        </div>
-      )}
+            <button
+              type="button"
+              aria-label="Close viewer"
+              onClick={() => setFullscreen(false)}
+              className="absolute inset-0 cursor-default"
+            />
+
+            <div className="relative w-full max-w-4xl">
+              {screen}
+              {readout}
+            </div>
+
+            <button
+              type="button"
+              onClick={() => setFullscreen(false)}
+              className="relative -m-2 cursor-pointer p-2 font-crt-mono text-[11px] uppercase tracking-[0.05em] text-crt-muted transition-colors hover:text-crt-accent"
+            >
+              <span className="hidden sm:inline">[Esc] </span>Close
+            </button>
+          </div>,
+          document.body
+        )}
     </>
   );
 }
