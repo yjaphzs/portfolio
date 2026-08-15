@@ -2,14 +2,20 @@
 
 # JPB - Portfolio (2025)
 
-This is my personal **portfolio website** built using **React (TypeScript)** and **Vite**. It showcases my projects, skills, and experiences as a web developer.
+This is my personal **portfolio website** built using **Next.js (TypeScript)**. It showcases my projects, skills, and experiences as a web developer.
+
+Every version of the site is still online — the retro TV in the corner switches between them.
 
 ## 🚀 Tech Stack
 
-- **React** (with TypeScript)
-- **Vite** (for fast build and development)
-- **CSS/SCSS**
-- **GitHub Pages** (for deployment)
+- **Next.js** (App Router, TypeScript)
+- **React** 19
+- **Tailwind CSS v4** + **CSS/SCSS**
+- **Firebase Hosting** (for deployment), Realtime Database + Firestore for the visitor counters
+
+Built as a **static export** (`output: "export"`) — `next build` emits one prerendered
+HTML file per route, so there is no server at runtime and every page ships its own
+title, description, canonical URL and Open Graph card.
 
 ## 📦 Getting Started
 
@@ -17,8 +23,20 @@ To run the project locally:
 
 ```bash
 npm install
-npm run dev
+npm run dev          # http://localhost:3000
 ```
+
+Other scripts:
+
+```bash
+npm run build        # static export into out/
+npm run typecheck
+npm run lint
+npm run serve        # serve the export through the Firebase emulator
+```
+
+Firebase is optional — copy `.env.example` to `.env` and fill it in to enable the
+presence counter. Leave it blank and the site runs fine without it.
 
 ## 🔗 Live Demo
 You can view the live portfolio here:

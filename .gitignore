@@ -8,9 +8,13 @@ pnpm-debug.log*
 lerna-debug.log*
 
 node_modules
-dist
-dist-ssr
 *.local
+
+# Next.js — .next is the build cache, out/ is the static export deployed to Hosting
+.next/
+out/
+next-env.d.ts
+*.tsbuildinfo
 
 # Local environment — never commit. Keep .env.example tracked as the template.
 .env
