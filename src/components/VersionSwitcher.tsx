@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { usePathname } from "next/navigation";
 import { History } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 
@@ -25,12 +25,12 @@ import type { PortfolioVersion } from "@/data/versions";
  */
 export function VersionSwitcher() {
     const [open, setOpen] = useState(false);
-    const navigate = useNavigate();
-    const location = useLocation();
+    const pathname = usePathname();
 
+    /** Full document load — see the note in ChannelGuide.select(). */
     const handleSelect = (path: string) => {
         setOpen(false);
-        navigate(path);
+        window.location.assign(path);
     };
 
     const latestVersions = versions.filter((v) => v.category === "latest");
@@ -73,7 +73,7 @@ export function VersionSwitcher() {
                             <VersionButton
                                 key={version.id}
                                 version={version}
-                                isActive={location.pathname === version.path}
+                                isActive={pathname === version.path}
                                 onSelect={handleSelect}
                             />
                         ))}
@@ -91,7 +91,7 @@ export function VersionSwitcher() {
                                         key={version.id}
                                         version={version}
                                         isActive={
-                                            location.pathname === version.path
+                                            pathname === version.path
                                         }
                                         onSelect={handleSelect}
                                     />

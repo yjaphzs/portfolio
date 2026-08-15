@@ -1,5 +1,4 @@
 import {
-  resume,
   profilePhoto,
   profilePicLightDefault,
   profilePicLightHover,
@@ -21,7 +20,8 @@ const profile = {
   location: "Makati City, Philippines",
   email: "yjaphzs@gmail.com",
   website: "yjaphzs.xyz",
-  resumeUrl: resume,
+  /** Served from public/ — bundlers have no asset rule for PDFs. */
+  resumeUrl: "/documents/JBautista-Resume-2026.pdf",
   /**
    * v3's portrait — one static WebP, identical in both themes.
    *

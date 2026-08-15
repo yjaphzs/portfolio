@@ -83,9 +83,6 @@ import gearEdifier from "@/assets/v3/images/gear/edifier-r1000t4.webp";
 import gearMoondrop from "@/assets/v3/images/gear/moondrop-aria-2.webp";
 import gearHoto from "@/assets/v3/images/gear/hoto-kit-pro.webp";
 
-// Resume
-import resume from "@/assets/v2/documents/JBautista-Resume-2026.pdf";
-
 export { profilePhoto };
 
 export const presenceAvatars = [
@@ -164,7 +161,4 @@ export {
   gearEdifier,
   gearMoondrop,
   gearHoto,
-
-  // Resume
-  resume,
 }

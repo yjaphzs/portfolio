@@ -1,13 +1,17 @@
 /**
- * Firebase configuration, read from Vite env vars. See `.env.example`.
+ * Firebase configuration, read from public build-time env vars. See `.env.example`.
  *
  * Deliberately does NOT import the Firebase SDK — this module is safe to pull
  * into the eager bundle because it only reads strings. The ~48KB RTDB client is
  * dynamically imported by the presence hook when it is actually needed.
  *
- * Every value is public by design: Vite inlines VITE_* vars into the built
- * bundle, and the Firebase web API key is an identifier rather than a
+ * Every value is public by design: Next inlines NEXT_PUBLIC_* vars into the
+ * built bundle, and the Firebase web API key is an identifier rather than a
  * credential. Access control lives in `database.rules.json`.
+ *
+ * The reads below must stay literal `process.env.NEXT_PUBLIC_X` member
+ * expressions — the inliner is a textual substitution and cannot resolve a
+ * computed `process.env[key]`.
  */
 
 /**
@@ -28,17 +32,17 @@ const REQUIRED = [
 ] as const;
 
 const config = {
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
-  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
-  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
-  appId: import.meta.env.VITE_FIREBASE_APP_ID,
-  databaseURL: import.meta.env.VITE_FIREBASE_DATABASE_URL,
-  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+  databaseURL: process.env.NEXT_PUBLIC_FIREBASE_DATABASE_URL,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
   // App Check is opt-in on top of the above, not required by it — see
   // `lib/appCheck.ts`. The debug token is dev-only, never read in a build.
-  appCheckSiteKey: import.meta.env.VITE_FIREBASE_APP_CHECK_SITE_KEY,
-  appCheckDebugToken: import.meta.env.VITE_FIREBASE_APP_CHECK_DEBUG_TOKEN,
+  appCheckSiteKey: process.env.NEXT_PUBLIC_FIREBASE_APP_CHECK_SITE_KEY,
+  appCheckDebugToken: process.env.NEXT_PUBLIC_FIREBASE_APP_CHECK_DEBUG_TOKEN,
 };
 
 /**
@@ -55,15 +59,15 @@ export const isFirebaseConfigured = REQUIRED.every(
 /**
  * Config key → env var name. Written out rather than derived: a naive
  * camelCase-to-SNAKE_CASE conversion turns `databaseURL` into
- * `VITE_FIREBASE_DATABASE_U_R_L`, which would send anyone debugging a missing
+ * `NEXT_PUBLIC_FIREBASE_DATABASE_U_R_L`, which would send anyone debugging a missing
  * variable looking for the wrong name.
  */
 const ENV_NAME: Record<(typeof REQUIRED)[number], string> = {
-  apiKey: "VITE_FIREBASE_API_KEY",
-  authDomain: "VITE_FIREBASE_AUTH_DOMAIN",
-  projectId: "VITE_FIREBASE_PROJECT_ID",
-  appId: "VITE_FIREBASE_APP_ID",
-  databaseURL: "VITE_FIREBASE_DATABASE_URL",
+  apiKey: "NEXT_PUBLIC_FIREBASE_API_KEY",
+  authDomain: "NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN",
+  projectId: "NEXT_PUBLIC_FIREBASE_PROJECT_ID",
+  appId: "NEXT_PUBLIC_FIREBASE_APP_ID",
+  databaseURL: "NEXT_PUBLIC_FIREBASE_DATABASE_URL",
 };
 
 /** Names of any missing required vars, for a useful console warning. */

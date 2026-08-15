@@ -1,13 +1,16 @@
+"use client";
+
 import { useState } from "react";
+import Image, { type StaticImageData } from "next/image";
 import { cn } from "@/lib/utils";
 
 interface ProfilePictureProps {
     /** Image shown at rest */
-    defaultSrc: string;
+    defaultSrc: StaticImageData;
     /** Image shown on hover (falls back to defaultSrc) */
-    hoverSrc?: string;
+    hoverSrc?: StaticImageData;
     /** Image shown after click — stays until page reload (falls back to defaultSrc) */
-    clickedSrc?: string;
+    clickedSrc?: StaticImageData;
     alt?: string;
     fallbackInitials?: string;
     className?: string;
@@ -81,11 +84,18 @@ export function ProfilePicture({
                 }
             }}
         >
-            {/* Default image */}
-            <img
+            {/* Default image.
+                `fill` resolves to position:absolute + inset:0 + 100% box — the
+                same thing the old utility classes spelled out — measured
+                against this element's padding box, which the spacer below
+                makes square. Do not pass width/height here: they would fight
+                the spacer. `priority` because this is the LCP element. */}
+            <Image
                 src={defaultSrc}
                 alt={alt}
-                className="absolute inset-0 h-full w-full object-cover transition-opacity duration-300 ease-in-out"
+                fill
+                priority
+                className="object-cover transition-opacity duration-300 ease-in-out"
                 style={{ opacity: activeSrc === defaultSrc ? 1 : 0 }}
                 draggable={false}
             />
@@ -94,22 +104,24 @@ export function ProfilePicture({
                 content — alt="" keeps screen readers from announcing the same
                 name three times. */}
             {hoverSrc && (
-                <img
+                <Image
                     src={hoverSrc}
                     alt=""
                     aria-hidden
-                    className="absolute inset-0 h-full w-full object-cover transition-opacity duration-300 ease-in-out"
+                    fill
+                    className="object-cover transition-opacity duration-300 ease-in-out"
                     style={{ opacity: activeSrc === hoverSrc ? 1 : 0 }}
                     draggable={false}
                 />
             )}
 
             {clickedSrc && (
-                <img
+                <Image
                     src={clickedSrc}
                     alt=""
                     aria-hidden
-                    className="absolute inset-0 h-full w-full object-cover transition-opacity duration-300 ease-in-out"
+                    fill
+                    className="object-cover transition-opacity duration-300 ease-in-out"
                     style={{ opacity: activeSrc === clickedSrc ? 1 : 0 }}
                     draggable={false}
                 />

@@ -1,3 +1,5 @@
+import type { StaticImageData } from "next/image";
+
 import {
   gearAula,
   gearEdifier,
@@ -31,8 +33,12 @@ export type GearItem = {
    * the layout is final before real photography lands. Add real images under
    * `src/assets/v3/images/gear/` and re-export them through the assets barrel
    * rather than importing them here directly.
+   *
+   * `StaticImageData`, not a URL string: the bundler resolves the import to an
+   * object carrying intrinsic width/height, which is what lets next/image
+   * reserve the right box before the file arrives.
    */
-  image?: string;
+  image?: StaticImageData;
   url?: string;
 };
 
