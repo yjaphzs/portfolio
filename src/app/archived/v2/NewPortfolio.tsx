@@ -1,0 +1,606 @@
+"use client";
+
+import {
+  Mail,
+  MapPin,
+  ExternalLink,
+  FileText,
+  Calendar,
+  Dot,
+  LayoutGrid,
+  Github,
+} from "lucide-react";
+/**
+ * Client-only for the same reason as the v3 ContributionMatrix:
+ * react-github-calendar renders its <article> shell during the build but not on
+ * the client's first pass, which threw a hydration mismatch and discarded the
+ * page tree. Its data is fetched at runtime anyway, so nothing is lost.
+ */
+const GitHubCalendar = dynamic(
+  () => import("react-github-calendar").then((m) => m.GitHubCalendar),
+  { ssr: false, loading: () => <div aria-hidden className="h-[110px]" /> }
+);
+import { CheckBadgeIcon, ArrowRightIcon } from "@heroicons/react/24/solid";
+import dynamic from "next/dynamic";
+import Image from "next/image";
+import Link from "next/link";
+import { v2Path } from "@/lib/v2Routes";
+import { motion } from "motion/react";
+import { techStack, TECH_PREVIEW_COUNT } from "@/data/techStack";
+
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel"
+import { ImageLightbox } from "@/components/ui/image-lightbox";
+import { DotGrid } from "@/components/ui/dot-grid";
+import { Separator } from "@/components/ui/separator";
+import { ThemeToggle } from "@/components/theme-toggle";
+import { useTheme } from "@/hooks/useTheme";
+import { ProfilePicture } from "@/components/ProfilePicture";
+
+import profile from "@/data/profile";
+import projects from "@/data/projects";
+import education from "@/data/education";
+import { relevantExperience } from "@/data/experience";
+import gallery, { gallerySrcs } from "@/data/gallery";
+import certifications from "@/data/certifications";
+
+// ─── Animation helpers ───────────────────────────────────────────────────────
+
+const fadeUp = (delay = 0) => ({
+  initial: { opacity: 0, y: 16 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.4, ease: "easeOut" as const, delay },
+});
+
+// ─── Component ───────────────────────────────────────────────────────────────
+
+export default function NewPortfolio() {
+  const { resolvedTheme } = useTheme();
+  const avatarImages = profile.avatarImages[resolvedTheme];
+
+  return (
+    <div className="min-h-screen bg-muted/30 font-sans text-[13px] leading-relaxed text-foreground antialiased">
+      <DotGrid />
+      <div className="relative z-1 mx-auto max-w-6xl px-3 py-4 sm:px-6 lg:px-8">
+        {/* ── Profile Header (full width) ──────────────────── */}
+        <motion.header className="mb-4 sm:mb-6" {...fadeUp(0)}>
+          <Card className="shadow-sm">
+            <CardContent className="relative flex flex-col sm:flex-row items-start gap-4">
+              {/* Theme toggle */}
+              <div className="absolute top-0 right-3">
+                <ThemeToggle />
+              </div>
+
+              {/* Profile Picture */}
+              <ProfilePicture
+                defaultSrc={avatarImages.default}
+                hoverSrc={avatarImages.hover}
+                clickedSrc={avatarImages.clicked}
+                alt={profile.name}
+                fallbackInitials={profile.initials}
+                className="h-30 w-30 sm:h-27 sm:w-27 text-sm sm:text-lg"
+              />
+
+              {/* Info */}
+              <div className="flex-1 min-w-0 space-y-1.5 pr-8 sm:pr-0">
+                <div>
+                  <h1 className="text-lg sm:text-2xl font-bold tracking-tight leading-tight inline-flex items-center gap-1.5">
+                    {profile.name}
+                    <CheckBadgeIcon className="h-4 w-4 sm:h-4.5 sm:w-4.5 text-[#1877F2]" />
+                  </h1>
+                  <p className="text-xs sm:text-[13px] text-muted-foreground">
+                    {profile.title}
+                  </p>
+                </div>
+
+                {/* Meta row */}
+                <div className="flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-y-0.5 sm:gap-x-3 sm:gap-y-1 text-[11px] sm:text-xs text-muted-foreground">
+                  <span className="inline-flex items-center gap-1">
+                    <MapPin className="h-3 w-3 shrink-0" />
+                    {profile.location}
+                  </span>
+                  <span className="inline-flex items-center gap-1">
+                    <Mail className="h-3 w-3 shrink-0" />
+                    <a
+                      href={`mailto:${profile.email}`}
+                      className="hover:text-foreground transition-colors no-underline truncate"
+                    >
+                      {profile.email}
+                    </a>
+                  </span>
+                </div>
+
+                {/* Actions row */}
+                <div className="flex flex-wrap items-center gap-1.5 pt-1">
+                  {profile.socials.map((social) => (
+                    <Button
+                      key={social.name}
+                      variant="outline"
+                      size="sm"
+                      className="h-7 px-2 sm:px-2.5 text-[11px] sm:text-xs"
+                      asChild
+                    >
+                      <a
+                        href={social.url}
+                        target="_blank"
+                        rel="noreferrer noopener"
+                        className="no-underline"
+                      >
+                        <social.icon className="h-3 w-3 sm:h-3.5 sm:w-3.5 mr-1" />
+                        <span className="hidden xs:inline sm:inline">
+                          {social.name}
+                        </span>
+                      </a>
+                    </Button>
+                  ))}
+                  <Button
+                    size="sm"
+                    className="h-7 px-2 sm:px-2.5 text-[11px] sm:text-xs"
+                    asChild
+                  >
+                    <Link href="/resume" className="no-underline">
+                      <FileText className="h-3 w-3 sm:h-3.5 sm:w-3.5 mr-1" />
+                      Resume
+                    </Link>
+                  </Button>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </motion.header>
+
+        {/* ── Two-Column Layout (8 : 4) ───────────────────── */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6">
+          {/* ── LEFT COLUMN (8/12) ──────────────────────── */}
+          <div className="lg:col-span-8 space-y-4 sm:space-y-6">
+            {/* About */}
+            <motion.div {...fadeUp(0.1)}>
+              <Card className="shadow-sm">
+                <CardHeader>
+                  <CardTitle className="font-semibold uppercase tracking-wide">
+                    About
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-2 text-[12px] sm:text-[13px] leading-relaxed text-muted-foreground">
+                    {profile.bio.map((p, i) => (
+                      <p key={i}>{p}</p>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            {/* Tech Stack */}
+            <motion.div {...fadeUp(0.2)}>
+              <Card className="shadow-sm">
+                <CardHeader className="flex flex-row items-center justify-between">
+                  <CardTitle className="font-semibold uppercase tracking-wide">
+                    Tech Stack
+                  </CardTitle>
+                  <Link
+                    href={v2Path("/tech-stack")}
+                    className="text-[11px] sm:text-xs text-muted-foreground hover:text-foreground transition-colors no-underline"
+                  >
+                    <div className="inline-flex items-center gap-1">
+                      View All
+                      <ArrowRightIcon className="h-4 w-4 inline-block ml-1" />
+                    </div>
+                  </Link>
+                </CardHeader>
+                <CardContent className="space-y-3">
+                  {Object.entries(techStack).slice(0,4).map(([category, techs]) => {
+                    const visible = techs.slice(0, TECH_PREVIEW_COUNT);
+                    const hiddenCount = techs.length - visible.length;
+                    return (
+                      <div key={category}>
+                        <p className="text-[11.5px] font-semibold text-foreground mb-1.5">
+                          {category}
+                        </p>
+                        <div className="flex flex-wrap gap-1.5">
+                          {visible.map((tech) => (
+                            <Badge
+                              key={tech}
+                              variant="secondary"
+                              className="text-[11px] font-normal px-2.5 py-0.5 rounded-full"
+                            >
+                              {tech}
+                            </Badge>
+                          ))}
+                          {hiddenCount > 0 && (
+                            <Link href={v2Path("/tech-stack")}>
+                              <Badge
+                                variant="outline"
+                                className="text-[11px] font-normal px-2.5 py-0.5 rounded-full cursor-pointer"
+                              >
+                                +{hiddenCount}
+                              </Badge>
+                            </Link>
+                          )}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            {/* Projects */}
+            <motion.div {...fadeUp(0.3)}>
+              <Card className="shadow-sm">
+                <CardHeader className="flex flex-row items-center justify-between">
+                  <CardTitle className="font-semibold uppercase tracking-wide">
+                    Recent Projects
+                  </CardTitle>
+                  <Link
+                    href={v2Path("/projects")}
+                    className="text-[11px] sm:text-xs text-muted-foreground hover:text-foreground transition-colors no-underline"
+                  >
+                    <div className="inline-flex items-center gap-1">
+                      View All
+                      <ArrowRightIcon className="h-4 w-4 inline-block ml-1" />
+                    </div>
+                  </Link>
+                </CardHeader>
+                <CardContent>
+                  <div className="grid gap-3 sm:gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+                    {projects.slice(0, 3).map((project, idx) => (
+                      <div
+                        key={idx}
+                        className="rounded-lg border border-border p-3.5 flex flex-col"
+                      >
+                        <a
+                          href={project.url}
+                          target="_blank"
+                          rel="noreferrer noopener"
+                          className="text-[13px] font-semibold hover:underline no-underline text-foreground inline-flex items-center gap-1"
+                        >
+                          {project.title}
+                          <ExternalLink className="h-3 w-3 text-muted-foreground" />
+                        </a>
+                        <p className="text-[11px] text-muted-foreground mt-0.5 leading-snug">
+                          {project.fullTitle}
+                        </p>
+                        <div className="flex flex-wrap gap-1 mt-2.5">
+                          {project.tech.map((t) => (
+                            <Badge
+                              key={t}
+                              variant="outline"
+                              className="text-[10px] px-1.5 py-0 font-normal"
+                            >
+                              {t}
+                            </Badge>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            {/* Education */}
+            <motion.div {...fadeUp(0.4)}>
+              <Card className="shadow-sm">
+                <CardHeader>
+                  <CardTitle className="font-semibold uppercase tracking-wide">
+                    Education
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-3">
+                    {education.map((edu, idx) => (
+                      <div
+                        key={idx}
+                        className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 sm:gap-2"
+                      >
+                        <div>
+                          <p className="text-[13px] font-medium">{edu.degree}</p>
+                          <p className="text-xs text-muted-foreground">
+                            {edu.school}
+                          </p>
+                        </div>
+                        <span className="shrink-0 inline-flex items-center gap-1 text-[11px] text-muted-foreground pt-0.5">
+                          <Calendar className="h-3 w-3" />
+                          {edu.period}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            {/* Gallery */}
+            <motion.div {...fadeUp(0.4)}>
+              <Card className="shadow-sm">
+                <CardHeader>
+                  <CardTitle className="font-semibold uppercase tracking-wide">
+                    Gallery
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="flex items-center justify-center">
+                  <Carousel className="w-[calc(100%-6rem)]">
+                    <CarouselContent className="-ml-1">
+                      {gallery.map((img, index) => (
+                        <CarouselItem key={index} className="basis-1/2 sm:basis-1/3 md:basis-1/4 pl-1 lg:basis-1/5">
+                          <ImageLightbox images={gallerySrcs} initialIndex={index} alt="Gallery image">
+                            {/* aspect-square moves to the button so `fill` has
+                                a sized, positioned box to fill. */}
+                            <button
+                              type="button"
+                              className="relative block aspect-square w-full cursor-zoom-in"
+                            >
+                              <Image
+                                src={img}
+                                alt={`Gallery image ${index + 1}`}
+                                fill
+                                className="object-cover rounded-md border border-border"
+                              />
+                            </button>
+                          </ImageLightbox>
+                        </CarouselItem>
+                      ))}
+                    </CarouselContent>
+                    <CarouselPrevious />
+                    <CarouselNext />
+                  </Carousel>
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            {/* GitHub Contributions */}
+            <motion.div {...fadeUp(0.5)}>
+              <Card className="shadow-sm">
+                <CardHeader>
+                  <CardTitle className="font-semibold uppercase tracking-wide inline-flex items-center gap-2">
+                    <Github className="h-4 w-4" />
+                    GitHub Contributions
+                  </CardTitle>
+                  <p className="text-[11px] text-muted-foreground mt-1">
+                    Personal contributions only — does not include work-related activity.
+                  </p>
+                </CardHeader>
+                <CardContent>
+                  <div className="overflow-hidden [&_.react-activity-calendar]:w-full [&_svg]:w-full">
+                    <GitHubCalendar
+                      username="yjaphzs"
+                      colorScheme={resolvedTheme === "dark" ? "dark" : "light"}
+                      fontSize={11}
+                      blockSize={10}
+                      blockMargin={3}
+                      blockRadius={2}
+                      showWeekdayLabels={["mon", "wed", "fri"]}
+                      theme={{
+                        light: ["hsl(0, 0%, 92%)", "hsl(131, 41%, 46%)"],
+                        dark: ["hsl(0, 0%, 22%)", "hsl(131, 50%, 50%)"],
+                      }}
+                      labels={{
+                        totalCount: "{{count}} contributions in {{year}}",
+                      }}
+                      style={{ maxWidth: "100%" }}
+                    />
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+          </div>
+
+          {/* ── RIGHT COLUMN (4/12) ─────────────────────── */}
+          <div className="lg:col-span-4 space-y-4 sm:space-y-6">
+            {/* Relevant Experience */}
+            <motion.div {...fadeUp(0.15)}>
+              <Card className="shadow-sm">
+                <CardHeader className="flex flex-row items-center justify-between">
+                  <CardTitle className="font-semibold uppercase tracking-wide">
+                    Relevant Experience
+                  </CardTitle>
+                  <Link
+                    href={v2Path("/experience")}
+                    className="text-[11px] sm:text-xs text-muted-foreground hover:text-foreground transition-colors no-underline"
+                  >
+                    <div className="inline-flex items-center gap-1">
+                      View All
+                      <ArrowRightIcon className="h-4 w-4 inline-block ml-1" />
+                    </div>
+                  </Link>
+                </CardHeader>
+                <CardContent>
+                  <div className="relative space-y-0">
+                    {/* Timeline line */}
+                    <div className="absolute left-1.25 top-1.5 bottom-1.5 w-px bg-border" />
+
+                    {relevantExperience.map((exp, idx) => (
+                      <div key={idx}>
+                        {exp.roles.map((role, rIdx) => {
+                          const isLast =
+                            idx === relevantExperience.length - 1 &&
+                            rIdx === exp.roles.length - 1;
+                          return (
+                            <div
+                              key={rIdx}
+                              className={`relative pl-5 ${isLast ? "pb-0" : "pb-4"}`}
+                            >
+                              {/* Dot */}
+                              <div className="absolute left-0 top-1.25 h-2.75 w-2.75 rounded-full border-2 border-primary bg-background" />
+
+                              <p className="text-[12.5px] font-semibold leading-tight">
+                                {role.title}
+                              </p>
+                              <a
+                                href={exp.url}
+                                target="_blank"
+                                rel="noreferrer noopener"
+                                className="text-[11.5px] text-muted-foreground hover:text-foreground transition-colors no-underline"
+                              >
+                                {exp.company}
+                              </a>
+                              <p className="text-[11px] text-muted-foreground flex items-center gap-0.5 mt-0.5">
+                                <Calendar className="h-2.5 w-2.5" />
+                                {role.period}
+                              </p>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            {/* Certifications */}
+            <motion.div {...fadeUp(0.3)}>
+              <Card className="shadow-sm">
+                <CardHeader>
+                  <CardTitle className="font-semibold uppercase tracking-wide">
+                    Certifications
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-3">
+                  {certifications.map((cert, idx) => (
+                    <div key={idx}>
+                      {cert.certificateUrl ? (
+                        <a
+                          href={cert.certificateUrl}
+                          target="_blank"
+                          rel="noreferrer noopener"
+                          className="block text-[12.5px] font-semibold leading-tight"
+                        >
+                          {cert.name}
+                        </a>
+                      ) : (
+                        <p className="text-[12.5px] font-semibold leading-tight">
+                          {cert.name}
+                        </p>
+                      )}
+                      <a
+                        href={cert.issuerUrl}
+                        target="_blank"
+                        rel="noreferrer noopener"
+                        className="text-[11.5px] text-muted-foreground hover:text-foreground transition-colors no-underline"
+                      >
+                        {cert.issuer}
+                      </a>
+                      <p className="text-[11px] text-muted-foreground flex items-center gap-0.5 mt-0.5">
+                        <Calendar className="h-2.5 w-2.5" />
+                        {cert.date}
+                      </p>
+                    </div>
+                  ))}
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            {/* App Hub */}
+            <motion.div {...fadeUp(0.3)}>
+              <div className="group relative rounded-xl p-px">
+                {/* Glow effect */}
+                <div
+                  className="gradient-border-rotate absolute -inset-1 rounded-xl opacity-40 group-hover:opacity-75 blur-lg transition-opacity duration-500"
+                />
+                {/* Gradient border */}
+                <div
+                  className="gradient-border-rotate absolute inset-0 rounded-xl opacity-70 group-hover:opacity-100 transition-opacity duration-500"
+                />
+                {/* Inner card */}
+                <Card className="relative shadow-sm bg-card">
+                  <CardHeader>
+                    <CardTitle className="font-semibold uppercase tracking-wide mb-0">
+                      App Hub
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-3">
+                    <p className="text-[12px] sm:text-[13px] text-muted-foreground leading-relaxed">
+                      All my personal web apps in one place. Check them out!
+                    </p>
+                    <Button
+                      size="sm"
+                      className="btn-gradient-wave w-full h-8 text-[11px] sm:text-xs"
+                      asChild
+                    >
+                      <a
+                        href="https://app-hub.yjaphzs.xyz"
+                        target="_blank"
+                        rel="noreferrer noopener"
+                        className="no-underline"
+                      >
+                        <LayoutGrid className="h-3.5 w-3.5 mr-1.5" />
+                        Visit App Hub
+                      </a>
+                    </Button>
+                  </CardContent>
+                </Card>
+              </div>
+            </motion.div>
+
+            {/* Contact & Links */}
+            <motion.div {...fadeUp(0.3)}>
+              <Card className="shadow-sm">
+                <CardHeader>
+                  <CardTitle className="font-semibold uppercase tracking-wide">
+                    Contact & Links
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-2.5">
+                  <a
+                    href={`mailto:${profile.email}`}
+                    className="flex items-center gap-2 text-xs text-muted-foreground hover:text-foreground transition-colors no-underline"
+                  >
+                    <Mail className="h-3.5 w-3.5 shrink-0" />
+                    {profile.email}
+                  </a>
+                  <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                    <MapPin className="h-3.5 w-3.5 shrink-0" />
+                    {profile.location}
+                  </div>
+                  <Separator className="my-2" />
+                  {profile.socials.map((social) => (
+                    <a
+                      key={social.name}
+                      href={social.url}
+                      target="_blank"
+                      rel="noreferrer noopener"
+                      className="flex items-center gap-2 text-xs text-muted-foreground hover:text-foreground transition-colors no-underline"
+                    >
+                      <social.icon className="h-3.5 w-3.5 shrink-0" />
+                      {social.name}
+                    </a>
+                  ))}
+                  <Separator className="my-2" />
+                  <Link
+                    href="/resume"
+                    className="flex items-center gap-2 text-xs font-medium text-foreground hover:underline no-underline"
+                  >
+                    <FileText className="h-3.5 w-3.5 shrink-0" />
+                    View Resume
+                  </Link>
+                </CardContent>
+              </Card>
+            </motion.div>
+          </div>
+        </div>
+
+        {/* ── Footer (full width) ─────────────────────────── */}
+        <motion.div {...fadeUp(0.5)}>
+          <Separator className="mt-4 sm:mt-6 mb-3 sm:mb-4" />
+          <footer className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3 pb-4 sm:pb-6 text-[10px] sm:text-[11px] text-muted-foreground">
+            <p>
+              &copy; {new Date().getFullYear()} {profile.name}
+              <Dot className="inline h-4 w-4" />
+              All rights reserved.
+            </p>
+          </footer>
+        </motion.div>
+      </div>
+    </div>
+  );
+}
