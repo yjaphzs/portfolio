@@ -1,11 +1,12 @@
+"use client";
+
 import { Suspense, lazy, useCallback, useEffect, useRef, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { usePathname } from "next/navigation";
 import { AnimatePresence } from "motion/react";
 
 import { knownPaths } from "@/data/versions";
 import { GLOBAL_KEYS } from "@/data/shortcuts";
 import { useGlobalShortcut } from "@/hooks/useGlobalShortcut";
-import { useVersionFavicon } from "@/hooks/useVersionFavicon";
 import { useWebGLSupport } from "@/hooks/useWebGLSupport";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import { VersionSwitcher } from "@/components/VersionSwitcher";
@@ -28,13 +29,14 @@ const RetroTVCanvas = lazy(() => import("./RetroTVCanvas"));
  *
  * Renders a 3D retro TV that opens a fullscreen CRT channel guide. Falls back to
  * the original button-and-dialog switcher when WebGL is unavailable or the canvas
- * fails at runtime. Also owns favicon swapping for archived routes, which is
- * why it must stay mounted on every route.
+ * fails at runtime. Mounted from the root layout so it is available on every
+ * route; it hides itself on paths no version claims.
+ *
+ * Per-route favicons used to be its job too — they are declarative
+ * `metadata.icons` on the archived routes now.
  */
 export function TimeMachine() {
-  useVersionFavicon();
-
-  const location = useLocation();
+  const pathname = usePathname();
   const webgl = useWebGLSupport();
   const reducedMotion = usePrefersReducedMotion();
   const driver = useRef<TVDriver>(createDriver());
@@ -50,7 +52,7 @@ export function TimeMachine() {
   // A channel change unmounts the guide; make sure any other navigation does too.
   useEffect(() => {
     setOpen(false);
-  }, [location.pathname]);
+  }, [pathname]);
 
   /*
    * Defer the three.js chunk until the browser is idle.
@@ -114,7 +116,7 @@ export function TimeMachine() {
    * switcher is showing and `open` drives nothing.
    */
   const guideAvailable =
-    knownPaths.includes(location.pathname) &&
+    knownPaths.includes(pathname) &&
     webgl === true &&
     !saveData &&
     !canvasFailed;
@@ -126,7 +128,7 @@ export function TimeMachine() {
   );
 
   // Hidden on 404 and any route not part of a portfolio version.
-  if (!knownPaths.includes(location.pathname)) return null;
+  if (!knownPaths.includes(pathname)) return null;
 
   // `null` means detection hasn't run yet — render nothing for one tick rather
   // than flashing the fallback button before the canvas can take over.

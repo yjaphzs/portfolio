@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { usePathname } from "next/navigation";
 import { motion } from "motion/react";
 
 import { versions } from "@/data/versions";
@@ -19,13 +19,12 @@ const pad = (n: number) => String(n).padStart(2, "0");
  * viewport instead of being resampled onto curved glass.
  */
 export function ChannelGuide({ reducedMotion, onClose }: Props) {
-  const navigate = useNavigate();
-  const location = useLocation();
+  const pathname = usePathname();
   const container = useRef<HTMLDivElement>(null);
 
   const currentIndex = Math.max(
     0,
-    versions.findIndex((v) => v.path === location.pathname)
+    versions.findIndex((v) => v.path === pathname)
   );
   const [cursor, setCursor] = useState(currentIndex);
   const [tuning, setTuning] = useState(false);
@@ -33,21 +32,28 @@ export function ChannelGuide({ reducedMotion, onClose }: Props) {
   const select = useCallback(
     (path: string) => {
       if (tuning) return;
-      if (path === location.pathname) {
+      if (path === pathname) {
         onClose();
         return;
       }
       // Burst of static, then change channel.
+      //
+      // A full document load, not a client-side push. Each version is its own
+      // document: v1 ships ~2,200 lines of unscoped global SCSS (including a
+      // bare `#about`, which v3's homepage also uses) and the App Router does
+      // not detach a route's stylesheet on client navigation. A reload is also
+      // what makes each version's own favicon and manifest actually apply.
+      // It costs nothing here — it lands inside the static burst below.
       setTuning(true);
       window.setTimeout(
         () => {
-          navigate(path);
+          window.location.assign(path);
           onClose();
         },
         reducedMotion ? 0 : 380
       );
     },
-    [tuning, location.pathname, navigate, onClose, reducedMotion]
+    [tuning, pathname, onClose, reducedMotion]
   );
 
   // Keyboard: arrows tune, Enter selects, Escape exits, Tab is trapped.
@@ -178,7 +184,7 @@ export function ChannelGuide({ reducedMotion, onClose }: Props) {
         <div className="flex min-h-0 flex-1 flex-col justify-center">
           <ul className="mx-auto w-full max-w-2xl space-y-1">
             {versions.map((v, i) => {
-              const isCurrent = v.path === location.pathname;
+              const isCurrent = v.path === pathname;
               const isCursor = i === cursor;
               return (
                 <li key={v.id}>

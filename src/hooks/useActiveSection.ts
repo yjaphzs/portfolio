@@ -90,7 +90,7 @@ export function useActiveSection(ids: string[]): string {
    * highlighting a section halfway down the page. Anchoring the top to the first
    * id makes the initial state deterministic.
    */
-  if (edge === "bottom") return ids[ids.length - 1];
-  if (edge === "top") return ids[0];
+  if (edge === "bottom") return ids[ids.length - 1] ?? "";
+  if (edge === "top") return ids[0] ?? "";
   return active;
 }

@@ -35,4 +35,14 @@ const galleryImages = [
   carousel15
 ];
 
+/**
+ * Plain URLs, derived once at module scope.
+ *
+ * CrtGallery and ImageLightbox take `string[]` because they preload with
+ * `new Image()` and index into the array — and both key effects on the array's
+ * identity, so mapping inline in JSX would hand them a new array every render
+ * and thrash the preloader. Deriving it here keeps the reference stable.
+ */
+export const gallerySrcs: string[] = galleryImages.map((img) => img.src);
+
 export default galleryImages;

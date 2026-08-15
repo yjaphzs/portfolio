@@ -16,7 +16,11 @@ const initialized = new WeakSet<FirebaseApp>();
 let pending: Promise<void> | null = null;
 
 export function ensureAppCheck(app: FirebaseApp): Promise<void> {
-  if (!isFirebaseConfigured || !firebaseConfig.appCheckSiteKey) {
+  // Bound to a const so the guard below narrows it for the async closure too;
+  // reading the property again inside would be `string | undefined` again.
+  const siteKey = firebaseConfig.appCheckSiteKey;
+
+  if (!isFirebaseConfigured || !siteKey) {
     return Promise.resolve();
   }
   if (initialized.has(app)) return Promise.resolve();
@@ -28,7 +32,7 @@ export function ensureAppCheck(app: FirebaseApp): Promise<void> {
           "firebase/app-check"
         );
 
-        if (import.meta.env.DEV) {
+        if (process.env.NODE_ENV !== "production") {
           // A fixed token registered under App Check → Apps → Manage debug
           // tokens, so local dev passes enforcement without reprovisioning a
           // new one every session. Falls back to `true`, which mints a fresh
@@ -38,7 +42,7 @@ export function ensureAppCheck(app: FirebaseApp): Promise<void> {
         }
 
         initializeAppCheck(app, {
-          provider: new ReCaptchaV3Provider(firebaseConfig.appCheckSiteKey),
+          provider: new ReCaptchaV3Provider(siteKey),
           isTokenAutoRefreshEnabled: true,
         });
         initialized.add(app);

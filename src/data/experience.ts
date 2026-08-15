@@ -236,3 +236,15 @@ export const relevantExperience = experience
     roles: exp.roles.filter((role) => RELEVANT_TITLES.includes(role.title)),
   }))
   .filter((exp) => exp.roles.length > 0);
+
+/**
+ * Experience id → plain image URLs.
+ *
+ * The gallery components take `string[]`: they preload with `new Image()` and
+ * index into the array, and they key effects on the array's identity. Mapping
+ * `.src` inline in JSX would build a new array on every render and restart the
+ * preloader each time, so it is derived once here instead.
+ */
+export const carouselSrcs: Record<string, string[]> = Object.fromEntries(
+  experience.map((exp) => [exp.id, exp.carouselImages.map((img) => img.src)])
+);

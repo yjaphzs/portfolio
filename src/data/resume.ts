@@ -102,7 +102,7 @@ export const resumeSkills: Record<string, string[]> = {
  * A typo'd id or a skill that no longer exists in techStack.ts should be loud
  * in the console during `npm run dev`, not silently missing from the PDF.
  */
-if (import.meta.env.DEV) {
+if (process.env.NODE_ENV !== "production") {
   const knownIds = new Set(experience.map((e) => e.id));
   const unknownIds = resumeExperience
     .map((e) => e.id)
