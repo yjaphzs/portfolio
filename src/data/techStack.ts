@@ -9,6 +9,7 @@ export const techStack: Record<string, string[]> = {
         "Bootstrap",
         "HTML & CSS",
         "Livewire",
+        "Module Federation",
         "Motion",
         "Lucide React",
         "Font Awesome",
@@ -28,6 +29,8 @@ export const techStack: Record<string, string[]> = {
         "REST APIs",
         "MySQL",
         "PostgreSQL",
+        "Redis",
+        "Pytest",
         "Java",
     ],
     "Firebase": [
@@ -50,6 +53,7 @@ export const techStack: Record<string, string[]> = {
         "Google Cloud Platform",
     ],
     "APIs & Integrations": [
+        "Stripe",
         "BoldSign API",
         "HubSpot",
         "Webhooks",

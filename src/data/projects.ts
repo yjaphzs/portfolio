@@ -1,11 +1,26 @@
-export const projects = [
+export type Project = {
+  title: string;
+  fullTitle: string;
+  description: string;
+  url: string;
+  tech: string[];
+  /**
+   * Tighter one-line variant for the printed resume, which renders a project as
+   * a single bullet on a fixed one-page budget. Falls back to `description`.
+   */
+  resumeLine?: string;
+};
+
+export const projects: Project[] = [
   {
     title: "Barkr AI Portal",
     fullTitle: "Barkr AI Portal",
     description:
-      "Secure portal for financial institutions to access asset valuation and collateral management.",
+      "Micro-frontend portal for financial institutions covering asset valuation and collateral management. A host app loads around ten independently deployed React apps at runtime, backed by Firebase and Python FastAPI services, with subscription billing and a credit system metering submissions and contracts.",
+    resumeLine:
+      "Micro-frontend portal for asset valuation and collateral management — ~10 runtime-loaded React apps on Firebase and FastAPI, with subscription billing and credit-metered usage.",
     url: "https://portal.barkr.ai/",
-    tech: ["React", "Firebase", "TypeScript", "Vite", "Shadcn UI", "Lucide React", "ESLint", "Tailwind CSS"],
+    tech: ["React", "Module Federation", "Firebase", "TypeScript", "Python", "FastAPI", "Stripe", "Redis", "Vite", "Shadcn UI", "Tailwind CSS"],
   },
   {
     title: "Barkr AI Website",
@@ -14,6 +29,36 @@ export const projects = [
       "A corporate website for Barkr, a fintech company providing AI-powered valuation solutions for hard assets to support financial institutions in lending decisions.",
     url: "https://barkr.ai/",
     tech: ["WordPress", "PHP", "HTML", "CSS", "SCSS", "JavaScript"],
+  },
+  {
+    title: "Cariño Tailor Shop",
+    fullTitle: "Cariño Tailor Shop Management System",
+    description:
+      "A complete operations platform for a tailoring and dry-cleaning business — orders, per-piece production tracking, inventory, payroll, and a full double-entry accounting suite that auto-posts from daily operations. Works offline, with a separate touch interface for the shop counter and public order tracking for customers.",
+    resumeLine:
+      "Solo-built operations platform for a tailoring business — production tracking, inventory and payroll on a double-entry accounting engine, offline-capable with public order tracking.",
+    url: "",
+    tech: ["Next.js", "TypeScript", "Firebase", "Cloud Functions", "Tailwind CSS", "Shadcn UI", "PWA"],
+  },
+  {
+    title: "Data Annotation Platform",
+    fullTitle: "Human-in-the-Loop Data Annotation & QA Platform",
+    description:
+      "An internal platform where reviewers annotate and quality-check a collection of over 100,000 generated images, growing toward millions. Queued review feeds with a second-pass stage, bulk import and export, per-reviewer throughput analytics, role-based access with multi-factor authentication, and full activity auditing — with query and listener patterns tuned so read cost stays flat as the collection grows.",
+    resumeLine:
+      "Human-in-the-loop annotation platform over a 100k+ image collection — queued review and second-pass feeds, reviewer analytics, and read patterns tuned to keep query cost flat at scale.",
+    url: "",
+    tech: ["Next.js", "TypeScript", "React", "Firebase", "Cloud Functions", "Python", "Tailwind CSS", "Shadcn UI"],
+  },
+  {
+    title: "Research Data Portal",
+    fullTitle: "Server-Rendered Research Data Portal",
+    description:
+      "A server-rendered portal over a large curated reference collection, assembled by an ingestion pipeline that parses source documents into structured records with extracted page images. Server components on a managed SQL data layer with cached reads, a server-verified session model, and role-based access across public and internal views.",
+    resumeLine:
+      "Server-rendered portal over a curated collection parsed from source documents into structured records with page images — server components on a managed SQL layer with cached reads.",
+    url: "",
+    tech: ["Next.js", "TypeScript", "React", "PostgreSQL", "Redis", "Firebase", "Tailwind CSS"],
   },
   {
     title: "App Hub",
@@ -51,7 +96,9 @@ export const projects = [
     title: "RADIIS (v2.0)",
     fullTitle: "Research & Development Integrated Information System",
     description:
-      "Upgraded platform for managing CLSU research programs, projects, and studies, with analytics.",
+      "Institution-wide platform managing CLSU's research portfolio — programs, projects, studies, publications, intellectual property and researcher profiles across ~129 tables. Role-based access scoped to the university's structure, two-factor auth, activity auditing, PDF/Excel reporting and geographic research mapping.",
+    resumeLine:
+      "Institution-wide research management platform — ~129 tables covering programs, projects, publications and IP, with org-scoped RBAC, 2FA, auditing and PDF/Excel reporting.",
     url: "https://radiis.clsu.edu.ph",
     tech: ["PHP", "Laravel", "Livewire", "HTML & CSS", "JavaScript", "SASS/SCSS", "MySQL", "Bootstrap"],
   },
@@ -59,7 +106,7 @@ export const projects = [
     title: "BASIS",
     fullTitle: "Business Affairs Strategic Integrated System",
     description:
-      "A centralized platform to modernize and streamline CLSU's business operations across multiple programs.",
+      "Centralized platform modernizing CLSU's business operations — contracts and agreements, incident reporting, project statements and a rice program module, sharing the institutional structure and component library built for RADIIS.",
     url: "https://basis.clsu.edu.ph",
     tech: ["PHP", "Laravel", "Livewire", "HTML & CSS", "JavaScript", "SASS/SCSS", "MySQL", "Bootstrap"],
   },

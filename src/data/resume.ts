@@ -62,7 +62,13 @@ export const resumeExperience: ResumeEntry[] = [
 ];
 
 /** Matches `title` in projects.ts. Order here is the order on the page. */
-export const resumeProjects = ["Barkr AI Portal", "RADIIS (v2.0)"];
+export const resumeProjects = [
+  "Barkr AI Portal",
+  "Data Annotation Platform",
+  "Research Data Portal",
+  "Cariño Tailor Shop",
+  "RADIIS (v2.0)",
+];
 
 /**
  * A curated regrouping of techStack.ts for the "Additional" section. The raw
@@ -74,7 +80,7 @@ export const resumeProjects = ["Barkr AI Portal", "RADIIS (v2.0)"];
  */
 export const resumeSkills: Record<string, string[]> = {
   Languages: ["JavaScript", "TypeScript", "Python", "PHP"],
-  Frontend: ["Next.js", "React", "Tailwind CSS"],
+  Frontend: ["Next.js", "React", "Module Federation", "Tailwind CSS"],
   Backend: [
     "FastAPI",
     "Laravel",
@@ -83,6 +89,7 @@ export const resumeSkills: Record<string, string[]> = {
     "REST APIs",
     "PostgreSQL",
     "MySQL",
+    "Redis",
   ],
   Firebase: [
     "Authentication",
@@ -92,7 +99,7 @@ export const resumeSkills: Record<string, string[]> = {
     "Data Connect",
   ],
   "Google Cloud": ["Compute Engine", "Cloud SQL", "IAM & Service Accounts"],
-  Integrations: ["BoldSign API", "HubSpot", "Webhooks"],
+  Integrations: ["Stripe", "BoldSign API", "HubSpot", "Webhooks"],
   DevOps: ["Docker", "GitHub Actions", "WordPress"],
   "AI & Workflow": ["Claude", "Codex", "Asana"],
 };
