@@ -263,9 +263,16 @@ export default function ResumePage() {
                                          * No per-project tech line: it duplicates
                                          * the Technical Skills line in Additional
                                          * and costs a line each on a one-page budget.
+                                         *
+                                         * resumeLine is the tightened variant where a
+                                         * project carries one; portfolio descriptions
+                                         * are sized for cards, not this page budget.
                                          */}
                                         <Bullets
-                                            items={[project.description]}
+                                            items={[
+                                                project.resumeLine ??
+                                                    project.description,
+                                            ]}
                                         />
                                     </div>
                                 );

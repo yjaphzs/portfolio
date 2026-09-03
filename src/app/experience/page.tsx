@@ -9,7 +9,7 @@ import { pageMetadata } from "@/lib/seo";
 export const metadata = pageMetadata({
   title: "Experience",
   description:
-    "Every role in full: fintech platforms at Globalco, institution-wide systems at CLSU, plus creative web ads, QA and IT support.",
+    "Every role in full: fintech client work at Globalco, institution-wide systems at CLSU, plus creative web ads, QA and IT support.",
   path: "/experience",
 });
 

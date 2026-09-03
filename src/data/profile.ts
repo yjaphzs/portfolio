@@ -42,9 +42,9 @@ const profile = {
     },
   },
   bio: [
-     "I’m a Senior Full-Stack Developer passionate about building useful, modern web apps. My experience spans university systems, creative web ads, IT support, and scalable financial technology platforms—always focused on making things simpler and more impactful.",
-     "My latest experience is with a financial technology company, where I architected and developed real-time, scalable web systems and internal portals for secure asset valuation and management. I now lead full-stack work across product teams, building Firebase applications end to end and Next.js front ends on FastAPI services, backed by Google Cloud for API integrations, service accounts, and containerized deployments. My scope has also grown into Agentic AI / AI Agents, powering data annotation and data crawling workflows.",
-     "At CLSU, I led the development of institution-wide platforms and taught programming, bridging technical solutions with real user needs.",
+     "I’m a full-stack engineer. I build modern web apps and the services behind them, and these days I’m focused on AI-powered products.",
+     "Right now I’m building for a fintech client, leading both the front-end and the back-end. I love turning rough ideas into things people actually use — and lately that’s meant a lot of generative AI.",
+     "Before that I spent a few years building platforms for a university, and taught programming along the way. Different world, same job: figure out what people actually need, then build it.",
   ],
   socials: [
     { 
