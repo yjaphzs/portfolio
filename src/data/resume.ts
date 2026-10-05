@@ -78,7 +78,15 @@ export const resumeProjects = [
  */
 export const resumeSkills: Record<string, string[]> = {
   Languages: ["JavaScript", "TypeScript", "Python", "PHP"],
-  Frontend: ["Next.js", "React", "Module Federation", "Tailwind CSS"],
+  Frontend: [
+    "Next.js",
+    "React",
+    "React Native",
+    "Module Federation",
+    "Redux",
+    "Zustand",
+    "Tailwind CSS",
+  ],
   Backend: [
     "FastAPI",
     "Laravel",

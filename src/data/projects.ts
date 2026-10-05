@@ -20,7 +20,7 @@ export const projects: Project[] = [
     resumeLine:
       "Micro-frontend portal for asset valuation and collateral management, running ~10 runtime-loaded React apps on Firebase and FastAPI with subscription billing and credit-metered usage.",
     url: "https://portal.barkr.ai/",
-    tech: ["React", "Module Federation", "Firebase", "TypeScript", "Python", "FastAPI", "Stripe", "Redis", "Vite", "Shadcn UI", "Tailwind CSS"],
+    tech: ["React", "Module Federation", "Redux", "Firebase", "TypeScript", "Python", "FastAPI", "Stripe", "Redis", "Vite", "Shadcn UI", "Tailwind CSS"],
   },
   {
     title: "Barkr AI Website",

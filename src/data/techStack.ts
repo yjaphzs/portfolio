@@ -10,6 +10,7 @@ export const techStack: Record<string, string[]> = {
         "HTML & CSS",
         "Livewire",
         "Module Federation",
+        "Redux",
         "Motion",
         "Lucide React",
         "Font Awesome",
@@ -17,6 +18,10 @@ export const techStack: Record<string, string[]> = {
         "Prettier",
         "Vite",
         "Webpack",
+    ],
+    "Mobile": [
+        "React Native",
+        "Zustand",
     ],
     "Back End": [
         "Node.js",
