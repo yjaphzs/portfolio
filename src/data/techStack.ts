@@ -23,6 +23,8 @@ export const techStack: Record<string, string[]> = {
         "FastAPI",
         "Python",
         "GraphQL",
+        "WPGraphQL",
+        "Headless CMS",
         "Laravel",
         "PHP",
         "Express.js",
@@ -48,6 +50,7 @@ export const techStack: Record<string, string[]> = {
     ],
     "Google Cloud": [
         "Compute Engine",
+        "Cloud Run",
         "Cloud SQL",
         "IAM & Service Accounts",
         "Google Cloud Platform",
@@ -65,6 +68,7 @@ export const techStack: Record<string, string[]> = {
         "Claude",
         "Codex",
         "Agentic AI",
+        "AI-Assisted Development",
         "Data Annotation",
     ],
     "Data & Automation": [
