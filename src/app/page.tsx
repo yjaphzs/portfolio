@@ -358,12 +358,12 @@ export default function Portfolio() {
         >
           <ContributionMatrix username={GITHUB_USER} />
           <p className="mt-2 font-crt-mono text-[10px] uppercase tracking-[0.05em] text-crt-muted">
-            Personal contributions only — does not include work activity.
+            Personal contributions only. Does not include work activity.
           </p>
         </Section>
 
           <footer className="crt-reveal crt-d5 border-t border-crt-line py-10 font-crt-mono text-[10px] uppercase tracking-[0.05em] text-crt-muted">
-            © {new Date().getFullYear()} {profile.name} — built with react, three
+            © {new Date().getFullYear()} {profile.name} · built with react, three
             and too much coffee
           </footer>
         </div>

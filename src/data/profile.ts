@@ -42,8 +42,8 @@ const profile = {
     },
   },
   bio: [
-     "I’m a full-stack engineer. I build modern web apps and the services behind them, and these days I’m focused on AI-powered products.",
-     "Right now I’m building for a fintech client, leading both the front-end and the back-end. I love turning rough ideas into things people actually use — and lately that’s meant a lot of generative AI.",
+     "I’m a full-stack engineer. I build modern web apps and the services behind them, and I lean on AI across the whole delivery cycle, from scaffolding and review through to agentic workflows running in production.",
+     "Right now I’m building for a fintech client, leading both the front-end and the back-end. I like turning rough ideas into things people actually use, and lately that has meant shipping them far faster by putting AI to work inside the process itself.",
      "Before that I spent a few years building platforms for a university, and taught programming along the way. Different world, same job: figure out what people actually need, then build it.",
   ],
   socials: [

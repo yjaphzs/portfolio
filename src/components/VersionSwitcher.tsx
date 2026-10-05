@@ -64,7 +64,7 @@ export function VersionSwitcher() {
                             Portfolio Versions
                         </DialogTitle>
                         <DialogDescription className="text-xs">
-                            Travel through time — pick a version to view.
+                            Travel through time. Pick a version to view.
                         </DialogDescription>
                     </DialogHeader>
 

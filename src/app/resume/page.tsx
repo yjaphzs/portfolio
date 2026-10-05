@@ -15,7 +15,7 @@ import { pageMetadata } from "@/lib/seo";
 export const metadata = pageMetadata({
   title: "Résumé",
   description:
-    "One-page résumé for Jan Bautista — Senior Full-Stack Developer. Education, experience, projects and skills, print-ready.",
+    "One-page résumé for Jan Bautista, Senior Full-Stack Developer. Education, experience, projects and skills, print-ready.",
   path: "/resume",
 });
 
@@ -239,7 +239,7 @@ export default function ResumePage() {
                         </Section>
 
                         {/* Projects */}
-                        <Section title="Projects">
+                        <Section title="Recent Projects">
                             {resumeProjects.map((title) => {
                                 const project = projects.find(
                                     (p) => p.title === title

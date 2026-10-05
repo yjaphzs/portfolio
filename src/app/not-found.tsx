@@ -3,7 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { NotFoundActions } from "./NotFoundActions";
 
 export const metadata = {
-  title: "404 — Page not found",
+  title: "404 Page not found",
   // nofollow as well as noindex: there is nothing here worth crawling onward.
   robots: { index: false, follow: false },
   // Drop the inherited canonical — it would otherwise point every missing URL

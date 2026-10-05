@@ -216,7 +216,7 @@ export function ImageLightbox({ images, initialIndex, alt = "Asset", children }:
                     onPointerDownOutside={() => setOpen(false)}
                 >
                     <DialogPrimitive.Title className="sr-only">
-                        Image viewer — {alt}
+                        Image viewer: {alt}
                     </DialogPrimitive.Title>
 
                     {/* Top bar: counter + zoom controls + close */}

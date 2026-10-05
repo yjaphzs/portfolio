@@ -8,7 +8,7 @@ import { pageMetadata } from "@/lib/seo";
 export const metadata = pageMetadata({
   title: "Projects",
   description:
-    "Everything worth showing, work and personal — university platforms, fintech portals and side builds.",
+    "Everything worth showing, work and personal: university platforms, fintech portals and side builds.",
   path: "/projects",
 });
 

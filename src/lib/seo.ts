@@ -25,16 +25,18 @@ export const SITE_TITLE = `${profile.name} — ${profile.title}`;
  * previous 227-character version lost its final clause in the SERP.
  */
 export const SITE_DESCRIPTION =
-  "Senior Full-Stack Developer in Makati City building modern web apps with " +
-  "Next.js, React, Firebase and FastAPI — fintech, Agentic AI and university systems.";
+  "Senior Full-Stack Developer in Makati City shipping AI-accelerated web apps " +
+  "with Next.js, React, Firebase and FastAPI, plus agentic AI workflows.";
 
 /** Shorter, for cards where the full description gets truncated anyway. */
 const SOCIAL_DESCRIPTION =
-  "Senior Full-Stack Developer building modern web apps with Next.js, React, " +
-  "Firebase, and FastAPI — plus Agentic AI workflows for data annotation and crawling.";
+  "Senior Full-Stack Developer using AI across the delivery cycle to ship web " +
+  "apps on Next.js, React, Firebase and FastAPI.";
 
 const KEYWORDS = [
   "Senior Full-Stack Developer",
+  "AI Engineer",
+  "AI-Assisted Development",
   "Software Engineer",
   "Web Development",
   "Next.js",
@@ -48,6 +50,9 @@ const KEYWORDS = [
   "MySQL",
   "Agentic AI",
   "AI Agents",
+  "Generative AI",
+  "Headless CMS",
+  "Cloud Run",
   "Data Annotation",
   "Web Crawling",
 ];

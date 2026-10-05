@@ -63,11 +63,9 @@ export const resumeExperience: ResumeEntry[] = [
 
 /** Matches `title` in projects.ts. Order here is the order on the page. */
 export const resumeProjects = [
+  "Barkr AI Website",
   "Barkr AI Portal",
-  "Data Annotation Platform",
-  "Research Data Portal",
-  "Cariño Tailor Shop",
-  "RADIIS (v2.0)",
+  "Catalogue Raisonné",
 ];
 
 /**
@@ -80,7 +78,16 @@ export const resumeProjects = [
  */
 export const resumeSkills: Record<string, string[]> = {
   Languages: ["JavaScript", "TypeScript", "Python", "PHP"],
-  Frontend: ["Next.js", "React", "Module Federation", "Tailwind CSS"],
+  Frontend: [
+    "Next.js",
+    "React",
+    "React Native",
+    "Expo",
+    "Module Federation",
+    "Redux",
+    "Zustand",
+    "Tailwind CSS",
+  ],
   Backend: [
     "FastAPI",
     "Laravel",
@@ -98,10 +105,16 @@ export const resumeSkills: Record<string, string[]> = {
     "Storage",
     "Data Connect",
   ],
-  "Google Cloud": ["Compute Engine", "Cloud SQL", "IAM & Service Accounts"],
+  "Google Cloud": ["Cloud Run", "Compute Engine", "Cloud SQL", "IAM & Service Accounts"],
   Integrations: ["Stripe", "BoldSign API", "HubSpot", "Webhooks"],
   DevOps: ["Docker", "GitHub Actions", "WordPress"],
-  "AI & Workflow": ["Claude", "Codex", "Asana"],
+  "AI & Workflow": [
+    "Claude",
+    "Codex",
+    "AI-Assisted Development",
+    "Agentic AI",
+    "Asana",
+  ],
 };
 
 /* ── Drift guards (dev only) ──────────────────────────────────────────────

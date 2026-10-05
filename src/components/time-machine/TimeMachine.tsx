@@ -92,7 +92,7 @@ export function TimeMachine() {
   useEffect(() => {
     if (webgl === null) return;
     const reason = !webgl
-      ? "no usable WebGL context (hardware acceleration disabled, or the browser's context limit is exhausted — try closing other WebGL tabs)"
+      ? "no usable WebGL context (hardware acceleration disabled, or the browser's context limit is exhausted, try closing other WebGL tabs)"
       : saveData
         ? "Data Saver is enabled"
         : canvasFailed
