@@ -36,7 +36,7 @@ export const versions: PortfolioVersion[] = [
     id: "latest",
     channel: 1,
     label: "Portfolio v3",
-    description: "Retro CRT terminal — phosphor, halftone and pixel type",
+    description: "Retro CRT terminal with phosphor, halftone and pixel type",
     path: "/",
     // `/resume` is version-neutral: one print document shared by every version.
     subPaths: ["/stack", "/experience", "/projects", "/setup", "/resume"],

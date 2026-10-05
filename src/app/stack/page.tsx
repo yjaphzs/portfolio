@@ -8,7 +8,7 @@ import { pageMetadata } from "@/lib/seo";
 export const metadata = pageMetadata({
   title: "Tech Stack",
   description:
-    "Everything I reach for, grouped by where it lives — languages, frameworks, data stores, infrastructure and tooling.",
+    "Everything I reach for, grouped by where it lives: languages, frameworks, data stores, infrastructure and tooling.",
   path: "/stack",
 });
 

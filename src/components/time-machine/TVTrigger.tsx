@@ -71,7 +71,7 @@ export function TVTrigger({
       <button
         ref={btn}
         type="button"
-        aria-label="Open portfolio time machine — browse previous versions"
+        aria-label="Open portfolio time machine to browse previous versions"
         aria-busy={!ready}
         onClick={handleClick}
         onPointerEnter={engage}

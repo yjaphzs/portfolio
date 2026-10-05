@@ -15,7 +15,7 @@ import { pageMetadata } from "@/lib/seo";
 export const metadata = pageMetadata({
   title: "Résumé",
   description:
-    "One-page résumé for Jan Bautista — Senior Full-Stack Developer. Education, experience, projects and skills, print-ready.",
+    "One-page résumé for Jan Bautista, Senior Full-Stack Developer. Education, experience, projects and skills, print-ready.",
   path: "/resume",
 });
 
