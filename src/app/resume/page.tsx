@@ -239,7 +239,7 @@ export default function ResumePage() {
                         </Section>
 
                         {/* Projects */}
-                        <Section title="Projects">
+                        <Section title="Recent Projects">
                             {resumeProjects.map((title) => {
                                 const project = projects.find(
                                     (p) => p.title === title
