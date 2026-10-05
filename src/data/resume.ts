@@ -82,6 +82,7 @@ export const resumeSkills: Record<string, string[]> = {
     "Next.js",
     "React",
     "React Native",
+    "Expo",
     "Module Federation",
     "Redux",
     "Zustand",

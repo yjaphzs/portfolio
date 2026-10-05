@@ -21,7 +21,16 @@ export const techStack: Record<string, string[]> = {
     ],
     "Mobile": [
         "React Native",
+        "Expo",
+        "Expo Router",
+        "HeroUI Native",
+        "Uniwind",
+        "React Native Firebase",
+        "MapLibre Native",
         "Zustand",
+        "LegendList",
+        "Reanimated",
+        "Lottie",
     ],
     "Back End": [
         "Node.js",
