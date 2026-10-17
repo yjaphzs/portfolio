@@ -59,7 +59,7 @@ export const projects: Project[] = [
       "A server-rendered catalogue raisonné documenting an artist's complete body of work. An ingestion pipeline parses archival source documents into structured catalogue entries carrying provenance, exhibition history and extracted page images. Server components sit on a managed SQL data layer with cached reads, a server-verified session model, and role-based access separating the public catalogue from internal curatorial views.",
     resumeLine:
       "Server-rendered catalogue raisonné: archival documents parsed into structured entries on a cached SQL layer.",
-    url: "",
+    url: "https://raisonnes.com/",
     tech: ["Next.js", "TypeScript", "React", "PostgreSQL", "Redis", "Firebase", "Tailwind CSS"],
   },
   {
