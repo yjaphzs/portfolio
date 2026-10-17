@@ -18,7 +18,7 @@ export const projects: Project[] = [
     description:
       "Micro-frontend portal for financial institutions covering asset valuation and collateral management. A host app loads around ten independently deployed React apps at runtime, backed by Firebase and Python FastAPI services, with subscription billing and a credit system metering submissions and contracts.",
     resumeLine:
-      "Micro-frontend portal for asset valuation and collateral management, running ~10 runtime-loaded React apps on Firebase and FastAPI with subscription billing and credit-metered usage.",
+      "Micro-frontend portal: ~10 runtime-loaded React apps on Firebase and FastAPI, with billing and credit metering.",
     url: "https://portal.barkr.ai/",
     tech: ["React", "Module Federation", "Redux", "Firebase", "TypeScript", "Python", "FastAPI", "Stripe", "Redis", "Vite", "Shadcn UI", "Tailwind CSS"],
   },
@@ -28,7 +28,7 @@ export const projects: Project[] = [
     description:
       "Corporate marketing site for Barkr, a fintech company providing AI-powered valuation of hard assets to support lending decisions at financial institutions. Built as a Next.js front end on a headless WordPress CMS, with Advanced Custom Fields modeled as a GraphQL schema so each page resolves exactly the fields it renders in a single query. Marketing keeps editing in WordPress while the public site ships as a containerized server-rendered app on Google Cloud Run.",
     resumeLine:
-      "Marketing site for a fintech valuation company, built as a Next.js front end on headless WordPress with ACF content modeled as a GraphQL schema, containerized and deployed on Google Cloud Run.",
+      "Marketing site for a fintech client: Next.js on headless WordPress, ACF via GraphQL, deployed on Cloud Run.",
     url: "https://barkr.ai/",
     tech: ["Next.js", "React", "WordPress", "Headless CMS", "WPGraphQL", "ACF", "GraphQL", "Cloud Run", "Docker"],
   },
@@ -58,8 +58,8 @@ export const projects: Project[] = [
     description:
       "A server-rendered catalogue raisonné documenting an artist's complete body of work. An ingestion pipeline parses archival source documents into structured catalogue entries carrying provenance, exhibition history and extracted page images. Server components sit on a managed SQL data layer with cached reads, a server-verified session model, and role-based access separating the public catalogue from internal curatorial views.",
     resumeLine:
-      "Server-rendered catalogue raisonné over an artist's complete body of work, turning archival documents into structured entries with provenance and page images on a managed SQL layer with cached reads.",
-    url: "",
+      "Server-rendered catalogue raisonné: archival documents parsed into structured entries on a cached SQL layer.",
+    url: "https://raisonnes.com/",
     tech: ["Next.js", "TypeScript", "React", "PostgreSQL", "Redis", "Firebase", "Tailwind CSS"],
   },
   {

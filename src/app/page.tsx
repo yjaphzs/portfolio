@@ -21,6 +21,8 @@ import { AppHubCard } from "@/components/v3/AppHubCard";
 import { JsonLd } from "@/components/JsonLd";
 
 const GITHUB_USER = "yjaphzs";
+/** Work account. Only the handle lives here; the URL comes from profile.socials. */
+const GITHUB_WORK_USER = "jan-barkr";
 
 /**
  * Section rhythm: 56px top and bottom, per the skill.
@@ -57,6 +59,7 @@ function Section({
 
 export default function Portfolio() {
   const github = profile.socials.find((s) => s.name === "GitHub");
+  const githubWork = profile.socials.find((s) => s.name === "GitHub (Work)");
   const linkedin = profile.socials.find((s) => s.name === "LinkedIn");
   const navItems = SECTIONS.map((s) => ({
     href: `#${s.id}`,
@@ -346,7 +349,7 @@ export default function Portfolio() {
           <CrtGallery images={gallerySrcs} alt="Gallery photo" />
         </Section>
 
-        {/* ── 07 github ─────────────────────────────────────────── */}
+        {/* ── 08 github ─────────────────────────────────────────── */}
         <Section
           id="github"
           delay="crt-d5"
@@ -357,8 +360,31 @@ export default function Portfolio() {
           }
         >
           <ContributionMatrix username={GITHUB_USER} />
+          {/*
+           * The graph is the personal account, and it has to say so: the work
+           * account's public history is nearly empty because that work lives in
+           * private repos, so an unqualified graph would read as the whole
+           * picture. The header action only takes one link, hence the work
+           * account surfacing here instead.
+           */}
           <p className="mt-2 font-crt-mono text-[10px] uppercase tracking-[0.05em] text-crt-muted">
-            Personal contributions only. Does not include work activity.
+            Personal account.{" "}
+            {githubWork ? (
+              <>
+                Work activity lives on{" "}
+                <a
+                  href={githubWork.url}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="text-crt-accent no-underline transition-colors hover:text-crt-ink"
+                >
+                  @{GITHUB_WORK_USER} ↗
+                </a>
+                , mostly in private repositories.
+              </>
+            ) : (
+              "Does not include work activity."
+            )}
           </p>
         </Section>
 

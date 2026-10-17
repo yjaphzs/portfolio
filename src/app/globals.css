@@ -709,9 +709,20 @@ html {
  * Page geometry can't be expressed as a utility, so it lives here. Everything
  * else the resume needs is handled by Tailwind `print:` variants in Resume.tsx.
  */
+/*
+ * margin: 0 is deliberate and load-bearing. Chrome paints its print headers
+ * and footers (date, document title, source URL) into the @page margin box, so
+ * a zero margin is the only way to suppress them from CSS. The real margin
+ * moves onto .resume-sheet as print padding instead.
+ *
+ * The trade this makes: padding is not re-applied after a page break, so a
+ * second page would start hard against the paper edge. The resume is kept to a
+ * single page for exactly this reason. If it ever spills, either trim it back
+ * or restore a @page margin and accept the browser chrome.
+ */
 @page {
   size: letter;
-  margin: 0.5in;
+  margin: 0;
 }
 
 @media print {
