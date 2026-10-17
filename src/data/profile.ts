@@ -46,17 +46,31 @@ const profile = {
      "Right now I’m building for a fintech client, leading both the front-end and the back-end. I like turning rough ideas into things people actually use, and lately that has meant shipping them far faster by putting AI to work inside the process itself.",
      "Before that I spent a few years building platforms for a university, and taught programming along the way. Different world, same job: figure out what people actually need, then build it.",
   ],
+  /**
+   * Order is load-bearing: the resume contact line spreads these in sequence,
+   * so the two GitHub accounts stay adjacent there.
+   *
+   * The work entry is deliberately NOT named "GitHub", because page.tsx
+   * resolves the masthead link and the section header action with
+   * `find((s) => s.name === "GitHub")`, and a duplicate name would make which
+   * account they point at a matter of array order.
+   */
   socials: [
-    { 
+    {
       name: "GitHub",
       url: "https://github.com/yjaphzs",
-      icon: Github
+      icon: Github,
+    },
+    {
+      name: "GitHub (Work)",
+      url: "https://github.com/jan-barkr",
+      icon: Github,
     },
     {
       name: "LinkedIn",
       url: "https://www.linkedin.com/in/yjaphzs/",
       icon: Linkedin,
-    }
+    },
   ],
 };
 
