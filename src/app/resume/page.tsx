@@ -126,14 +126,18 @@ export default function ResumePage() {
                  * document, not a UI surface. Serif face per Harvard convention,
                  * intentionally distinct from the site's Inter.
                  */}
-                <article className="resume-sheet mx-auto w-full max-w-[8.5in] rounded-md border bg-white p-6 text-[10.5pt] leading-[1.28] text-black shadow-sm sm:p-12 print:max-w-none print:rounded-none print:border-0 print:p-0 print:shadow-none font-resume">
+                <article className="resume-sheet mx-auto w-full max-w-[8.5in] rounded-md border bg-white p-6 text-[10.5pt] leading-[1.28] text-black shadow-sm sm:p-12 print:max-w-none print:rounded-none print:border-0 print:p-[0.25in] print:shadow-none font-resume">
                     {/* Header */}
                     <header className="text-center">
                         <h1 className="text-[16pt] font-bold uppercase tracking-[0.06em]">
                             {profile.fullName}
                         </h1>
                         {/* Kept just under body size so the whole contact line
-                            stays on one row at narrow widths. */}
+                            stays on one row. Six items, both GitHub accounts
+                            included. Measured in the print column (8in at
+                            10pt): 659px of 768px, so roughly 22 characters
+                            spare. A seventh item wraps this to two rows, and
+                            the page has no room for the extra line. */}
                         <p className="mt-1 text-[10pt]">
                             {contact.join("  |  ")}
                         </p>
